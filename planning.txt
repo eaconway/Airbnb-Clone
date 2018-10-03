@@ -1,0 +1,30 @@
+Schema Planning
+
+Table: Users
+- username, string, null:false
+- password_digest, string, null:false
+- session_token, string, null:false
+-
+index username
+
+Table: Homes
+- longitude, integer, null:false
+- latitude, integer, null:false
+- street_number, integer, null:false
+- street, string, null:false
+- city, string, null:false
+- state, string, null: false
+- zip, integer, null:false
+- beds, integer, null:false
+- baths, integer, null:false
+
+
+Table: Experiences
+
+Table: Restaurants
+
+Table: User_Photos
+
+Table: Home_Photos
+
+Table: Stock_Photos
