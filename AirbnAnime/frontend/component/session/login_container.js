@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
     </button>
   ),
   forgetPass: (
-    <button className={'forgot-pass'}
+    <button className={'demo-button'}
       onClick={() => dispatch(openModal('forgetPass'))}>
       Forgot Password?
     </button>

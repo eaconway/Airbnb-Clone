@@ -11,6 +11,7 @@ class FormUser extends React.Component {
     this.state.months = months;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.togglePassword = this.togglePassword.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
     this.state.password_type = 'password';
   }
 
@@ -21,8 +22,15 @@ class FormUser extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     this.state.birthday = `${this.state.year}-${this.state.months[this.state.month]}-${this.state.day}`;
-    debugger;
     this.props.action(this.state).then(this.props.closeModal);
+  }
+
+  demoLogin(e){
+    let demoForm = {
+      email: 'demo',
+      password: 'password'
+    }
+    this.props.action(demoForm).then(this.props.closeModal);
   }
 
   togglePassword(e){
@@ -35,6 +43,12 @@ class FormUser extends React.Component {
         <input type="checkbox" />
         <span className="checkmark"></span>
       </label>)
+    let demo = (
+      <button className={'demo-button'} onClick={this.demoLogin}>
+        Demo
+      </button>
+    )
+    let errors = (this.props.errors ? this.props.errors.map(error => <li>{error}</li>) : "" )
 
     let form = this.props.formType === 'Login' ? (
       <div>
@@ -55,7 +69,10 @@ class FormUser extends React.Component {
         <input className={'form-submit'} type='submit'
           value='Log in'/>
 
-        {this.props.forgetPass}
+        <div className={'demo-pass'}>
+          {this.props.forgetPass}
+          {demo}
+        </div>
 
         <div className={'line-divider'}/>
 
@@ -122,7 +139,9 @@ class FormUser extends React.Component {
       <div className={'session'}>
         <button onClick={this.props.closeModal}
           className={'modal-close'}>X</button>
-
+        <ul className={'session-errors'}>
+          {errors}
+        </ul>
         <form onSubmit={this.handleSubmit}>
           {form}
         </form>

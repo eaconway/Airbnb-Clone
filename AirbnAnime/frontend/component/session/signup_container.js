@@ -8,7 +8,7 @@ const mapStateToProps = state => {
   const user = {email: '', fname: '', lname: '', password: '', month: '', day: '', year:''};
   const formType = 'Sign Up';
 
-  return {user, formType}
+  return {user, formType, errors: state.errors.login}
 };
 
 const mapDispatchToProps = dispatch => ({

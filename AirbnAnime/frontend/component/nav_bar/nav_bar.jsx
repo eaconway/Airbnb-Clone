@@ -20,7 +20,7 @@ class NavBar extends React.Component {
   render(){
     let session = this.props.currentUser ?
       (<div className='nav-list'>
-        <Link to='/' className={'nav-link'}>Become a Host</Link>
+        <Link to='/homes' className={'nav-link'}>Become a Host</Link>
         <Link to='/' className={'nav-link'}>Saved</Link>
         <Link to='/' className={'nav-link'}>Trips</Link>
         <Link to='/' className={'nav-link'}>Messages</Link>
@@ -30,6 +30,8 @@ class NavBar extends React.Component {
         </div>
 
         <div className={`${this.state.userOptions} user-options`}>
+          <Link to='/'>Profile</Link>
+          <Link to='/users/:userId/homes'>My Homes</Link>
           <div onClick={this.props.logout}>Logout</div>
         </div>
 

@@ -1,0 +1,49 @@
+.jumbo {
+  background-image: url('https://i.ytimg.com/vi/Hjj1PQORNKg/maxresdefault.jpg');
+  // background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  padding: 10%;
+  width: 80%;
+  height: 350px;
+
+
+  .jumbo-main {
+    height: 500px;
+    width: 80%;
+    border: 1px solid red;
+
+    // .welcome {
+    //   display: flex;
+    //   flex-direction: row;
+    //   justify-content: space-between;
+    //   width: 100%;
+    //   word-wrap: normal;
+    //   border: 1px solid green;
+    //
+    //   .welcome-header {
+    //     color: white;
+    //     border: 1px solid blue;
+    //     height: 300px;
+    //     width: 40%
+    //
+    //     h3{
+    //       font-size: 15px;
+    //       line-height: 18px;
+    //     }
+    //
+    //     h1{
+    //       font-size: 44px;
+    //       line-height: 56px;
+    //     }
+    //   }
+    //
+    //   .home-form-start{
+    //     background-color: white;
+    //     width: 50%;
+    //     height: 300px;
+    //   }
+    //
+    // }
+  }
+}

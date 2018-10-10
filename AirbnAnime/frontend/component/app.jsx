@@ -1,12 +1,14 @@
 import React from 'react';
-// import WelcomeBar from './nav_bar/welcome_bar_container';
+
+import Modal from './session/modal';
 import NavBarContainer from './nav_bar/nav_bar_container';
 import SearchContainer from './nav_bar/search_bar_container';
 import SignupContainer from './session/signup_container';
 import LoginContainer from './session/login_container';
-import Modal from './session/modal';
+
+import HomesContainer from './homes/homes_container';
 // import Home from './home/home';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 // import { AuthRoute, ProtectedRoute} from '../utils/route_utils';
 
 export default () => (
@@ -16,6 +18,10 @@ export default () => (
       <Route path="/" component={SearchContainer} />
       <Route path="/" component={NavBarContainer} />
     </header>
+
+    <Switch>
+      <Route path='/homes' component={HomesContainer} />
+    </Switch>
   </div>
 );
 
