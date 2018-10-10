@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import * as SessionFormUtil from '../../util/session_form_util';
-import BirthdayDropdown from './birthday_dropdown';
 import {months, days, years} from '../../util/birthday_dropdown';
 
 class FormUser extends React.Component {
