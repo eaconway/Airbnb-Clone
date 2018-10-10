@@ -5,7 +5,6 @@ class NavBar extends React.Component {
   constructor(props){
     super(props);
     this.state = {userOptions:"hidden"};
-    // debugger
     this.toggleUserOptions = this.toggleUserOptions.bind(this);
   }
 
