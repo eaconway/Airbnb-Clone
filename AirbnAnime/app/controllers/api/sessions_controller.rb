@@ -1,7 +1,7 @@
 class Api::SessionsController < ApplicationController
   def create
     @user = User.find_by_credentials(
-      params[:user][:username],
+      params[:user][:email],
       params[:user][:password]
     )
 
@@ -9,7 +9,7 @@ class Api::SessionsController < ApplicationController
       login!(@user)
       render :show
     else
-      render :errors
+      render json: ["Incorrect username or password"], status: 400
     end
   end
 
@@ -20,6 +20,6 @@ class Api::SessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:email, :password)
   end
 end

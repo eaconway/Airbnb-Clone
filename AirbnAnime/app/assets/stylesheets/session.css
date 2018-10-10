@@ -1,36 +1,160 @@
 .session {
   width: 500px;
-  height: 500px;
   background-color: white;
   position: static;
+  padding: 30px;
+  font-size: 14px;
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  flex-direction: column;
+}
+
+.modal-close{
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 25px;
+  border: none;
+  color: grey;
+  text-align: left;
+}
+
+form{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px;
 }
 
 .form-header{
-  margin: 0 auto;
+  font-size:1em;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .session-form-input{
   display: block;
-  width: 470px;
+  width: 485px;
   height: 30px;
-  margin: 20px auto;
+  margin: 20px 0px 20px 0px;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 5px;
+  padding-left: 10px;
+  border-radius: 1px;
+  border: 1px solid #f2f2f2;
+  -webkit-appearance: none;
 }
+
+.session-form-input:focus {
+  border-color: #484848;
+}
+
+.form-options-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.show-pass{
+  color: rgb(0, 132, 137);
+  cursor: pointer;
+  border-width: 0px;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.forgot-pass{
+  color: rgb(0, 132, 137);
+  cursor: pointer;
+  border-width: 0px;
+  background: transparent;
+  width: 100;
+  margin: 25px 0px 25px 0px;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.line-divider {
+  border-top: 3px solid #f2f2f2;
+}
+
+.switch-form{
+  margin: 0 auto;
+  margin-top: 20px;
+  border: none;
+  display:flex;
+  justify-content: center;
+}
+.switch-form button{
+  margin-left: 5px;
+  border-width: 0px;
+  background: transparent;
+  color: rgb(0, 132, 137);
+  font-size: 16px;
+}
+
+/* SIGN UP FORM */
+.birthday{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 10px 0px 10px 0px;
+}
+
+.birthday-info{
+  font-size: 14px !important;
+  font-weight: normal;
+  line-height: 18px;r
+  margin: 10px 0px 10px 0px;
+}
+
+/* INSPIRATION TAKEN FROM: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_custom_select */
+
+.birthday-form{
+  margin: 10px 0px 0px 0px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.birthday-form select {
+  height: 30px;
+  border: 1px solid #f2f2f2;
+  width: 30%;
+  /* margin: 10px; */
+}
+
+.birthday-form:nth-child(1){
+  width: 40%;
+}
+
+/* .birthday-form:nth-child(2){
+  width: 20%;
+  height: 30px;
+}
+
+.birthday-form:nth-child(3){
+  width: 30%;
+  height: 30px;
+}  */
 
 .mktg-notice{
   margin-bottom: 20px;
 }
 
 .form-submit{
-  width: 470px;
-  height: 40px;
+  width: 500px;
+  height: 50px;
   background-color: rgb(255, 90, 95);
   color: white;
-  font-weight: 600;
+  font-weight: 550;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 5px;
 }
 
 /* BELOW CHECKBOXES CREDIT TO W3: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox  */
@@ -40,9 +164,9 @@
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
-    margin-top:20px;
+    margin-top:10px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: inherit;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -63,15 +187,16 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border: 1px solid #f2f2f2;
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+/* .container:hover input ~ .checkmark {
     background-color: #ccc;
-}
+} */
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {

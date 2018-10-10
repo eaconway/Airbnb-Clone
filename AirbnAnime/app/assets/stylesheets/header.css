@@ -1,5 +1,5 @@
 .header {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #f2f2f2;;
   height: 80px;
   width: 100%;
   font-weight: 600;
@@ -27,8 +27,15 @@
 }
 
 .search-bar {
-  height: 40px;
+  height: 35px;
   width: 70%;
+  box-shadow: 0 4px 6px 0px #f2f2f2;
+  border: 1px solid #f2f2f2;
+  padding: 0px 10px 0px 10px;
+}
+
+.search-bar:focus {
+  outline: none;
 }
 
 /* NAVBAR List */
@@ -66,6 +73,26 @@
   background-size: contain;
   width: 35px;
   height: 35px;
+}
+
+.hidden {
+  display:none
+}
+
+.user-options {
+  width: 200px;
+  background: white;
+  border: 1px solid red;
+  position: absolute;
+  top: 80px;
+  right: 0;
+  padding: 0px 10px 0px 10px;
+}
+
+.user-options > div{
+  height: 50px;
+  text-align: center;
+  border: 1px solid blue;
 }
 
 /* MODAL STYLING */

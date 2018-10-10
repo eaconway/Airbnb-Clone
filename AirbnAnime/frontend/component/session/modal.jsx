@@ -3,6 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from './login_container';
 import SignupFormContainer from './signup_container';
+import ForgotPassContainer from './forgot_pass_container';
 
 function Modal({modal, closeModal}) {
   if (!modal) {
@@ -16,6 +17,9 @@ function Modal({modal, closeModal}) {
       break;
     case 'signup':
       component = <SignupFormContainer />;
+      break;
+    case 'forgetPass':
+      component = <ForgotPassContainer />;
       break;
     default:
       return null;

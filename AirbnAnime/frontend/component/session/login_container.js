@@ -11,16 +11,23 @@ const mapStateToProps = state => {
   return {
     user,
     formType,
+    errors: state.errors.login
   }
 };
 
 const mapDispatchToProps = dispatch => ({
   action: (form) => dispatch(login(form)),
   otherForm: (
-      <button onClick={() => dispatch(openModal('signup'))}>
-        Signup
-      </button>
-    ),
+    <button  onClick={() => dispatch(openModal('signup'))}>
+      Signup
+    </button>
+  ),
+  forgetPass: (
+    <button className={'forgot-pass'}
+      onClick={() => dispatch(openModal('forgetPass'))}>
+      Forgot Password?
+    </button>
+  ),
   closeModal: () => dispatch(closeModal())
 });
 
