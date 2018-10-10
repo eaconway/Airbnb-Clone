@@ -1,0 +1,61 @@
+Users
+- actions:
+  - Create - SignUp
+    - render :show
+  - Update - password, email, Host_description
+    - render :show
+  - Show:
+    - Res: {id, username}
+
+Homes
+- actions:
+  - create - 'List a new home'
+    - Fields: address, house detail (beds, baths, bedrooms),
+      house amenities (internet, washer, dryer)
+    - On creation of new home, create new hosting
+  - update
+    - Fields: address, house detail (beds, baths, bedrooms),
+      house amenities (internet, washer, dryer)
+  - delete
+    - removes home AND hosting
+  - show
+    - Fields: address, house detail (beds, baths, bedrooms),
+      house amenities (internet, washer, dryer)
+
+Hostings
+
+Bookings
+- actions:
+  - create:
+    - start_booking, end_booking
+  - update:
+    - Fields: start_booking, end_booking
+  - delete:
+    - Cancel booking (Only before ending date)
+
+Reviews
+- actions:
+  - create:
+    - title, body
+  - delete review
+
+Favorites
+- action:
+  - create
+  - delete
+
+
+#####BONUS:
+
+Conversation
+- actions:
+  - create
+
+Messages
+- actions:
+  - create
+  - delete
+
+Collections (Favorites)
+- actions:
+  - 

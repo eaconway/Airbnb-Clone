@@ -100,7 +100,7 @@ column name| data type | details
 `email`           | string    | not null
 `password_digest` | integer   | not null
 `host_rating`     | float     |
-`guest_rating`    | float     | not null
+`guest_rating`    | float     |
 `host_description`| integer   |
 `created_at`      | date      | not null
 `updated_at`      | date      | not null

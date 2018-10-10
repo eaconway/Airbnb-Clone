@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AirbnAnime</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyAPjYkDq0-iiCd6W5-qCw46J-r0EW39L1U" %>
+    <%= javascript_include_tag 'application'%>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= stylesheet_link_tag    'header'%>
+    <%= stylesheet_link_tag    'session'%>
+    <% if logged_in %>
+      <script>
+        window.currentUser = <%=
+        render(
+         "api/users/user.json.jbuilder",
+         user: current_user).html_safe %>
+
+        console.log("current User is logged in")
+      </script>
+    <% end %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
