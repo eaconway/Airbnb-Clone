@@ -1,49 +1,98 @@
 .jumbo {
-  background-image: url('https://i.ytimg.com/vi/Hjj1PQORNKg/maxresdefault.jpg');
+  background-image: url('https://i.pinimg.com/originals/b8/1e/9f/b81e9fe12f90067a2be632016693588b.jpg');
   // background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
   padding: 10%;
   width: 80%;
-  height: 350px;
+  height: 500px;
 
 
   .jumbo-main {
-    height: 500px;
-    width: 80%;
-    border: 1px solid red;
+    width: 100%;
+    // border: 1px solid red;
 
-    // .welcome {
-    //   display: flex;
-    //   flex-direction: row;
-    //   justify-content: space-between;
-    //   width: 100%;
-    //   word-wrap: normal;
-    //   border: 1px solid green;
-    //
-    //   .welcome-header {
-    //     color: white;
-    //     border: 1px solid blue;
-    //     height: 300px;
-    //     width: 40%
-    //
-    //     h3{
-    //       font-size: 15px;
-    //       line-height: 18px;
-    //     }
-    //
-    //     h1{
-    //       font-size: 44px;
-    //       line-height: 56px;
-    //     }
-    //   }
-    //
-    //   .home-form-start{
-    //     background-color: white;
-    //     width: 50%;
-    //     height: 300px;
-    //   }
-    //
-    // }
+    .welcome {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 40px;
+      // border: 1px solid green;
+
+      .welcome-header {
+        color: white;
+        // border: 1px solid blue;
+        word-wrap: normal;
+        height: 100px;
+        width: 40%;
+
+        h3{
+          font-size: 15px;
+          line-height: 18px;
+        }
+
+        h1{
+          font-size: 44px;
+          line-height: 56px;
+        }
+      }
+
+      .home-form-start{
+        background-color: white;
+        // border: 1px solid red;
+        width: 40%;
+        height: 350px;
+        padding: 20px;
+        display:flex;
+        align-items: flex-start;
+
+        h2 {
+          font-size: 20px;
+          font-weight: bold;
+          text-align: left;
+          }
+
+        h1 {
+          font-size: 42px;
+          color: inherit;
+        }
+
+        select{
+          width: 100%;
+          height: 40px;
+          margin: 10px 0px 10px 0px;
+          font-size: 16px;
+          font-weight: normal;
+          padding: 5px;
+          border-radius: 1px;
+          border: 1px solid #f2f2f2;
+        }
+      }
+
+    }
+
+    .welcome-callouts {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+
+      div {
+        width: 30%;
+        height: 100px;
+        word-wrap: break-word;
+        color: white;
+        font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+
+        h1{
+          font-size: 28px;
+          font-weight: 550;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+    }
   }
 }

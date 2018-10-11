@@ -9,7 +9,7 @@ import LoginContainer from './session/login_container';
 import HomesContainer from './homes/homes_container';
 // import Home from './home/home';
 import { Switch, Route } from 'react-router-dom';
-// import { AuthRoute, ProtectedRoute} from '../utils/route_utils';
+import { AuthRoute, ProtectedRoute} from '../util/route_util';
 
 export default () => (
   <div>
@@ -20,7 +20,7 @@ export default () => (
     </header>
 
     <Switch>
-      <Route path='/homes' component={HomesContainer} />
+      <ProtectedRoute path='/homes' component={HomesContainer} />
     </Switch>
   </div>
 );

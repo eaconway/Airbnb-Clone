@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import * as SessionFormUtil from '../../util/session_form_util';
+// import * as SessionFormUtil from '../../util/session_form_util';
 import {months, days, years} from '../../util/birthday_dropdown';
 
 class FormUser extends React.Component {
@@ -37,6 +37,7 @@ class FormUser extends React.Component {
   }
 
   render(){
+
     let mktgNotice = (<p className={'mktg-notice'}>We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.</p>)
     let optInMktg = (<label className="container">I don’t want to receive marketing messages from Airbnb. I can also opt out of receiving these at any time in my account settings or via the link in the message.
         <input type="checkbox" />
@@ -141,7 +142,7 @@ class FormUser extends React.Component {
         <ul className={'session-errors'}>
           {errors}
         </ul>
-        <form onSubmit={this.handleSubmit}>
+        <form className={'session-form'} onSubmit={this.handleSubmit}>
           {form}
         </form>
       </div>

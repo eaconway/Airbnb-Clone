@@ -29,8 +29,8 @@
 .search-bar {
   height: 35px;
   width: 70%;
-  box-shadow: 0 4px 6px 0px #f2f2f2;
-  border: 1px solid #f2f2f2;
+  box-shadow: 0 4px 6px 0px $light-grey;
+  border: 1px solid $light-grey;
   padding: 0px 10px 0px 10px;
 }
 
@@ -82,7 +82,7 @@
 .user-options {
   width: 200px;
   background: white;
-  border: 1px solid #f2f2f2;
+  border: 1px solid $light-grey;
   position: absolute;
   top: 75px;
   right: 0;
@@ -94,7 +94,7 @@
   text-align: center;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid $light-grey;
 }
 
 .user-options > *:hover{

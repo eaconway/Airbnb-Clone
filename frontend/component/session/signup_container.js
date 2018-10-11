@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import FormUser from './form_user';
 import { signup } from '../../actions/session_actions';
 import React from 'react';
-import { openModal, closeModal } from '../../actions/modal_actions';
+import { openModal, closeModal, closeModalAndClearErrors} from '../../actions/modal_actions';
 
 const mapStateToProps = state => {
   const user = {email: '', fname: '', lname: '', password: '', month: '', day: '', year:''};
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
         Login
       </button>
     ),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModalAndClearErrors())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormUser);
