@@ -6,6 +6,10 @@
   display:flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0px;
+  z-index: 5;
+  background-color: white;
 }
 
 .search-div{
@@ -99,6 +103,11 @@
 
 .user-options > *:hover{
   cursor: pointer;
+}
+
+.main-content{
+  position: relative;
+  top: 80px;
 }
 
 /* MODAL STYLING */

@@ -30,7 +30,8 @@ class Home < ApplicationRecord
 
   has_one :hosting,
     foreign_key: :home_id,
-    class_name: :Hosting
+    class_name: :Hosting,
+    dependent: :destroy
 
   has_one :owner,
     through: :hosting,
@@ -42,5 +43,12 @@ class Home < ApplicationRecord
     unless self.image.attached?
       errors[:image] << 'Must be attached'
     end
+  end
+
+  def self.in_bounds(bounds)
+    self.where("lat < ?", bounds[:northEast][:lat])
+      .where("lat > ?", bounds[:southWest][:lat])
+      .where("lng > ?", bounds[:southWest][:lng])
+      .where("lng < ?", bounds[:northEast][:lng])
   end
 end

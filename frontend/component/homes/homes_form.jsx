@@ -26,6 +26,10 @@ class Homes extends React.Component {
       lat: 0,
       lng: 0,
     };
+    // if (this.props.currentUser.hostStatus) {
+    //   this.state.step = 2;
+    // }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.capitalize = this.capitalize.bind(this);
     this.pageBack = this.pageBack.bind(this);

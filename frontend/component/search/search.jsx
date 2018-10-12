@@ -17,7 +17,7 @@ class Search extends React.Component {
           <HomesIndex homes={this.props.homes}
             action={this.props.action}/>
           <div className={'search-homes-map'}>
-            <HomeMap homes={this.props.homes}/>
+            <HomeMap homes={this.props.homes} updateBounds={this.props.updateBounds}/>
           </div>
         </div>
       </div>

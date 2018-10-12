@@ -1,20 +1,22 @@
 .search-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 
 .search-filters{
   height: 64px;
-  width: auto;
+  width: 100%;
   border-bottom: 1px solid $light-grey;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   padding-left: 16px;
-  position:sticky;
-
+  background-color: white;
+  position: fixed;
+  top: 80px;
+  z-index: 4;
 
   button {
     // margin: 10px;
@@ -39,6 +41,9 @@
   display: flex;
   flex-direction: row;
   padding-top: 3%;
+  position: relative;
+  top: 64px;
+
 }
 
 .search-homes-index {

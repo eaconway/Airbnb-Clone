@@ -21,11 +21,13 @@ export default () => (
       <Route path="/" component={NavBarContainer} />
     </header>
 
-    <Switch>
-      <ProtectedRoute path='/users/:userId/homes' component={HomesUserIndexContainer} />
-      <ProtectedRoute path='/homes/form' component={HomesFormContainer} />
-      <Route path="/" component={SearchContainer} />
-    </Switch>
+    <div className={'main-content'}>
+      <Switch>
+        <ProtectedRoute path='/users/:userId/homes' component={HomesUserIndexContainer} />
+        <ProtectedRoute path='/homes/form' component={HomesFormContainer} />
+        <Route path="/" component={SearchContainer} />
+      </Switch>
+    </div>
   </div>
 );
 

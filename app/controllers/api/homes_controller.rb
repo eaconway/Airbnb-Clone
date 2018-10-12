@@ -1,6 +1,6 @@
 class Api::HomesController < ApplicationController
   def index
-    @homes = Home.all
+    @homes = bounds ? Home.in_bounds(bounds) : Home.all
   end
 
   def user_index
@@ -17,6 +17,7 @@ class Api::HomesController < ApplicationController
     @home = Home.new(home_params)
     # debugger
     if @home.save
+      Hosting.create(host_id: current_user.id, home_id: @home.id)
       render :show
     else
       render json: @home.errors.full_messages, status: 422
@@ -47,5 +48,9 @@ class Api::HomesController < ApplicationController
     params.require(:home).permit(:status, :lng, :lat, :beds, :baths,
       :bedrooms, :internet, :washer, :dryer, :guests, :home_type,
       :street_address, :city, :state, :zipcode, :image)
+  end
+
+  def bounds
+    params[:bounds]
   end
 end

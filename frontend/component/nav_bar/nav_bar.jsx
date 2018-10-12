@@ -25,7 +25,11 @@ class NavBar extends React.Component {
   render(){
     let session = this.props.currentUser ?
       (<div className='nav-list'>
-        <Link to='/homes/form' className={'nav-link'}>Become a Host</Link>
+        { this.props.currentUser.hostStatus ? (
+          <Link to='/homes/form' className={'nav-link'}>Add a Listing</Link>
+        ) : (
+          <Link to='/homes/form' className={'nav-link'}>Become a Host</Link>
+        )}
         <Link to='/' className={'nav-link'}>Saved</Link>
         <Link to='/' className={'nav-link'}>Trips</Link>
         <Link to='/' className={'nav-link'}>Messages</Link>
