@@ -6,6 +6,7 @@ class NavBar extends React.Component {
     super(props);
     this.state = {userOptions:"hidden"};
     this.toggleUserOptions = this.toggleUserOptions.bind(this);
+    this.toggleUserOptionsAndLogout = this.toggleUserOptionsAndLogout.bind(this);
   }
 
   toggleUserOptions(e){
@@ -16,10 +17,15 @@ class NavBar extends React.Component {
     }
   }
 
+  toggleUserOptionsAndLogout(e){
+    this.setState({userOptions: 'hidden'});
+    this.props.logout();
+  }
+
   render(){
     let session = this.props.currentUser ?
       (<div className='nav-list'>
-        <Link to='/homes' className={'nav-link'}>Become a Host</Link>
+        <Link to='/homes/form' className={'nav-link'}>Become a Host</Link>
         <Link to='/' className={'nav-link'}>Saved</Link>
         <Link to='/' className={'nav-link'}>Trips</Link>
         <Link to='/' className={'nav-link'}>Messages</Link>
@@ -29,9 +35,10 @@ class NavBar extends React.Component {
         </div>
 
         <div className={`${this.state.userOptions} user-options`}>
-          <Link to='/'>Profile</Link>
-          <Link to='/users/:userId/homes'>My Homes</Link>
-          <div onClick={this.props.logout}>Logout</div>
+          <Link to='/' onClick={this.toggleUserOptions}>Profile</Link>
+          <Link to={`/users/${this.props.currentUser.id}/homes`}
+            onClick={this.toggleUserOptions}>My Homes</Link>
+          <div onClick={this.toggleUserOptionsAndLogout}>Logout</div>
         </div>
 
       </div> ) :

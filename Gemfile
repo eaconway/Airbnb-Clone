@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+gem "aws-sdk-s3"
+
 gem 'bootstrap-sass'
 
 gem 'jquery-rails'

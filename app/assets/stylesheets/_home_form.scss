@@ -1,6 +1,6 @@
 .form-container {
   display: flex;
-  height: 1000px;
+  // height: 1000px;
   width: 100%;
   padding-left: 10%;
 }
@@ -10,10 +10,10 @@
  padding: 5%;
  display: flex;
  flex-direction: column;
- border: 1px solid blue;
+ // border: 1px solid blue;
 
  * {
-   border: 1px solid red;
+   // border: 1px solid red;
    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
    margin: 20px 0px 20px 0px;
    color: rgb(72, 72, 72);
@@ -45,12 +45,15 @@
  .chosen-fields{
    display: flex;
    flex-direction: column;
-   align-items: center;
-   font-size: 16px;
+   align-items: flex-start;
+   color: #767676;
+   font-size: 19px;
+   font-weight: 400;
+   margin: 20px 0px 20px 0px;
 
    select{
      width: 100%;
-     height: 30px;
+     height: 40px;
      font-size: 16px;
      font-weight: normal;
      padding: 5px;
@@ -59,20 +62,123 @@
    }
  }
 
- input{
-   width: 30%;
-   height: 30px;
-   font-size: 16px;
-   font-weight: normal;
-   padding: 5px;
-   border-radius: 1px;
-   border: 1px solid #f2f2f2;
+ .number-fields {
+   // width: 50%;
  }
+
+ .home-amenities{
+   display: flex;
+   flex-wrap: wrap;
+ }
+
+ .checkbox-field {
+  flex-basis: 45%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 18px;
+ }
+
+// Checkbox styling from https://www.inserthtml.com/2012/06/custom-form-radio-checkbox/r
+ .regular-checkbox {
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+	display: flex;
+	position: relative;
+  margin-right: 10px;
+}
+
+.regular-checkbox:active, .regular-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.regular-checkbox:checked {
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+	color: #99a1a7;
+}
+
+.regular-checkbox:checked:after {
+	content: '\2714';
+	font-size: 14px;
+	position: absolute;
+	top: 0px;
+	left: 3px;
+	color: #99a1a7;
+}
+ //
+ // input{
+ //   width: 30%;
+ //   height: 30px;
+ //   font-size: 16px;
+ //   font-weight: normal;
+ //   padding: 5px;
+ //   border-radius: 1px;
+ //   border: 1px solid #f2f2f2;
+ // }
+}
+
+.home-form-input{
+  color: #767676;
+  font-size: 16px;
+  font-weight: 400;
+  display:flex;
+  flex-direction: column;
+
+  input {
+    display: block;
+    width: 100%;
+    height: 30px;
+    margin: 20px 0px 20px 0px;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 1px;
+    border: 1px solid #f2f2f2;
+    -webkit-appearance: none;
+  }
+}
+
+.submitDiv{
+  width: 100%;
+  height: 100px;
+  position: sticky;
+  padding: 20px;
+  bottom: -4px;
+  left: 10%;
+  background-color: white;
+  border-top: 1px solid $light-grey;
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.08);
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    height: 50px;
+    width: 100px;
+    background-color: $teal-green;
+    border-radius: 4px;
+    border-width: 2px;
+    border-color: transparent;
+    color: white;
+    font-size: 16px;
+  }
 }
 
 .form-image{
   width: 45%;
-  height: 1000px;
-  background-color: black;
-  display: flex
+  background-image: url('https://images.wallpaperscraft.com/image/hanyijie_sky_scenery_ship_anime_art_104162_1920x1080.jpg');
+  background-repeat: no-repeat;
+}
+
+.form-image-2{
+  width: 45%;
+  background-image: url('https://images.wallpaperscraft.com/image/hanyijie_sky_scenery_ship_anime_art_104162_1920x1080.jpg');
+  background-repeat: no-repeat;
 }

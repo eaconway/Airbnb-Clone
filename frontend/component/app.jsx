@@ -6,8 +6,9 @@ import SearchContainer from './nav_bar/search_bar_container';
 import SignupContainer from './session/signup_container';
 import LoginContainer from './session/login_container';
 
-import HomesContainer from './homes/homes_container';
-// import Home from './home/home';
+import HomesFormContainer from './homes/homes_form_container';
+import HomesIndexContainer from './homes/homes_index_container';
+
 import { Switch, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute} from '../util/route_util';
 
@@ -20,7 +21,8 @@ export default () => (
     </header>
 
     <Switch>
-      <ProtectedRoute path='/homes' component={HomesContainer} />
+      <ProtectedRoute path='/users/:userId/homes' component={HomesIndexContainer} />
+      <ProtectedRoute path='/homes/form' component={HomesFormContainer} />
     </Switch>
   </div>
 );
