@@ -1,4 +1,4 @@
-import * as HomeApiUtil from '../util/home_api_util';
+import * as HomeApiUtil from '../util/homes_api_util';
 import {receiveHomeErrors, clearHomeErrors} from './errors_actions';
 
 export const RECEIVE_HOMES = 'RECEIVE_HOMES';
@@ -20,13 +20,31 @@ export const removeHome = homeId => ({
   homeId
 });
 
-export const requestHomes = () => dispatch =>
+export const requestHomes = () => dispatch => (
   HomeApiUtil.fetchHomes()
     .then(homes => dispatch(receiveHomes(homes)),
-    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)));
+    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
+);
 
+export const requestUserHomes = () => dispatch => (
+  HomeApiUtil.fetchUserHomes()
+    .then(homes => dispatch(receiveHomes(homes)),
+    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
+);
 
-export const requestHome = (id) => dispatch =>
-  HomeApiUtil.fetchHome()
+export const requestHome = (homeId) => dispatch => (
+  HomeApiUtil.fetchHome(homeId)
     .then(home => dispatch(receiveHome(home)),
-    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)));
+    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
+);
+export const createHome = (formData) => dispatch => (
+  HomeApiUtil.createHome(formData)
+    .then(home => dispatch(receiveHome(home)),
+    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
+);
+
+export const deleteHome = (homeId) => dispatch => (
+  HomeApiUtil.deleteHome(homeId)
+    .then(() => dispatch(removeHome(homeId)),
+    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
+);

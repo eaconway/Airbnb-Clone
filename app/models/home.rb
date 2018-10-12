@@ -26,6 +26,8 @@ class Home < ApplicationRecord
   validates :status, :lng, :lat, :beds, :baths, :bedrooms, :internet,
     :washer, :dryer, :guests, :home_type, presence: true
 
+  validate :ensure_image
+
   has_one :hosting,
     foreign_key: :home_id,
     class_name: :Hosting
@@ -35,4 +37,10 @@ class Home < ApplicationRecord
     source: :host
 
   has_one_attached :image
+
+  def ensure_image
+    unless self.image.attached?
+      errors[:image] << 'Must be attached'
+    end
+  end
 end

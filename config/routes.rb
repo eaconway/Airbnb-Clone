@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :homes
+    get 'homes/user_index', to: 'homes#user_index'
   end
 end

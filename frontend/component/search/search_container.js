@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import HomesIndex from './homes_index';
+import Search from './search';
 import {requestHomes} from '../../actions/home_actions';
 
 const mapStateToProps = state => ({
@@ -11,4 +11,4 @@ const mapDispatchToProps = dispatch => ({
   action: () => dispatch(requestHomes())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomesIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

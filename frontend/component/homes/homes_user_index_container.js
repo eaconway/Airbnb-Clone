@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import HomesIndex from './homes_index';
-import {requestHomes} from '../../actions/home_actions';
+import {requestUserHomes} from '../../actions/home_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.users[state.session.id],
@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  action: () => dispatch(requestHomes())
+  action: () => dispatch(requestUserHomes())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomesIndex);

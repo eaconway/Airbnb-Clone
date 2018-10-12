@@ -2,13 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as HomeOptions from '../../util/homes_util';
 
-// const FIELDS = {
-//   city: HomeOptions.cities,
-//   guests: HomeOptions.guests,
-//   type: types
-// }
-
-// debugger;
 class Homes extends React.Component {
   constructor(props){
     super(props);
@@ -29,6 +22,7 @@ class Homes extends React.Component {
       addressInputType: 'address',
       status: 'active',
       imageFile: null,
+      imageUrl: null,
       lat: 0,
       lng: 0,
     };
@@ -65,20 +59,44 @@ class Homes extends React.Component {
     if (this.state.step != 3) {
       this.setState({step: this.state.step + 1});
     } else {
-      debugger
       const formData = new FormData();
-      formData.append(home[image], this.state.imageFile);
 
-      console.log('hi');
+      if(this.state.imageFile) {
+        formData.append('home[image]', this.state.imageFile);
+      }
+
+      formData.append('home[city]', this.state.city);
+      formData.append('home[guests]', this.state.guests);
+      formData.append('home[home_type]', this.state.type);
+      formData.append('home[bedrooms]', this.state.bedrooms);
+      formData.append('home[beds]', this.state.beds);
+      formData.append('home[baths]', this.state.baths);
+      formData.append('home[street_address]', this.state.address);
+      formData.append('home[state]', this.state.state);
+      formData.append('home[zipcode]', this.state.zipcode);
+      formData.append('home[internet]', this.state.internet);
+      formData.append('home[washer]', this.state.washer);
+      formData.append('home[dryer]', this.state.dryer);
+      formData.append('home[status]', this.state.status);
+      formData.append('home[lat]', this.state.lat);
+      formData.append('home[lng]', this.state.lng);
+      this.props.createHome(formData)
+        .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/homes`));
     }
   }
 
   handleFile(e){
-    this.setState({imageFile: e.target.files[0]})
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({imageFile: file, imageUrl: fileReader.result})
+    }
+    if(file){
+      fileReader.readAsDataURL(file);
+    }
   }
 
   formInputCreator(field, seed){
-    debugger
     return (
       <select className={''} value={this.state[field]} onChange={this.update(field)}>
       {seed.map((opt,idx) =>
@@ -197,7 +215,6 @@ class Homes extends React.Component {
                 <div className={'current-options'}>
                   {Object.keys(this.state).map((field, idx) => {
                     if (field != 'step' && this.state[field] != '' && idx <= 3){
-                      debugger
                       return (
                         <label className={'chosen-fields'}>{this.capitalize(field)}
                           {this.formInputCreator(field, HomeOptions[field])}
@@ -278,13 +295,20 @@ class Homes extends React.Component {
           </div>
         );
       case 3:
+        const preview = this.state.imageUrl ? (
+          <div>
+            <h3> Image Preview </h3>
+            <img className={'image-upload-preview'} src={this.state.imageUrl} />
+          </div>
+         ): null ;
+
         return (
           <div className={'form-container'}>
             <div className={'home-form'}>
               <form onSubmit={this.handleSubmit}>
                 <h1>Upload a picture</h1>
                 <input type='file' onChange={this.handleFile}/>
-
+                {preview}
                 <div className={'submitDiv'}>
                   <button onClick={this.pageBack}>Back</button>
                   <button onClick={this.handleSubmit}>Submit</button>

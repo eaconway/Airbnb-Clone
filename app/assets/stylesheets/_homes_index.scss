@@ -1,0 +1,14 @@
+.homes-index-item {
+  width: 100%;
+  height: 200px;
+  border: 1px solid $light-grey;
+  display: flex;
+  flex-direction: row;
+}
+
+.homes-index-image{
+  height: 200px;
+}
+.homes-index-info {
+  height: 200px;
+}

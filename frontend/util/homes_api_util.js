@@ -5,12 +5,19 @@ export const fetchHomes = () => (
   })
 );
 
+export const fetchUserHomes = () => (
+  $.ajax({
+    url: 'api/homes/user_index',
+    method: 'GET'
+  })
+);
+
 export const fetchHome = (id) => (
   $.ajax({
     url: `api/homes/${id}`,
     method: 'GET'
   })
-)
+);
 
 export const createHome = (formData) => (
   $.ajax({
@@ -20,4 +27,11 @@ export const createHome = (formData) => (
     contentType: false,
     processData: false
   })
-)
+);
+
+export const deleteHome = (id) => (
+  $.ajax({
+    url: `api/homes/${id}`,
+    method: 'DELETE'
+  })
+);

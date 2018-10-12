@@ -13,10 +13,14 @@ export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
 });
 
-export const receiveHomeErrors = errors => ({
-  type: RECEIVE_HOME_ERRORS,
-  errors
-});
+export const receiveHomeErrors = errors => {
+  debugger
+  return {
+    type: RECEIVE_HOME_ERRORS,
+    errors
+  };
+
+};
 
 export const clearHomeErrors = () => ({
   type: CLEAR_HOME_ERRORS,
