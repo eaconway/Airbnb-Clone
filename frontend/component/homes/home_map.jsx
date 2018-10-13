@@ -2,7 +2,12 @@ import React from 'react';
 import MarkerManager from '../../util/marker_manager';
 
 class HomeMap extends React.Component {
-  componentDidMount() {
+  constructor(props){
+    super(props)
+    this.createMap = this.createMap.bind(this);
+  }
+
+  createMap(){
     const mapOptions = {
       center: { lat: 36.2048, lng: 138.2529 },
       zoom: 5
@@ -10,6 +15,11 @@ class HomeMap extends React.Component {
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
     this.MarkerManager = new MarkerManager(this.map);
+  }
+
+  componentDidMount() {
+    this.createMap();
+    this.registerListeners();
     this.MarkerManager.updateMarkers(this.props.homes);
   }
 
@@ -23,8 +33,9 @@ class HomeMap extends React.Component {
       const bounds = {
         northEast: { lat: north, lng: east },
         southWest: { lat: south, lng: west } };
-      this.props.updateBounds('bounds', bounds);
+      this.props.updateFilter('bounds', bounds);
     });
+
     google.maps.event.addListener(this.map, 'click', (event) => {
       const coords = getCoordsObj(event.latLng);
       this.handleClick(coords);

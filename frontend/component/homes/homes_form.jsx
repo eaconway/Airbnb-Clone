@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as HomeOptions from '../../util/homes_util';
+import FormMap from './form_map';
 
 class Homes extends React.Component {
   constructor(props){
@@ -35,6 +36,7 @@ class Homes extends React.Component {
     this.pageBack = this.pageBack.bind(this);
     this.toggleAddressForm = this.toggleAddressForm.bind(this);
     this.handleFile = this.handleFile.bind(this);
+    this.handleFormClick = this.handleFormClick.bind(this);
   }
 
   update(field){
@@ -46,6 +48,13 @@ class Homes extends React.Component {
 
   pageBack(){
     this.setState({step: this.state.step -1})
+  }
+
+  handleFormClick(coords){
+    this.setState({
+      lat: coords.lat,
+      lng: coords.lng
+    })
   }
 
   toggleAddressForm(e){
@@ -120,6 +129,7 @@ class Homes extends React.Component {
 
   render(){
     console.log(this.state);
+
     let addressInput = (
       <div>
         <label className={'home-form-input'}>Street Address
@@ -148,7 +158,28 @@ class Homes extends React.Component {
         </label>
       </div>
     );
-    let mapInput = (<h1>Map Input</h1>);
+
+    let mapInput = (
+      <div className={'lat-long-form'}>
+        <div className={'lat-long-input'}>
+          <label className={'home-form-input'}>Latitude
+            <input type='number' placeholder='e.g. 123 Main St.'
+              value={this.state.lat} onChange={this.update('lat')}
+              />{"\n"}
+          </label>
+
+          <label className={'home-form-input'}>Longitude
+            <input type='number' placeholder='e.g. 123 Main St.'
+              value={this.state.lng} onChange={this.update('lng')}
+              />{"\n"}
+          </label>
+        </div>
+
+        <h3>OR</h3>
+
+        <FormMap handleFormClick={this.handleFormClick} />
+      </div>
+    );
 
     switch(this.state.step) {
 
@@ -320,7 +351,7 @@ class Homes extends React.Component {
               </form>
 
             </div>
-            <div className={'form-image-2'}></div>
+            <div className={'form-image'}></div>
           </div>
         )
     }

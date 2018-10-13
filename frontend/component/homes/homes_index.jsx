@@ -7,9 +7,9 @@ class Homes extends React.Component {
     super(props)
   }
 
-  componentDidMount(){
-    this.props.action();
-  }
+  // componentDidMount(){
+  //   this.props.action();
+  // }
 
   render(){
     let homes = this.props.homes.map(home => (

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Search from './search';
 import {requestHomes} from '../../actions/home_actions';
-import {updateBounds} from '../../actions/filter_actions';
+import {updateFilter} from '../../actions/filter_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.users[state.session.id],
@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   action: () => dispatch(requestHomes()),
-  updateBounds: (bounds) => dispatch(updateBounds(bounds))
+  updateFilter: (filter, params) => dispatch(updateFilter(filter, params))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_12_203233) do
+ActiveRecord::Schema.define(version: 2018_10_13_020123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2018_10_12_203233) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "home_type", null: false
+    t.string "title", default: "", null: false
+    t.integer "price", default: 0, null: false
     t.index ["city"], name: "index_homes_on_city"
     t.index ["state"], name: "index_homes_on_state"
   end

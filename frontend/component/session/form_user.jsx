@@ -7,7 +7,6 @@ class FormUser extends React.Component {
   constructor(props){
     super(props);
     this.state = this.props.user;
-    this.state.months = months;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.togglePassword = this.togglePassword.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
@@ -20,11 +19,12 @@ class FormUser extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    this.state.birthday = `${this.state.year}-${this.state.months[this.state.month]}-${this.state.day}`;
+    this.state.birthday = `${this.state.year}-${months[this.state.month]}-${this.state.day}`;
     this.props.action(this.state).then(this.props.closeModal);
   }
 
   demoLogin(e){
+    e.preventDefault();
     let demoForm = {
       email: 'demo',
       password: 'password'
@@ -109,7 +109,7 @@ class FormUser extends React.Component {
         <div className={'birthday-form'}>
           <select value={this.state.month} onChange={this.update('month')}>
             <option selected>Month</option>
-            {Object.keys(this.state.months).map(month =>
+            {Object.keys(months).map(month =>
               <option value={month}>{month}</option>
             )}
           </select>

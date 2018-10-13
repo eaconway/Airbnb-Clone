@@ -14,6 +14,7 @@
 #  fname            :string           not null
 #  lname            :string           not null
 #  birthday         :date             not null
+#  host_status      :boolean          default(FALSE), not null
 #
 
 class User < ApplicationRecord

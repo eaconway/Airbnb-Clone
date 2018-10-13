@@ -10,5 +10,5 @@ export default combineReducers({
   session: sessionReducer,
   users: usersReducer,
   ui: uiReducer,
-  errors: errorsReducer
+  errors: errorsReducer,
 });

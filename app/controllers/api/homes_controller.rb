@@ -51,6 +51,6 @@ class Api::HomesController < ApplicationController
   end
 
   def bounds
-    params[:bounds]
+    params[:filters][:bounds]
   end
 end

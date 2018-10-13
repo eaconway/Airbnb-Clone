@@ -20,8 +20,8 @@ export const removeHome = homeId => ({
   homeId
 });
 
-export const requestHomes = () => dispatch => (
-  HomeApiUtil.fetchHomes()
+export const requestHomes = (filters) => dispatch => (
+  HomeApiUtil.fetchHomes(filters)
     .then(homes => dispatch(receiveHomes(homes)),
     (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
 );

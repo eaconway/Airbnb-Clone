@@ -17,14 +17,16 @@
 #  washer         :integer          default(0), not null
 #  dryer          :integer          default(0), not null
 #  guests         :integer          default(1), not null
-#  type           :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  home_type      :string           not null
+#  title          :string           default(""), not null
+#  price          :integer          default(0), not null
 #
 
 class Home < ApplicationRecord
   validates :status, :lng, :lat, :beds, :baths, :bedrooms, :internet,
-    :washer, :dryer, :guests, :home_type, presence: true
+    :washer, :dryer, :guests, :home_type, :title, :price, presence: true
 
   validate :ensure_image
 
