@@ -4,6 +4,30 @@
   border: 1px solid $light-grey;
   display: flex;
   flex-direction: row;
+  margin: 20px 0px 20px 0px;
+}
+
+.fun-fact{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px 50px 0px;
+  align-items: center;
+  font-weight: 500;
+
+  img {
+    width: 45px;
+    height: 40px;
+    margin-right: 10px;
+  }
+}
+
+.num-homes{
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: normal;
 }
 
 .homes-index-image{

@@ -16,6 +16,7 @@ class Homes extends React.Component {
       baths: 0,
       address: '',
       state: '',
+      country: '',
       zipcode: '',
       internet: false,
       washer: false,
@@ -50,11 +51,24 @@ class Homes extends React.Component {
     this.setState({step: this.state.step -1})
   }
 
-  handleFormClick(coords){
+  handleFormClick(coords, formatted_address){
     this.setState({
       lat: coords.lat,
       lng: coords.lng
-    })
+    });
+    let faddress = formatted_address.split(',');
+    let edited_faddress = faddress.map(part => part.split(' '));
+
+    //Deciding to come back to this later, if I've got time, given
+    //differences in how Google maps displays data in Japan
+    // this.setState({
+    //   address: ,
+    //   city: ,
+    //   state: ,
+    //   country: faddress[0],
+    //   zipcode: ,
+    // });
+
   }
 
   toggleAddressForm(e){
@@ -137,7 +151,7 @@ class Homes extends React.Component {
             value={this.state.address} onChange={this.update('address')}
             />{"\n"}
         </label>
-        <div>
+        <div className={'horizontal-form-input '}>
           <label className={'home-form-input'}>City
             <input type='text' placeholder='e.g. San Francisco'
               value={this.state.city} onChange={this.update('city')}
@@ -151,11 +165,19 @@ class Homes extends React.Component {
           </label>
         </div>
 
-        <label className={'home-form-input'}>ZIP Code
-          <input type='text' placeholder='e.g. 94063'
-            value={this.state.zipcode} onChange={this.update('zipcode')}
-            />{"\n"}
-        </label>
+        <div className={'horizontal-form-input '}>
+          <label className={'home-form-input'}>Country
+            <input type='text' placeholder='e.g. Japan'
+              value={this.state.country} onChange={this.update('country')}
+              />{"\n"}
+          </label>
+
+          <label className={'home-form-input'}>ZIP Code
+            <input type='text' placeholder='e.g. 94063'
+              value={this.state.zipcode} onChange={this.update('zipcode')}
+              />{"\n"}
+          </label>
+        </div>
       </div>
     );
 

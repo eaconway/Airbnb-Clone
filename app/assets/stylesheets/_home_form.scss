@@ -123,6 +123,13 @@
  // }
 }
 
+.horizontal-form-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .home-form-input{
   color: #767676;
   font-size: 16px;

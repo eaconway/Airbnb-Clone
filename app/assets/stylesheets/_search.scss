@@ -40,7 +40,7 @@
   height: 1000px;
   display: flex;
   flex-direction: row;
-  padding-top: 3%;
+  // padding-top: 3%;
   position: relative;
   top: 64px;
 
@@ -49,12 +49,16 @@
 .search-homes-index {
   width: 63%;
   margin: 0 auto;
-  border: 1px solid red;
+  // border: 1px solid red;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  color: rgb(72, 72, 72);
 }
 
 .search-homes-map {
   width: 30%;
-  border: 1px solid red;
+  // border: 1px solid red;
   padding: 20px 20px 20px 0px;
-  position: relative;
+  position: sticky;
+  top: 140px;
+  height: 400px;
 }
