@@ -8,7 +8,10 @@ import LoginContainer from './session/login_container';
 
 import HomesFormContainer from './homes/homes_form_container';
 import HomesUserIndexContainer from './homes/homes_user_index_container';
+import HomesShowContainer from './homes/homes_show_container';
 import SearchContainer from './search/search_container';
+
+import CalendarTest from './homes/calendar_dates';
 
 import { Switch, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute} from '../util/route_util';
@@ -25,6 +28,8 @@ export default () => (
       <Switch>
         <ProtectedRoute path='/users/:userId/homes' component={HomesUserIndexContainer} />
         <ProtectedRoute path='/homes/form' component={HomesFormContainer} />
+        <Route path="/homes/:homeId" component={HomesShowContainer} />
+        <Route path="/calendar" component={CalendarTest} />
         <Route path="/" component={SearchContainer} />
       </Switch>
     </div>

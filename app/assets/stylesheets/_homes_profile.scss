@@ -1,0 +1,160 @@
+.homes-profile-image {
+  width: 100%;
+  height: 368px;
+  object-fit: cover;
+}
+
+.homes-profile-section{
+  padding: 0px 24px 0px 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.homes-profile-info{
+  width: 45%;
+  height: 1000px;
+  // border: 1px solid $light-grey;
+  margin: 30px;
+  padding: 15px 0px 15px 0px;
+
+  h3{
+    color: #572533;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px !important;
+    letter-spacing: normal !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    margin: 15px 0px 5px 0px;
+  }
+}
+
+.homes-profile-header{
+  display: flex;
+  // border: 1px solid red;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0px 15px 0px;
+
+  .homes-profile-header-title{
+
+    h1 {
+      color: $grey;
+      font-size: 34px;
+      font-weight: 600;
+    }
+    span {
+      color: $grey;
+      font-size: 18px;
+      font-weight: 350;
+    }
+  }
+
+  .homes-profile-header-pic{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      border-radius: 50%;
+      width:60px;
+      height: 60px;
+    }
+  }
+}
+
+.homes-profile-features {
+  margin: 15px 0px 15px 0px;
+  color: $grey;
+  font-size: 16px !important;
+  line-height: 22px !important;
+  letter-spacing: normal !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+}
+
+.homes-profile-contact {
+  color: $teal-green !important;
+  font-size: 18px;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  margin: 15px 0px 15px 0px;
+}
+
+.homes-profile-description {
+  margin: 15px 0px 15px 0px;
+  // border: 1px solid $light-grey;
+  border-radius: 5px;
+  padding: 10px 0px 10px 0px;
+  font-size: 18px;
+  font-weight: 400;
+  color: $grey;
+}
+
+.homes-availability {
+  h2, span {
+    margin: 10px 0px 10px 0px;
+  }
+}
+
+.line-break-thin {
+  border-top: 2px solid $light-grey;
+  margin: 15px 0px 15px 0px;
+}
+
+.homes-amenities-header {
+  font-size: 16px !important;
+  line-height: 22px !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  color: #484848 !important;
+}
+
+// BOOKING SIDE OF THE PAGE
+.homes-profile-book{
+  position: sticky;
+  top: 200px;;
+  height: 600px;
+  width: 30%;
+  border: 1px solid $light-grey;
+  margin: 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  // justify-content: flex-start;
+  * {
+    margin: 15px 0px 15px 0px;
+  }
+  h2 > span{
+    font-size: 16px;
+  }
+  select{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 5px;
+    border-radius: 1px;
+    border: 1px solid $light-grey;
+  }
+  h4{
+
+  }
+  .dates-duration{
+    border: 1px solid $light-grey;
+    width: 85%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input{
+      border: none;
+      height: 40px;
+      margin: 0;
+    }
+  }
+
+}
+
+.homes-profile-disclaimer {
+  display: flex;
+  justify-content: center;
+}

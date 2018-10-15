@@ -27,6 +27,8 @@ class Homes extends React.Component {
       imageUrl: null,
       lat: 0,
       lng: 0,
+      title: '',
+      price: '',
     };
     // if (this.props.currentUser.hostStatus) {
     //   this.state.step = 2;
@@ -363,7 +365,21 @@ class Homes extends React.Component {
           <div className={'form-container'}>
             <div className={'home-form'}>
               <form onSubmit={this.handleSubmit}>
-                <h1>Upload a picture</h1>
+                <h1>Last steps</h1>
+
+                <label className={'home-form-input'}>What's you're place going to be called?
+                  <input type='text' placeholder='e.g. My Summer Getaway'
+                    value={this.state.state} onChange={this.update('state')}
+                    />{"\n"}
+                </label>
+
+                <label className={'home-form-input'}>And how much should it cost, per night? (USD)
+                  <input type='text' placeholder="e.g. Dolla Dolla bills ya'll"
+                    value={this.state.state} onChange={this.update('state')}
+                    />{"\n"}
+                </label>
+
+                <h2>Lastly, Upload a photo: </h2>
                 <input type='file' onChange={this.handleFile}/>
                 {preview}
                 <div className={'submitDiv'}>

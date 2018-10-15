@@ -1,12 +1,3 @@
-.homes-index-item {
-  width: 100%;
-  height: 200px;
-  border: 1px solid $light-grey;
-  display: flex;
-  flex-direction: row;
-  margin: 20px 0px 20px 0px;
-}
-
 .fun-fact{
   width: 100%;
   height: 50px;
@@ -30,9 +21,125 @@
   letter-spacing: normal;
 }
 
-.homes-index-image{
+// HOME INDEX ITEM STYLING
+.homes-index-item {
+  width: 100%;
   height: 200px;
-}
-.homes-index-info {
-  height: 200px;
+  border: 1px solid $light-grey;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px 20px 0px;
+
+  .homes-index-image{
+    height: 200px;
+    width: 40%;
+    border: 1px solid red;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    div {
+      width: 25px;
+      height: 25px;
+      position:relative;
+      top: -195px;
+      left: 365px;
+      // display: inline;
+    }
+
+    .unliked{
+      background-image:url('https://crissov.github.io/unicode-proposals/img/gray-heart_emojitwo.svg');
+    }
+
+    .liked{
+      background-image:url('https://crissov.github.io/unicode-proposals/img/2764_emojitwo.svg');
+    }
+  }
+
+  .homes-index-info {
+    height: 150px;
+    width: 32%;
+    padding: 0% 4% 0% 4%;
+    margin: 25px 0px 25px 0px;
+    display: flex;
+    flex-direction: column;
+
+    * {
+      margin: 2px 0px 2px 0px;
+    }
+
+    h3 {
+      color: rgb(87, 37, 51);
+      font-size: 12px !important;
+      line-height: 16px !important;
+      letter-spacing: normal !important;
+      font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+      color: rgb(72, 72, 72) !important;
+      font-weight: 800 !important;
+    }
+
+    h2 {
+      font-size: 18px !important;
+      line-height: 26px !important;
+      letter-spacing: normal !important;
+      font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+      color: rgb(72, 72, 72) !important;
+      font-weight: 800 !important;
+    }
+
+    span {
+      font-size: 14px !important;
+      line-height: 18px !important;
+      letter-spacing: normal !important;
+      font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+      color: rgb(72, 72, 72) !important;
+      font-weight: normal !important;
+    }
+  }
+
+  .homes-index-stats {
+    height: 150px;
+    width: 12%;
+    padding: 0% 4% 0% 4%;;
+    border-left: 1px solid $light-grey;
+    margin: 25px 0px 25px 0px;
+    display: flex;
+    flex-direction: column;
+    * {
+      margin: 2px 0px 2px 0px;
+    }
+
+    h2 {
+      font-size: 18px !important;
+      line-height: 26px !important;
+      letter-spacing: normal !important;
+      font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+      color: rgb(72, 72, 72) !important;
+      font-weight: 800 !important;
+      display: inline !important;
+    }
+
+    h3{
+      font-size: 12px !important;
+      line-height: 16px !important;
+      letter-spacing: normal !important;
+      font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+      color: rgb(72, 72, 72) !important;
+      font-weight: 800 !important;
+      display: inline !important;
+    }
+
+    span {
+      font-weight: 600 !important;
+      overflow-wrap: break-word !important;
+      font-size: 12px !important;
+      line-height: 16px !important;
+      letter-spacing: normal !important;
+      font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+      color: rgb(72, 72, 72) !important;
+    }
+  }
 }

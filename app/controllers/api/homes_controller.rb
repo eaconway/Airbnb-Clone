@@ -13,9 +13,8 @@ class Api::HomesController < ApplicationController
   end
 
   def create
-    # debugger
     @home = Home.new(home_params)
-    # debugger
+
     if @home.save
       Hosting.create(host_id: current_user.id, home_id: @home.id)
       render :show
@@ -47,7 +46,7 @@ class Api::HomesController < ApplicationController
   def home_params
     params.require(:home).permit(:status, :lng, :lat, :beds, :baths,
       :bedrooms, :internet, :washer, :dryer, :guests, :home_type,
-      :street_address, :city, :state, :zipcode, :image)
+      :street_address, :city, :state, :zipcode, :image, :price, :title)
   end
 
   def bounds

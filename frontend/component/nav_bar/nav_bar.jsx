@@ -31,7 +31,7 @@ class NavBar extends React.Component {
           <Link to='/homes/form' className={'nav-link'}>Become a Host</Link>
         )}
         <Link to='/' className={'nav-link'}>Saved</Link>
-        <Link to='/' className={'nav-link'}>Trips</Link>
+        <Link to='/calendar' className={'nav-link'}>Trips</Link>
         <Link to='/' className={'nav-link'}>Messages</Link>
 
         <div className={'nav-link'} onClick={this.toggleUserOptions}>
