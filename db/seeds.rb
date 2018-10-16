@@ -29,7 +29,7 @@ user1 = User.create!(
   birthday: '1993-07-26'
 )
 
-user1.profile_pic.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/users/aokiji.jpeg'),
+user1.profile_pic.attach(io: File.open('app/assets/images/aokiji.jpeg'),
  filename: 'aokiji.jpeg')
 user1.save!
 
@@ -40,7 +40,7 @@ user2 = User.create!(
   password: 'password',
   birthday: '1993-07-26'
 )
-user2.profile_pic.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/users/naruto.png'),
+user2.profile_pic.attach(io: File.open('app/assets/images/naruto.png'),
  filename: 'naruto.png')
 user2.save!
 
@@ -51,7 +51,7 @@ user3 = User.create!(
   password: 'password',
   birthday: '1993-02-05'
 )
-user3.profile_pic.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/users/sasuke.jpg'),
+user3.profile_pic.attach(io: File.open('app/assets/images/sasuke.jpg'),
  filename: 'sasuke.jpg')
 user3.save!
 
@@ -62,7 +62,7 @@ user4 = User.create!(
   password: 'password',
   birthday: '1993-02-28'
 )
-user4.profile_pic.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/users/midoriya.png'),
+user4.profile_pic.attach(io: File.open('app/assets/images/midoriya.png'),
  filename: 'midoriya.png')
 user4.save!
 
@@ -73,7 +73,7 @@ user5 = User.create!(
   password: 'password',
   birthday: '1992-10-09'
 )
-user5.profile_pic.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/users/luffy.png'),
+user5.profile_pic.attach(io: File.open('app/assets/images/luffy.png'),
  filename: 'luffy.png')
 user5.save!
 
@@ -97,7 +97,7 @@ home1 = Home.new(
   washer: true,
   dryer: false
 )
-home1.image.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/homes/sasukes_house.jpg'),
+home1.image.attach(io: File.open('app/assets/images/sasukes_house.jpg'),
  filename: 'sasukes_house.jpg')
 home1.save!
 hosting1 = Hosting.create!(
@@ -122,7 +122,7 @@ home2 = Home.new(
   washer: true,
   dryer: true
 )
-home2.image.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/homes/naruto_apt.jpg'),
+home2.image.attach(io: File.open('app/assets/images/naruto_apt.jpg'),
  filename: 'naruto_apt.jpg')
 home2.save!
 hosting2 = Hosting.create!(
@@ -147,7 +147,7 @@ home3 = Home.new(
   washer: true,
   dryer: false
 )
-home3.image.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/homes/UA_high.png'),
+home3.image.attach(io: File.open('app/assets/images/UA_high.png'),
  filename: 'UA_high.png')
 home3.save!
 hosting3 = Hosting.create!(
@@ -172,7 +172,7 @@ home4 = Home.new(
   washer: true,
   dryer: true
 )
-home4.image.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/homes/spirited_away.jpg'),
+home4.image.attach(io: File.open('app/assets/images/spirited_away.jpg'),
  filename: 'spirited_away.jpg')
 home4.save!
 hosting4 = Hosting.create!(
@@ -197,7 +197,7 @@ home5 = Home.new(
   washer: true,
   dryer: true
 )
-home5.image.attach(io: File.open('/Users/Iceman/Documents/AirbnbClone/images/homes/killuas_house.png'),
+home5.image.attach(io: File.open('app/assets/images/killuas_house.png'),
  filename: 'killuas_house.png')
 home5.save!
 hosting5 = Hosting.create!(
