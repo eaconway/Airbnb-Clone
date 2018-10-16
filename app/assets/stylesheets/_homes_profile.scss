@@ -72,6 +72,11 @@
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
 }
 
+.homes-icon {
+  width: 25px;
+  height: 25px;
+}
+
 .homes-profile-contact {
   color: $teal-green !important;
   font-size: 18px;
@@ -89,9 +94,33 @@
   color: $grey;
 }
 
+.homes-amenities-header {
+  font-size: 16px !important;
+  line-height: 22px !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  color: #484848 !important;
+}
+
+.homes-profile-amenities{
+  display: flex;
+}
+
+.homes-profile-amenities-item {
+  font-size: 16px !important;
+  line-height: 22px !important;
+  letter-spacing: normal !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  color: $grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+}
+
 .homes-availability {
   h2, span {
-    margin: 10px 0px 10px 0px;
+    margin: 20px 0px 20px 0px;
   }
 }
 
@@ -100,11 +129,10 @@
   margin: 15px 0px 15px 0px;
 }
 
-.homes-amenities-header {
-  font-size: 16px !important;
-  line-height: 22px !important;
-  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
-  color: #484848 !important;
+.homes-show-bookings > li{
+  margin: 10px;
+  color: $grey;
+  font-size: 16px;
 }
 
 // BOOKING SIDE OF THE PAGE

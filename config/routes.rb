@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api, default: {format: :json} do
     resources :users, only: [:create, :update] do
-      get 'bookings/guestBookings', to: 'bookings#guestBookings'
+      get 'bookings/userBookings', to: 'bookings#userBookings'
       get 'bookings/hostBookings', to: 'bookings#hostBookings'
       get 'homes/user_index', to: 'homes#user_index'
     end

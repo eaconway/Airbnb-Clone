@@ -56,9 +56,9 @@ class HomeShow extends React.Component {
   render() {
     let amenities = ['internet', 'washer', 'dryer'];
     let amenitiesIcons = {
-      internet: <i class="fas fa-wifi"></i>,
-      washer: <img src={'https://image.flaticon.com/icons/svg/1104/1104590.svg'} />,
-      dryer: <img src={'https://image.flaticon.com/icons/svg/35/35098.svg'} />,
+      internet: <i class="fas fa-wifi homes-icon"></i>,
+      washer: <img className={'homes-icon'} src={'https://image.flaticon.com/icons/svg/1104/1104590.svg'} />,
+      dryer: <img className={'homes-icon'} src={'https://image.flaticon.com/icons/svg/35/35098.svg'} />,
     }
     // Images from:
     // - https://www.flaticon.com/free-icon/drying-machine-outline_35098#term=drying%20machine&page=1&position=21
@@ -67,9 +67,9 @@ class HomeShow extends React.Component {
     let amenitiesFill =  this.props.home === undefined ? "" : (amenities.map((amenity, idx) => {
       if (this.props.home[amenity]){
         return (
-          <span>
+          <div className={'homes-profile-amenities-item'}>
             {amenitiesIcons[amenity]} {amenity}
-          </span>
+          </div>
         );
       }
     }));
@@ -129,9 +129,13 @@ class HomeShow extends React.Component {
                 <div className={'line-break-thin'} />
 
                 <div className={'homes-availability'}>
-                  <h2 className={'homes-amenities-header'}>Availability</h2>
+                  <h2 className={'homes-amenities-header'}>Availability (Current Bookings)</h2>
                   <span>Updated {this.timeSinceUpdate()} days ago</span>
-                  <Calendar />
+                  <ul className={'homes-show-bookings'}>
+                    <li>Start: 11/1/2018 - End: 11/3/2018: 2 nights</li>
+                    <li>Start: 11/11/2018 - End: 11/15/2018: 3 nights</li>
+                    <li>Start: 12/1/2018 - End: 12/10/2018: 9 nights</li>
+                  </ul>
                 </div>
 
                 <div className={'line-break-thin'} />
@@ -146,16 +150,16 @@ class HomeShow extends React.Component {
 
               <form className={'homes-profile-book'} onSubmit={this.handleSubmit}>
                 <h2>${this.props.home.price} <span>per night</span></h2>
-                <span> Rating </span>
+                <span> Rating (Eg: 4.5 out of 5 stars!)</span>
                 <div className={'line-break-thin'} />
 
                 <h4>Dates</h4>
                 <div className={'dates-duration'}>
                   <input placeholder={'Eg: 12/12/2018'}
-                    type='text' value={this.state.startDate}
+                    type='date' value={this.state.startDate}
                     onChange={this.update('startDate')}/>
                   <input placeholder={'Eg: 12/12/2018'}
-                    type='text' value={this.state.endDate}
+                    type='date' value={this.state.endDate}
                     onChange={this.update('endDate')}/>
                 </div>
 
