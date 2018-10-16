@@ -44,11 +44,14 @@ export const createHome = (formData) => dispatch => (
     (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
 );
 
-export const updateHome = (formData) => dispatch => (
+export const updateHome = (formData) => dispatch => {
+  debugger
+  return (
   HomeApiUtil.updateHome(formData)
     .then(home => dispatch(receiveHome(home)),
     (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
-);
+  )
+};
 
 export const deleteHome = (homeId) => dispatch => (
   HomeApiUtil.deleteHome(homeId)

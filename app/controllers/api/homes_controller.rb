@@ -25,7 +25,7 @@ class Api::HomesController < ApplicationController
   end
 
   def update
-    @home = Home.find(params[:homeId])
+    @home = Home.find(params[:home][:id])
     if @home.update(home_params)
       render :show
     else
@@ -34,7 +34,7 @@ class Api::HomesController < ApplicationController
   end
 
   def destroy
-    @home = Home.find(params[:homeId])
+    @home = Home.find(params[:id])
     if @home.delete
       render json: ["Deleted home"], status: 200
     else

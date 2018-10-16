@@ -10,11 +10,11 @@ class Homes extends React.Component {
       step: 1,
       city: 'Konoha',
       guests: 1,
-      type:'Entire Place',
+      homeType:'Entire Place',
       bedrooms: 0,
       beds: 0,
       baths: 0,
-      address: '',
+      streetAddress: '',
       state: '',
       country: '',
       zipcode: '',
@@ -96,25 +96,12 @@ class Homes extends React.Component {
         formData.append('home[image]', this.state.imageFile);
       }
 
-      formData.append('home[city]', this.state.city);
-      formData.append('home[guests]', this.state.guests);
-      formData.append('home[home_type]', this.state.type);
-      formData.append('home[bedrooms]', this.state.bedrooms);
-      formData.append('home[beds]', this.state.beds);
-      formData.append('home[baths]', this.state.baths);
-      formData.append('home[street_address]', this.state.address);
-      formData.append('home[state]', this.state.state);
-      formData.append('home[zipcode]', this.state.zipcode);
-      formData.append('home[internet]', this.state.internet);
-      formData.append('home[washer]', this.state.washer);
-      formData.append('home[dryer]', this.state.dryer);
-      formData.append('home[status]', this.state.status);
-      formData.append('home[lat]', this.state.lat);
-      formData.append('home[lng]', this.state.lng);
-      formData.append('home[title]', this.state.title);
-      formData.append('home[price]', this.state.price);
-      formData.append('home[description]', this.state.description);
-      formData.append('home[extra_info]', this.state.extraInfo);
+      ['city', 'guests','home_type', 'bedrooms', 'beds', 'baths', 'state',
+        'zipcode', 'internet' ,'washer', 'dryer', 'status', 'lat', 'lng',
+        'title', 'price', 'description', 'extraInfo',
+        'streetAddress'].forEach(field => {
+          formData.append(`home[${field}]`, this.state[field]);
+        })
 
       this.props.createHome(formData)
         .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/homes`));
@@ -133,6 +120,7 @@ class Homes extends React.Component {
   }
 
   formInputCreator(field, seed){
+    console.log(field);
     return (
       <select className={''} value={this.state[field]} onChange={this.update(field)}>
       {seed.map((opt,idx) =>
@@ -157,7 +145,7 @@ class Homes extends React.Component {
       <div>
         <label className={'home-form-input'}>Street Address
           <input type='text' placeholder='e.g. 123 Main St.'
-            value={this.state.address} onChange={this.update('address')}
+            value={this.state.streetAddress} onChange={this.update('address')}
             />{"\n"}
         </label>
         <div className={'horizontal-form-input '}>
@@ -236,7 +224,7 @@ class Homes extends React.Component {
                     )}
                   </select>
 
-                  {this.formInputCreator('type', HomeOptions['type'])}
+                  {this.formInputCreator('homeType', HomeOptions['homeType'])}
 
                   <h1>$$$$</h1>
                   <p>monthly potential</p>

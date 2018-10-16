@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_201357) do
+ActiveRecord::Schema.define(version: 2018_10_16_045748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,12 +55,6 @@ ActiveRecord::Schema.define(version: 2018_10_15_201357) do
     t.string "city"
     t.string "state"
     t.integer "zipcode"
-    t.integer "beds", null: false
-    t.integer "baths", null: false
-    t.integer "bedrooms", null: false
-    t.integer "internet", default: 0, null: false
-    t.integer "washer", default: 0, null: false
-    t.integer "dryer", default: 0, null: false
     t.integer "guests", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -69,6 +63,12 @@ ActiveRecord::Schema.define(version: 2018_10_15_201357) do
     t.integer "price", default: 0, null: false
     t.text "description"
     t.text "extra_info"
+    t.integer "beds", default: 0
+    t.integer "baths", default: 0
+    t.integer "bedrooms", default: 0
+    t.boolean "internet", default: false
+    t.boolean "washer", default: false
+    t.boolean "dryer", default: false
     t.index ["city"], name: "index_homes_on_city"
     t.index ["state"], name: "index_homes_on_state"
   end

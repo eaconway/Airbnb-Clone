@@ -5,7 +5,6 @@ import HomesIndexItem from './homes_index_item';
 class Homes extends React.Component {
   constructor(props){
     super(props)
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount(){
@@ -13,14 +12,10 @@ class Homes extends React.Component {
     this.props.action();
   }
 
-  handleDelete(id){
-    this.props.deleteHome(id)
-  }
-
   render(){
     let homes = this.props.homes.map(home => (
       <HomesIndexItem key={home.id} home={home} edit={'true'}
-        handleDelete={this.handleDelete}/>
+        deleteHome={this.props.deleteHome}/>
     ));
 
     return (

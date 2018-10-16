@@ -6,7 +6,7 @@ export const city = [
 
 export const guests = range(1, 20, 1);
 
-export const type = [
+export const homeType = [
   'Entire Place', 'Private Room', 'Shared Room'
 ];
 

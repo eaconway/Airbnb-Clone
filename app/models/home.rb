@@ -22,11 +22,13 @@
 #  home_type      :string           not null
 #  title          :string           default(""), not null
 #  price          :integer          default(0), not null
+#  description    :text
+#  extra_info     :text
 #
 
 class Home < ApplicationRecord
-  validates :status, :lng, :lat, :beds, :baths, :bedrooms, :internet,
-    :washer, :dryer, :guests, :home_type, :title, :price, presence: true
+  validates :status, :lng, :lat, :beds, :baths, :bedrooms,
+    :guests, :home_type, :title, :price, presence: true
 
   validate :ensure_image
 

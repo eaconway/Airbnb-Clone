@@ -8,6 +8,7 @@ class HomeIndexItem extends React.Component{
       likeStatus: 'unliked',
     };
     this.toggleHomeLike = this.toggleHomeLike.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   toggleHomeLike(e){
@@ -18,6 +19,11 @@ class HomeIndexItem extends React.Component{
     }
     //delete like model association
     return this.setState({likeStatus: 'unliked'});
+  }
+
+  handleDelete(e){
+    e.preventDefault();
+    this.props.deleteHome(this.props.home.id);
   }
 
   render() {
@@ -52,13 +58,14 @@ class HomeIndexItem extends React.Component{
 
           <div className={'homes-index-edit-options'}>
             {this.props.edit ? (
-              <Link to={`/homes/${this.props.home.id}/edit`}>
+              <Link className={'homes-index-edit-link'} 
+                to={`/homes/${this.props.home.id}/edit`}>
                 <button className={'homes-index-edit'}>Edit</button>
               </Link>
             ) : ''}
 
             {this.props.edit ? (
-              <button onClick={() => this.props.handleDelete(this.props.home.id)} className={'homes-index-delete'}>Delete</button>
+              <button onClick={this.handleDelete} className={'homes-index-delete'}>Delete</button>
             ) : ''}
           </div>
         </div>
