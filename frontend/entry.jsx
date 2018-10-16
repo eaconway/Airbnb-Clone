@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(<Root store={store}/>, root);
 
   window.fetchHomes = HomeApiUtil.fetchHomes;
-  window.fetchHome = HomeApiUtil.fetchHome;
+  window.fetchUserHomes = HomeApiUtil.fetchUserHomes;
   window.signup = SessionApiUtil.signup;
   window.login = SessionApiUtil.login;
   window.logout = SessionApiUtil.logout;

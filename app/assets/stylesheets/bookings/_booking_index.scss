@@ -1,0 +1,30 @@
+.bookings-index-container {
+  background-color: white;
+
+}
+
+.bookings-index-list {
+  width: 70%;
+  height: 900px;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+
+.bookings-index-item {
+  border: 1px solid $light-grey;
+  border-radius: 5px;
+  height: 300px;
+  background-color: grey;
+  display: flex;
+  flex-direction: row;
+
+  .bookings-index-info {
+    width: 70%;
+    height: 300px;
+  }
+
+  img {
+    width: 30%;
+    height: 300px;
+  }
+}

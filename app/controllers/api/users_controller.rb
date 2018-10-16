@@ -1,6 +1,12 @@
 class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
+
+    unless @user.profile_pic.attached?
+      file = EzDownload.open('https://vignette.wikia.nocookie.net/smosh/images/e/e1/025Pikachu_OS_anime_4.png/revision/latest?cb=20140725081329')
+      @user.profile_pic.attach(io: file, filename: 'demo.png')
+    end
+
     if @user.save!
       login!(@user)
       render :show

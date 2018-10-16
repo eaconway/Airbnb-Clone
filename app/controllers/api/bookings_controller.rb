@@ -5,7 +5,10 @@ class Api::BookingsController < ApplicationController
   end
 
   def userBookings
-    @bookings = Booking.where(guest_id: current_user.id).or(Booking.where(home_id: current_user.homes))
+    @bookings = Booking.where(guest_id: current_user.id)
+      .or(Booking.where(home_id: current_user.homes))
+      .includes(:home)
+    @homes = @bookings.map{|booking| booking.home}
     render :index
   end
 
@@ -16,6 +19,8 @@ class Api::BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+
+    @booking.guest_id = current_user.id
     if @booking.save
       render :show
     else
@@ -40,7 +45,7 @@ class Api::BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
 
-    if @booking.update(booking_params)
+    if @booking.delete
       render json: ["Successfully Deleted"], status: 200
     else
       render json: @booking.errors.full_messages, status: 404
@@ -49,8 +54,8 @@ class Api::BookingsController < ApplicationController
 
   private
   def booking_params
-    params.require(:booking).permit(:guest_id, :home_id, :start_date,
-      :end_date).transform_keys!(&:underscore)
+    params.require(:booking).permit(:homeId, :startDate,
+      :endDate, :guests).transform_keys!(&:underscore)
   end
 
 end

@@ -9,6 +9,9 @@ class HomeShow extends React.Component {
     super(props)
     this.state = {
       guests: 1,
+      startDate: '',
+      endDate: '',
+      homeId: '',
       hide: 'hidden'
     }
     this.toggleHide = this.toggleHide.bind(this);
@@ -18,7 +21,8 @@ class HomeShow extends React.Component {
 
   componentDidMount(){
     // debugger
-    this.props.requestHome(this.props.match.params.homeId);
+    this.props.requestHome(this.props.match.params.homeId)
+      .then(() => this.setState({homeId: this.props.home.id}))
   }
 
   update(field){
@@ -26,13 +30,6 @@ class HomeShow extends React.Component {
       const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
       return this.setState({[field]: value})
     }
-  }
-
-  handleSubmit(e){
-    e.preventDefault();
-
-    debugger
-    console.log('hi');
   }
 
   toggleHide(e){
@@ -47,6 +44,14 @@ class HomeShow extends React.Component {
     let newDate = new Date();
     var diff = new moment.duration(newDate - oldDate);
     return Math.floor(diff.asDays());
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+
+    debugger;
+    this.props.createBooking(this.state)
+      .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/bookings`));
   }
 
   handleDateChange() {

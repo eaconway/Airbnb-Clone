@@ -19,3 +19,8 @@ export const closeModalAndClearErrors = () => dispatch => {
     dispatch(clearSessionErrors());
     dispatch(closeModal());
 };
+
+export const openModalAndClearErrors = (form) => dispatch => {
+    dispatch(clearSessionErrors());
+    dispatch(openModal(form));
+};

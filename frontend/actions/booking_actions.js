@@ -1,5 +1,6 @@
 import * as BookingsApiUtil from '../util/bookings_api_util';
 import {receiveBookingErrors, clearBookingErrors} from './errors_actions';
+import {receiveHomes} from './home_actions';
 
 export const RECEIVE_BOOKINGS = 'RECEIVE_BOOKINGS';
 export const RECEIVE_BOOKING = 'RECEIVE_BOOKING';
@@ -15,15 +16,17 @@ export const receiveBooking = booking => ({
   booking
 });
 
-export const removeBookings = bookingId => ({
+export const removeBooking = bookingId => ({
   type: REMOVE_BOOKING,
-  bookingId
+  bookingIds
 });
 
 export const requestUserBookings = () => dispatch => (
   BookingsApiUtil.fetchUserBookings()
-    .then((bookings) => dispatch(receiveBookings(bookings)),
-      (errors) => dispatch(receiveBookingErrors(errors)))
+    .then(results => {
+      dispatch(receiveBookings(results.bookings));
+      dispatch(receiveHomes(results.homes));
+    }, (errors) => dispatch(receiveBookingErrors(errors)))
 );
 
 export const requestBooking = (id) => dispatch => (
@@ -33,12 +36,12 @@ export const requestBooking = (id) => dispatch => (
 );
 
 export const createBooking = (booking) => dispatch => (
-  BookingsApiUtil.fetchBooking(booking)
+  BookingsApiUtil.createBooking(booking)
     .then((booking) => dispatch(receiveBooking(booking)),
       (errors) => dispatch(receiveBookingErrors(errors)))
 );
 
-export const requestBooking = (booking) => dispatch => (
+export const updateBooking = (booking) => dispatch => (
   BookingsApiUtil.updateBooking(booking)
     .then((booking) => dispatch(receiveBooking(booking)),
       (errors) => dispatch(receiveBookingErrors(errors)))

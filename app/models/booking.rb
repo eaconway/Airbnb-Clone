@@ -9,10 +9,11 @@
 #  end_date   :date             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  guests     :integer          default(1), not null
 #
 
 class Booking < ApplicationRecord
-  validates :home_id, :guest_id, :start_date, :end_date, presence: true
+  validates :home_id, :guests, :guest_id, :start_date, :end_date, presence: true
 
   belongs_to :guest,
     foreign_key: :home_id,

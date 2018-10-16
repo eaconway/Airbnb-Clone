@@ -11,6 +11,7 @@ class FormUser extends React.Component {
     this.togglePassword = this.togglePassword.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
     this.state.password_type = 'password';
+    this.state.togglePassTitle = 'Show Password';
   }
 
   update(field){
@@ -20,20 +21,27 @@ class FormUser extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     this.state.birthday = `${this.state.year}-${months[this.state.month]}-${this.state.day}`;
+    debugger
     this.props.action(this.state).then(this.props.closeModal);
   }
 
   demoLogin(e){
     e.preventDefault();
     let demoForm = {
-      email: 'demo',
+      email: 'demo@demo.com',
       password: 'password'
     }
     this.props.action(demoForm).then(this.props.closeModal);
   }
 
   togglePassword(e){
-    this.setState({password_type: 'text'});
+    e.preventDefault();
+
+    if (this.state.password_type === 'password') {
+      this.setState({password_type: 'text', togglePassTitle: 'Hide Password'});
+    } else {
+      this.setState({password_type: 'password', togglePassTitle: 'Show Password'});
+    }
   }
 
   render(){
@@ -50,9 +58,12 @@ class FormUser extends React.Component {
     )
     let errors = (this.props.errors ? this.props.errors.map(error => <li>{error}</li>) : "" )
 
+    let passwordToggle = <button className={'show-pass'} onClick={this.togglePassword}>{this.state.togglePassTitle}</button>
+
     let form = this.props.formType === 'Login' ? (
       <div>
         <h3 className={'form-header'}>Log in to continue</h3>
+        <ul className={'session-errors'}>{errors}</ul>
         <input className={'session-form-input'} type='text' placeholder='Email Address'
           value={this.state.email} onChange={this.update('email')}
           />{"\n"}
@@ -63,14 +74,13 @@ class FormUser extends React.Component {
           />{"\n"}
 
         <div className={'form-options-login'}>
-          <button className={'show-pass'} onClick={this.togglePassword}>Show Password</button>
+          {passwordToggle}
         </div>
 
         <input className={'form-submit'} type='submit'
           value='Log in'/>
 
         <div className={'demo-pass'}>
-          {this.props.forgetPass}
           {demo}
         </div>
 
@@ -82,6 +92,7 @@ class FormUser extends React.Component {
     ) : (
       <div>
         <h3 className={'form-header'}>Sign up below</h3>
+        <ul className={'session-errors'}>{errors}</ul>
         <input className={'session-form-input'} type='text' placeholder='Email Address'
           value={this.state.email} onChange={this.update('email')}
           />{"\n"}
@@ -100,7 +111,7 @@ class FormUser extends React.Component {
           />{"\n"}
 
         <div className={'form-options-login'}>
-          <button className={'show-pass'} onClick={this.togglePassword}>Show Password</button>
+          {passwordToggle}
         </div>
 
         <h2 className={'birthday'}>Birthday</h2>
@@ -127,7 +138,6 @@ class FormUser extends React.Component {
           </select>
         </div>
 
-        {mktgNotice}
         <input className={'form-submit'} type='submit'
           value={this.props.formType}/>
 
@@ -139,9 +149,6 @@ class FormUser extends React.Component {
       <div className={'session'}>
         <button onClick={this.props.closeModal}
           className={'modal-close'}>X</button>
-        <ul className={'session-errors'}>
-          {errors}
-        </ul>
         <form className={'session-form'} onSubmit={this.handleSubmit}>
           {form}
         </form>
