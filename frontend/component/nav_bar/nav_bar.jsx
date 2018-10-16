@@ -35,7 +35,7 @@ class NavBar extends React.Component {
         <Link to='/' className={'nav-link'}>Messages</Link>
 
         <div className={'nav-link'} onClick={this.toggleUserOptions}>
-          <div className='profile-pic' />
+          <img className='profile-pic' src={this.props.currentUser.profileUrl}/>
         </div>
 
         <div className={`${this.state.userOptions} user-options`}>

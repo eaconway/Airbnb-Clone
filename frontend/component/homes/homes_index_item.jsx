@@ -49,6 +49,18 @@ class HomeIndexItem extends React.Component{
           <h3>per night</h3>
           <span>Rating</span>
           <span>Free Cancellation</span>
+
+          <div className={'homes-index-edit-options'}>
+            {this.props.edit ? (
+              <Link to={`/homes/${this.props.home.id}/edit`}>
+                <button className={'homes-index-edit'}>Edit</button>
+              </Link>
+            ) : ''}
+
+            {this.props.edit ? (
+              <button onClick={() => this.props.handleDelete(this.props.home.id)} className={'homes-index-delete'}>Delete</button>
+            ) : ''}
+          </div>
         </div>
       </Link>
 

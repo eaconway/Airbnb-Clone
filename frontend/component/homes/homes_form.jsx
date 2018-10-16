@@ -29,6 +29,8 @@ class Homes extends React.Component {
       lng: 0,
       title: '',
       price: '',
+      description: '',
+      extraInfo: '',
     };
     // if (this.props.currentUser.hostStatus) {
     //   this.state.step = 2;
@@ -85,7 +87,7 @@ class Homes extends React.Component {
     e.preventDefault();
     this.setState({street_address: this.state.address});
 
-    if (this.state.step != 3) {
+    if (this.state.step != 4) {
       this.setState({step: this.state.step + 1});
     } else {
       const formData = new FormData();
@@ -109,6 +111,11 @@ class Homes extends React.Component {
       formData.append('home[status]', this.state.status);
       formData.append('home[lat]', this.state.lat);
       formData.append('home[lng]', this.state.lng);
+      formData.append('home[title]', this.state.title);
+      formData.append('home[price]', this.state.price);
+      formData.append('home[description]', this.state.description);
+      formData.append('home[extra_info]', this.state.extraInfo);
+
       this.props.createHome(formData)
         .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/homes`));
     }
@@ -365,23 +372,54 @@ class Homes extends React.Component {
           <div className={'form-container'}>
             <div className={'home-form'}>
               <form onSubmit={this.handleSubmit}>
-                <h1>Last steps</h1>
+                <h1>Bring your place to life!</h1>
 
                 <label className={'home-form-input'}>What's you're place going to be called?
                   <input type='text' placeholder='e.g. My Summer Getaway'
-                    value={this.state.state} onChange={this.update('state')}
+                    value={this.state.title} onChange={this.update('title')}
                     />{"\n"}
                 </label>
 
                 <label className={'home-form-input'}>And how much should it cost, per night? (USD)
                   <input type='text' placeholder="e.g. Dolla Dolla bills ya'll"
-                    value={this.state.state} onChange={this.update('state')}
+                    value={this.state.price} onChange={this.update('price')}
                     />{"\n"}
                 </label>
 
                 <h2>Lastly, Upload a photo: </h2>
                 <input type='file' onChange={this.handleFile}/>
                 {preview}
+                <div className={'submitDiv'}>
+                  <button onClick={this.pageBack}>Back</button>
+                  <button onClick={this.handleSubmit}>Next</button>
+                </div>
+              </form>
+
+            </div>
+            <div className={'form-image'}></div>
+          </div>
+        )
+
+      case 4:
+
+        return (
+          <div className={'form-container'}>
+            <div className={'home-form'}>
+              <form onSubmit={this.handleSubmit}>
+                <h1>Last Steps</h1>
+
+                <label className={'home-form-input'}>Tell folks alittle about your place!
+                  <textarea type='text' placeholder='e.g. My place is awesome because...'
+                    value={this.state.description} onChange={this.update('description')}
+                    />{"\n"}
+                </label>
+
+                <label className={'home-form-input'}>Any additional info you'd like to share?
+                  <textarea type='text' placeholder="e.g. And MUCH more detail"
+                    value={this.state.extraInfo} onChange={this.update('extraInfo')}
+                    />{"\n"}
+                </label>
+
                 <div className={'submitDiv'}>
                   <button onClick={this.pageBack}>Back</button>
                   <button onClick={this.handleSubmit}>Submit</button>

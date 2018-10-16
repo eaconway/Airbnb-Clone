@@ -12,6 +12,7 @@ export default(state = {}, action) => {
     case RECEIVE_HOMES:
       return action.homes;
     case RECEIVE_HOME:
+      debugger
       return merge({}, state, {[action.home.id]: action.home });
     case REMOVE_HOME:
       delete newState[action.homeId]

@@ -32,12 +32,15 @@ class Home < ApplicationRecord
 
   has_one :hosting,
     foreign_key: :home_id,
-    class_name: :Hosting,
-    dependent: :destroy
+    class_name: :Hosting
 
   has_one :owner,
     through: :hosting,
     source: :host
+
+  has_many :bookings,
+    foreign_key: :home_id,
+    class_name: :Booking
 
   has_one_attached :image
 

@@ -37,8 +37,15 @@ export const requestHome = (homeId) => dispatch => (
     .then(home => dispatch(receiveHome(home)),
     (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
 );
+
 export const createHome = (formData) => dispatch => (
   HomeApiUtil.createHome(formData)
+    .then(home => dispatch(receiveHome(home)),
+    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
+);
+
+export const updateHome = (formData) => dispatch => (
+  HomeApiUtil.updateHome(formData)
     .then(home => dispatch(receiveHome(home)),
     (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
 );

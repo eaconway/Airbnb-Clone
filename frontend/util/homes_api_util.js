@@ -8,7 +8,7 @@ export const fetchHomes = (filters) => (
 
 export const fetchUserHomes = () => (
   $.ajax({
-    url: 'api/homes/user_index',
+    url: 'api/users/:user_id/homes/user_index',
     method: 'GET'
   })
 );
@@ -24,6 +24,16 @@ export const createHome = (formData) => (
   $.ajax({
     url: 'api/homes',
     method: 'POST',
+    data: formData,
+    contentType: false,
+    processData: false
+  })
+);
+
+export const updateHome = (formData) => (
+  $.ajax({
+    url: `api/homes/${formData.id}`,
+    method: 'PATCH',
     data: formData,
     contentType: false,
     processData: false

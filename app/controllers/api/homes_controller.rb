@@ -13,6 +13,7 @@ class Api::HomesController < ApplicationController
   end
 
   def create
+    debugger
     @home = Home.new(home_params)
 
     if @home.save
@@ -46,7 +47,8 @@ class Api::HomesController < ApplicationController
   def home_params
     params.require(:home).permit(:status, :lng, :lat, :beds, :baths,
       :bedrooms, :internet, :washer, :dryer, :guests, :home_type,
-      :street_address, :city, :state, :zipcode, :image, :price, :title)
+      :street_address, :city, :state, :zipcode, :image, :price, :title,
+      :description, :extra_info).transform_keys!(&:underscore)
   end
 
   def bounds

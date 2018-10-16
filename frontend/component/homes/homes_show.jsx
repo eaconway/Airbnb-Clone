@@ -56,19 +56,19 @@ class HomeShow extends React.Component {
   render() {
     let amenities = ['internet', 'washer', 'dryer'];
     let amenitiesIcons = {
-      internet: '<i class="fas fa-wifi"></i>',
-      washer: "<img src={'https://image.flaticon.com/icons/svg/1104/1104590.svg'}",
-      dryer: "<img src={'https://image.flaticon.com/icons/svg/35/35098.svg'}",
+      internet: <i class="fas fa-wifi"></i>,
+      washer: <img src={'https://image.flaticon.com/icons/svg/1104/1104590.svg'} />,
+      dryer: <img src={'https://image.flaticon.com/icons/svg/35/35098.svg'} />,
     }
     // Images from:
     // - https://www.flaticon.com/free-icon/drying-machine-outline_35098#term=drying%20machine&page=1&position=21
     // - https://www.flaticon.com/free-icon/washing-machine_1104590#term=washing%20machine&page=1&position=1
 
     let amenitiesFill =  this.props.home === undefined ? "" : (amenities.map((amenity, idx) => {
-      if (this.props.home[amenity] && idx < amenities.length -1){
+      if (this.props.home[amenity]){
         return (
           <span>
-            amenitiesIcons[amenity] amenity
+            {amenitiesIcons[amenity]} {amenity}
           </span>
         );
       }

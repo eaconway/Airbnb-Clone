@@ -35,6 +35,10 @@ class User < ApplicationRecord
     through: :hostings,
     source: :home
 
+  has_many :trips,
+    foreign_key: :home_id,
+    class_name: :Booking
+
   has_one_attached :profile_pic
 
   def self.find_by_credentials(email,password)

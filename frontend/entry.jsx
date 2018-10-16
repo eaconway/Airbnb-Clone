@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as SessionApiUtil from './util/session_api_util';
 import * as HomeApiUtil from './util/homes_api_util';
+import * as BookingApiUtil from './util/bookings_api_util';
 import configureStore from './store/store';
 import Root from './component/root';
 
@@ -26,4 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.login = SessionApiUtil.login;
   window.logout = SessionApiUtil.logout;
   window.getState = store.getState;
+
+  window.fetchGuestBookings = BookingApiUtil.fetchGuestBookings
+  window.fetchHostBookings = BookingApiUtil.fetchHostBookings
 });

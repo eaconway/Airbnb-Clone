@@ -9,6 +9,7 @@ import LoginContainer from './session/login_container';
 import HomesFormContainer from './homes/homes_form_container';
 import HomesUserIndexContainer from './homes/homes_user_index_container';
 import HomesShowContainer from './homes/homes_show_container';
+import HomesEditContainer from './homes/homes_edit_container';
 import SearchContainer from './search/search_container';
 
 import CalendarTest from './homes/calendar_dates';
@@ -26,6 +27,7 @@ export default () => (
 
     <div className={'main-content'}>
       <Switch>
+        <ProtectedRoute path='/homes/:homeId/edit' component={HomesEditContainer} />
         <ProtectedRoute path='/users/:userId/homes' component={HomesUserIndexContainer} />
         <ProtectedRoute path='/homes/form' component={HomesFormContainer} />
         <Route path="/homes/:homeId" component={HomesShowContainer} />
