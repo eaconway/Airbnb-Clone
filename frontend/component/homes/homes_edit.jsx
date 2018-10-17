@@ -74,7 +74,8 @@ class HomeShow extends React.Component {
 
     formData.append('home[id]', this.props.match.params.homeId);
 
-    this.props.updateHome(formData);
+    this.props.updateHome(formData)
+      .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/homes`))
   }
 
   render() {
@@ -100,7 +101,8 @@ class HomeShow extends React.Component {
           <form className={'homes-edit-form'}>
             <div className={'homes-edit-header'}>
               <h1>Edit your home:
-                <input className={'home-title-form'} type='text' value={this.state.title} />
+                <input className={'home-title-form'} type='text' value={this.state.title}
+                  onChange={this.update('title')} />
               </h1>
             </div>
 

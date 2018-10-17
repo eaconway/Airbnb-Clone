@@ -32,7 +32,7 @@ export const createHome = (formData) => (
 
 export const updateHome = (formData) => (
   $.ajax({
-    url: `api/homes/${formData.id}`,
+    url: `api/homes/${formData.get('home[id]')}`,
     method: 'PATCH',
     data: formData,
     contentType: false,
