@@ -15,6 +15,17 @@ class FormMap extends HomeMap {
     this.geocoder = new google.maps.Geocoder;
     this.infowindow = new google.maps.InfoWindow;
     this.registerListeners = this.registerListeners.bind(this);
+    this.createMap = this.createMap.bind(this);
+  }
+
+  createMap(){
+    const mapOptions = {
+      center: { lat: 36.2048, lng: 138.2529 },
+      zoom: 6
+    };
+
+    this.map = new google.maps.Map(this.mapNode, mapOptions);
+    this.MarkerManager = new MarkerManager(this.map);
   }
 
   componentDidMount(){

@@ -11,8 +11,9 @@ class BookingsIndex extends React.Component {
   }
 
   componentDidMount(){
+    debugger;
     this.props.requestUserBookings()
-      .then(() => this.setState({loaded: true}))
+      .then(() => this.setState({loaded: true}));
   }
 
   render () {

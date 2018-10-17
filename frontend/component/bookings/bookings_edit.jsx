@@ -126,7 +126,7 @@ class BookingsEdit extends React.Component {
                     <div className='home-info'>
                       <div>
                         <h3>{duration} nights in {home.city}</h3>
-                        <span>{home.homeType} · {home.beds} beds</span>
+                        <span>{home.home_type} · {home.beds} beds</span>
                       </div>
                       <img src={home.imageUrl} />
                     </div>

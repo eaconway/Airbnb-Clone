@@ -10,7 +10,7 @@ class Homes extends React.Component {
       step: 1,
       city: 'Konoha',
       guests: 1,
-      homeType:'Entire Place',
+      home_type:'Entire Place',
       bedrooms: 0,
       beds: 0,
       baths: 0,
@@ -224,7 +224,7 @@ class Homes extends React.Component {
                     )}
                   </select>
 
-                  {this.formInputCreator('homeType', HomeOptions['homeType'])}
+                  {this.formInputCreator('home_type', HomeOptions['home_type'])}
 
                   <h1>$$$$</h1>
                   <p>monthly potential</p>

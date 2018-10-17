@@ -28,12 +28,8 @@ class HomeIndexItem extends React.Component{
 
   render() {
     let amenities = ['internet', 'washer', 'dryer'];
-    let amenitiesFill = amenities.map((amenity, idx) => {
-      if (this.props.home[amenity] && idx < amenities.length -1){
-        return (amenity + ' · ');
-      }
-      return (amenity);
-    });
+    let amenitiesActive = amenities.filter(amenity => this.props.home[amenity]);
+    let amenitiesFill = amenitiesActive.join(' · ');
 
     return (
       <Link className={'homes-index-item'} to={`/homes/${this.props.home.id}`}>
@@ -42,7 +38,7 @@ class HomeIndexItem extends React.Component{
           <div onClick={this.toggleHomeLike} className={this.state.likeStatus} />
         </div>
         <div className={'homes-index-info'}>
-          <h3>{this.props.home.homeType}</h3>
+          <h3>{this.props.home.home_type}</h3>
           <h2>{this.props.home.title}</h2>
           <span>{this.props.home.guests} guests · {this.props.home.bedrooms}
              bedrooms · {this.props.home.beds} beds · {this.props.home.baths}

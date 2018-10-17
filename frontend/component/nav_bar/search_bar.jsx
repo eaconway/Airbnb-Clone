@@ -14,9 +14,9 @@ class SearchBar extends React.Component {
     return (
       <div className={'search-div'}>
         <Link to='/' className={'logo'} />
-        <input className={'search-bar'}
-          type="text"
-          />
+        <div>
+          <input className={'search-bar'} type="text"/>
+        </div>
       </div>
     );
   }

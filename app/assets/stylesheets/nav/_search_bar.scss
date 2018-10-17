@@ -1,0 +1,16 @@
+.search-div{
+  width: 35%;
+  margin-left: 30px;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar {
+  height: 35px;
+  width: 70%;
+  box-shadow: 0 4px 6px 0px $light-grey;
+  border: 1px solid $light-grey;
+  padding: 0px 10px 0px 10px;
+}

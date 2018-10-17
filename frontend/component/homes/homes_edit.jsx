@@ -12,7 +12,7 @@ class HomeShow extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.formInputCreator = this.formInputCreator.bind(this);
     this.capitalize = this.capitalize.bind(this);
-
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount(){
@@ -46,7 +46,8 @@ class HomeShow extends React.Component {
 
   handleDelete(e){
     e.preventDefault();
-    this.props.deleteHome(this.props.match.params.homeId);
+    this.props.deleteHome(this.props.match.params.homeId)
+      .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/homes`))
   }
 
   handleFormClick(coords, formatted_address){
@@ -79,7 +80,7 @@ class HomeShow extends React.Component {
   render() {
 
     if (this.props.home != undefined) {
-      let initial = ['city', 'guests', 'homeType'].map((field) => (
+      let initial = ['city', 'guests', 'home_type'].map((field) => (
         <div className={'chosen-fields'}>{this.capitalize(field)}
           {this.formInputCreator(field, HomeOptions[field])}
         </div>
@@ -228,9 +229,9 @@ class HomeShow extends React.Component {
             </div>
             <div className={'homes-edit-submit'}>
               <Link to={`/users/${this.props.currentUser.id}/homes`}><button>Back</button></Link>
-              <button className={'homes-index-delete'} onClick={this.props.deleteHome}
+              <button className={'homes-index-delete'} onClick={this.handleDelete}
                 >Delete</button>
-              <button onClick={this.handleSubmit}>Saved</button>
+              <button onClick={this.handleSubmit}>Save</button>
               <div className={'last-updated'}>Last updated
                  on {new Date(this.state.updated_at).toDateString()} at {new Date(this.state.updated_at).toTimeString()}</div>
             </div>

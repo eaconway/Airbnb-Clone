@@ -50,7 +50,7 @@ export const createHome = (formData) => dispatch => (
 export const updateHome = (formData) => dispatch => {
   return (
   HomeApiUtil.updateHome(formData)
-    .then(home => dispatch(receiveHome(home)),
+    .then(results => dispatch(receiveHome(results.home)),
     (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
   )
 };

@@ -103,7 +103,7 @@ class HomeShow extends React.Component {
             <div className={'homes-profile-section'}>
               <div className={'homes-profile-info'}>
 
-                <h3>{this.props.home.homeType}</h3>
+                <h3>{this.props.home.home_type}</h3>
                 <div className={'homes-profile-header'}>
                   <div className={'homes-profile-header-title'}>
                     <h1>{this.props.home.title}</h1>

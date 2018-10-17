@@ -14,15 +14,6 @@
 
 }
 
-.search-div{
-  width: 35%;
-  margin-left: 30px;
-  display:flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 .logo {
   background-image: url('https://i2.wp.com/www.citylandnyc.org/wp-content/uploads/sites/14/2018/05/Airbnb-Logo-e1526586777775.png?ssl=1');
   background-repeat: no-repeat;
@@ -32,13 +23,6 @@
   margin-right: 30px;
 }
 
-.search-bar {
-  height: 35px;
-  width: 70%;
-  box-shadow: 0 4px 6px 0px $light-grey;
-  border: 1px solid $light-grey;
-  padding: 0px 10px 0px 10px;
-}
 
 .search-bar:focus {
   outline: none;
