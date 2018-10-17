@@ -18,6 +18,7 @@
   flex-direction: row;
   margin: 20px 0px;
   text-decoration: none;
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 
   .bookings-index-info {
     width: 70%;
@@ -51,12 +52,36 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    border: 1px solid red;
+    // border: 1px solid red;
 
-    div {
+    .date {
       height: 100%;
-      width: 25%;
-      border: 1px solid blue;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // border: 1px solid blue;
+
+      .date-header {
+        font-weight: bold;
+        font-size: 18px;
+        color: $grey;
+      }
+
+      .date-sub-header {
+        font-weight: bold;
+        font-size: 11px;
+        color: $grey;
+      }
+    }
+
+    .fas {
+      font-size: 40px;
+      margin: 0px 40px;
+    }
+
+    .booking-arrival{
+
     }
   }
 
@@ -75,10 +100,22 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    font-size: 18px;
+    font-weight: 400;
 
     div {
-      width: 25%;
+      width: auto;
       height: 90px;
     }
+
+    .far {
+      margin-right: 10px;
+      font-size: 30px;
+      font-weight: 400;
+    }
+  }
+
+  .booking-options:hover{
+    cursor: pointer;
   }
 }

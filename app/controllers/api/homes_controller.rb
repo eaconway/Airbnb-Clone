@@ -10,6 +10,7 @@ class Api::HomesController < ApplicationController
 
   def show
     @home = Home.find(params[:id])
+    @bookings = Booking.where(home_id: @home.id)
   end
 
   def create
@@ -17,7 +18,7 @@ class Api::HomesController < ApplicationController
 
     if @home.save
       Hosting.create(host_id: current_user.id, home_id: @home.id)
-      render :show
+      render :showMin
     else
       render json: @home.errors.full_messages, status: 422
     end
@@ -26,7 +27,7 @@ class Api::HomesController < ApplicationController
   def update
     @home = Home.find(params[:home][:id])
     if @home.update(home_params)
-      render :show
+      render :showMin
     else
       render json: @home.errors.full_messages, status: 422
     end

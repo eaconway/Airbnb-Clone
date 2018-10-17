@@ -1,6 +1,6 @@
 import * as BookingsApiUtil from '../util/bookings_api_util';
 import {receiveBookingErrors, clearBookingErrors} from './errors_actions';
-import {receiveHomes} from './home_actions';
+import {receiveHomes, receiveHome} from './home_actions';
 
 export const RECEIVE_BOOKINGS = 'RECEIVE_BOOKINGS';
 export const RECEIVE_BOOKING = 'RECEIVE_BOOKING';
@@ -18,7 +18,7 @@ export const receiveBooking = booking => ({
 
 export const removeBooking = bookingId => ({
   type: REMOVE_BOOKING,
-  bookingIds
+  bookingId
 });
 
 export const requestUserBookings = () => dispatch => (
@@ -26,29 +26,32 @@ export const requestUserBookings = () => dispatch => (
     .then(results => {
       dispatch(receiveHomes(results.homes));
       dispatch(receiveBookings(results.bookings));
-    }, (errors) => dispatch(receiveBookingErrors(errors)))
+    }, (errors) => dispatch(receiveBookingErrors(errors.responseJSON)))
 );
 
 export const requestBooking = (id) => dispatch => (
   BookingsApiUtil.fetchBooking(id)
-    .then((booking) => dispatch(receiveBooking(booking)),
-      (errors) => dispatch(receiveBookingErrors(errors)))
+    .then(results => {
+      dispatch(receiveHome(results.home));
+      dispatch(receiveBooking(results.booking));
+    },
+      (errors) => dispatch(receiveBookingErrors(errors.responseJSON)))
 );
 
 export const createBooking = (booking) => dispatch => (
   BookingsApiUtil.createBooking(booking)
-    .then((booking) => dispatch(receiveBooking(booking)),
-      (errors) => dispatch(receiveBookingErrors(errors)))
+    .then((results) => dispatch(receiveBooking(results.booking)),
+      (errors) => dispatch(receiveBookingErrors(errors.responseJSON)))
 );
 
 export const updateBooking = (booking) => dispatch => (
   BookingsApiUtil.updateBooking(booking)
     .then((booking) => dispatch(receiveBooking(booking)),
-      (errors) => dispatch(receiveBookingErrors(errors)))
+      (errors) => dispatch(receiveBookingErrors(errors.responseJSON)))
 );
 
 export const deleteBooking = (id) => dispatch => (
-  BookingsApiUtil.fetchBooking(id)
+  BookingsApiUtil.deleteBooking(id)
     .then(() => dispatch(removeBooking(id)),
-      (errors) => dispatch(receiveBookingErrors(errors)))
+      (errors) => dispatch(receiveBookingErrors(errors.responseJSON)))
 );

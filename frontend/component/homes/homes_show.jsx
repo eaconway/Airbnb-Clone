@@ -12,7 +12,8 @@ class HomeShow extends React.Component {
       startDate: '',
       endDate: '',
       homeId: '',
-      hide: 'hidden'
+      hide: 'hidden',
+      loaded: false
     }
     this.toggleHide = this.toggleHide.bind(this);
     this.timeSinceUpdate = this.timeSinceUpdate.bind(this);
@@ -21,7 +22,7 @@ class HomeShow extends React.Component {
 
   componentDidMount(){
     this.props.requestHome(this.props.match.params.homeId)
-      .then(() => this.setState({homeId: this.props.home.id}))
+      .then(() => this.setState({homeId: this.props.home.id, loaded: true}))
   }
 
   update(field){
@@ -47,9 +48,10 @@ class HomeShow extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-
+    debugger;
     this.props.createBooking(this.state)
       .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/bookings`));
+
   }
 
   handleDateChange() {
@@ -77,14 +79,24 @@ class HomeShow extends React.Component {
       }
     }));
 
-    switch(this.props.home) {
-      case undefined:
-        return (
-          <div>
-            <h1>loading</h1>
-          </div>
-        );
-      default:
+
+    if (this.state.loaded === true) {
+      debugger
+      let bookings = this.props.bookings.map(booking => {
+        let start = new moment(booking.start_date);
+        let end = new moment(booking.end_date);
+        let diff = new moment.duration(new Date(booking.end_date) - new Date(booking.start_date));
+        let duration = Math.floor(diff.asDays());
+
+        return <li>Start: {start.format("MMM Do")} - End: {end.format("MMM Do")}: {duration} nights</li>
+      });
+
+      let errors = this.props.errors ? (
+        <ul>
+          {this.props.errors.map(error => <li>{error}</li>)}
+        </ul>
+      ) : "";
+
         return (
           <div>
             <img src={this.props.home.imageUrl} className={'homes-profile-image'} />
@@ -135,9 +147,7 @@ class HomeShow extends React.Component {
                   <h2 className={'homes-amenities-header'}>Availability (Current Bookings)</h2>
                   <span>Updated {this.timeSinceUpdate()} days ago</span>
                   <ul className={'homes-show-bookings'}>
-                    <li>Start: 11/1/2018 - End: 11/3/2018: 2 nights</li>
-                    <li>Start: 11/11/2018 - End: 11/15/2018: 3 nights</li>
-                    <li>Start: 12/1/2018 - End: 12/10/2018: 9 nights</li>
+                    {bookings}
                   </ul>
                 </div>
 
@@ -175,13 +185,22 @@ class HomeShow extends React.Component {
 
                 <input className={'form-submit'} type='submit'
                   value={'Book'}/>
+                {errors}
+
                 <div className={'homes-profile-disclaimer'}>
-                  <span>You won’t be charged yet</span>
+                  <span>This site doesn't charge yet</span>
                 </div>
               </form>
             </div>
           </div>
         );
+      } else {
+        return (
+          <div>
+            <h1>loading</h1>
+          </div>
+        );
+
     }
   }
 }

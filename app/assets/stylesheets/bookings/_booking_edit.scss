@@ -1,0 +1,211 @@
+.bookings-edit-container {
+  background-color: white;
+}
+
+.bookings-edit-main{
+  width: 75%;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  // border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  color: $grey;
+
+  .bookings-edit-header > h3{
+    font-size: 40px;
+    color: inherit;
+  }
+
+  span {
+    font-size: 20px;
+    font-weight: 325;
+    color: inherit;
+  }
+
+  .bookings-edit-options {
+    margin-top: 75px;
+    // border: 1px solid red;
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: space-between;
+
+    .bookings-edit-div {
+      width: 49%;
+      height: 100%;
+      border: 1px solid $light-grey;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content:space-between;
+
+      .icon {
+        font-size: 30px;
+        color: $teal-green;
+      }
+
+      div{
+        display: flex;
+        flex-direction: column;
+        color: $grey;
+
+        h3 {
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        p {
+          font-size: 18px;
+          font-weight: 325;
+        }
+      }
+    }
+
+    .bookings-edit-button{
+      height: 50px;
+      width: 100px;
+      border: 2px solid $teal-green;
+      border-radius: 5px;
+      background-color: white;
+      color: $teal-green;
+      font-size: 18px;
+      margin: 20px 0px;
+    }
+
+    .bookings-edit-delete{
+      height: 50px;
+      width: 100px;
+      border: 2px solid $red;
+      border-radius: 5px;
+      background-color: $red;
+      color: white;
+      font-size: 18px;
+      margin: 20px 0px;
+    }
+  }
+
+}
+
+.bookings-edit-main2{
+  width: 75%;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  color: $grey;
+
+  .bookings-edit-header > h3{
+    margin-bottom: 50px;
+    font-size:40px;
+  }
+
+  .bookings-edit-content {
+    width: 60%;
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+
+    h4{
+      margin: 25px 0px;
+    }
+  }
+  .dates-duration{
+    border: 1px solid $light-grey;
+    width: 50%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input{
+      border: none;
+      height: 40px;
+      margin: 0;
+    }
+
+    .icon {
+      font-size: 30px;
+      color: $grey;
+      margin: 0px 40px 0px 20px;
+    }
+  }
+
+  select{
+    width: 40%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 5px;
+    border-radius: 1px;
+    border: 1px solid $light-grey;
+
+  }
+
+  .bookings-edit-submit{
+    height: 50px;
+    width: 100px;
+    border: 2px solid $teal-green;
+    border-radius: 5px;
+    background-color: $teal-green;
+    color: white;
+    font-size: 18px;
+    margin-top: 50px;
+  }
+
+  .bookings-edit-info {
+    border: 1px solid $light-grey;
+    height: 350px;
+    width: 35%;
+    padding: 20px;
+    font-size: 16px;
+    color: $grey;
+
+    .line-divider{
+      border: none;
+      border-bottom: 2px solid $light-grey;
+      margin: 10px 0px;
+    }
+
+    .home-info{
+      height: 30%;
+      // border: 1px solid red;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 25px;
+
+      img {
+        height: 100%;
+        width: 35%;
+      }
+    }
+
+
+    .guests{
+      height: 15%;
+      display: flex;
+      align-items: center;
+      i { margin-right: 20px;}
+    }
+
+    .dates{
+      height: 15%;
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .small-icon{
+      font-size: 16px;
+    }
+    .total {
+      height: 10%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+  }
+}

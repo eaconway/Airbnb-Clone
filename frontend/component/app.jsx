@@ -14,8 +14,11 @@ import HomesEditContainer from './homes/homes_edit_container';
 import SearchContainer from './search/search_container';
 
 import BookingsIndexContainer from './bookings/bookings_index_container';
+import BookingsEditContainer from './bookings/bookings_edit_container';
 
 import CalendarTest from './homes/calendar_dates';
+
+import WIP from './wip';
 
 import { Switch, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute} from '../util/route_util';
@@ -30,7 +33,9 @@ export default () => (
 
     <div className={'main-content'}>
       <Switch>
+        <Route path="/workInProgress" component={WIP} />
         <ProtectedRoute path='/homes/:homeId/edit' component={HomesEditContainer} />
+        <ProtectedRoute path='/bookings/:bookingId/edit' component={BookingsEditContainer} />
         <ProtectedRoute path='/users/:userId/bookings' component={BookingsIndexContainer} />
         <ProtectedRoute path='/users/:userId/homes' component={HomesUserIndexContainer} />
         <ProtectedRoute path='/homes/form' component={HomesFormContainer} />

@@ -14,23 +14,25 @@
  */
 
 //Reset
-@import "reset.scss";
+@import "ui/reset.scss";
 
 //Colors
-@import "colors.scss";
+@import "ui/colors.scss";
 
 //Core
-@import "header.scss";
-@import "session.scss";
+@import "ui/header.scss";
+@import "ui/session.scss";
+@import "ui/wip.scss";
 
 //Components
-@import "homes.scss";
-@import "home_form.scss";
-@import "home_map.scss";
-@import "homes_index.scss";
-@import 'homes_profile.scss';
-@import 'homes_edit.scss';
+@import "homes/homes.scss";
+@import "homes/home_form.scss";
+@import "homes/home_map.scss";
+@import "homes/homes_index.scss";
+@import 'homes/homes_profile.scss';
+@import 'homes/homes_edit.scss';
 
-@import "search.scss";
+@import "ui/search.scss";
 
 @import "bookings/booking_index.scss";
+@import "bookings/booking_edit.scss";

@@ -1,4 +1,5 @@
 import * as HomeApiUtil from '../util/homes_api_util';
+import {receiveBookings} from './booking_actions';
 import {receiveHomeErrors, clearHomeErrors} from './errors_actions';
 
 export const RECEIVE_HOMES = 'RECEIVE_HOMES';
@@ -34,8 +35,10 @@ export const requestUserHomes = () => dispatch => (
 
 export const requestHome = (homeId) => dispatch => (
   HomeApiUtil.fetchHome(homeId)
-    .then(home => dispatch(receiveHome(home)),
-    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
+    .then(results => {
+      dispatch(receiveHome(results.home));
+      dispatch(receiveBookings(results.bookings));
+    }, (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
 );
 
 export const createHome = (formData) => dispatch => (

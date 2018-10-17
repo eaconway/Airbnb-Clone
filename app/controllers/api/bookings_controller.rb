@@ -22,6 +22,7 @@ class Api::BookingsController < ApplicationController
 
     @booking.guest_id = current_user.id
     if @booking.save
+      @home = @booking.home
       render :show
     else
       render json: @booking.errors.full_messages, status: 404
@@ -30,12 +31,14 @@ class Api::BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    @home = @booking.home
   end
 
   def update
     @booking = Booking.find(params[:id])
-
+    # debugger
     if @booking.update(booking_params)
+      @home = @booking.home
       render :show
     else
       render json: @booking.errors.full_messages, status: 404
@@ -55,7 +58,7 @@ class Api::BookingsController < ApplicationController
   private
   def booking_params
     params.require(:booking).permit(:homeId, :startDate,
-      :endDate, :guests).transform_keys!(&:underscore)
+      :endDate, :guests, :start_date, :end_date, :home_id, :guest_id).transform_keys!(&:underscore)
   end
 
 end

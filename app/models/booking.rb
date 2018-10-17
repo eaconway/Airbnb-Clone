@@ -15,6 +15,9 @@
 class Booking < ApplicationRecord
   validates :home_id, :guests, :guest_id, :start_date, :end_date, presence: true
 
+  validate :start_must_come_before_end
+  validate :does_not_overlap_bookings
+
   belongs_to :guest,
     foreign_key: :home_id,
     class_name: :Home
@@ -22,4 +25,25 @@ class Booking < ApplicationRecord
   belongs_to :home,
     foreign_key: :home_id,
     class_name: :Home
+
+  def overlapping_bookings
+    Booking
+      .where.not(id: self.id)
+      .where(home_id: home_id)
+      .where.not('start_date >= :end_date OR end_date <= :start_date',
+        start_date: start_date, end_date: end_date)
+  end
+
+  def does_not_overlap_bookings
+   unless overlapping_bookings.empty?
+     errors[:base] <<
+       'Booking conflicts with existing booking'
+   end
+ end
+
+ def start_must_come_before_end
+   return if start_date < end_date
+   errors[:start_date] << 'must come before end date'
+   errors[:end_date] << 'must come after start date'
+ end
 end
