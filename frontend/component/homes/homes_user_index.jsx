@@ -8,7 +8,6 @@ class Homes extends React.Component {
   }
 
   componentDidMount(){
-    debugger
     this.props.action();
   }
 

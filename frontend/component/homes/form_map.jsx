@@ -48,7 +48,6 @@ class FormMap extends HomeMap {
             console.log(this.marker);
             console.log(this.geocoder);
             // console.log(this.map)
-            debugger;
             this.infowindow.setContent(results[0].formatted_address);
             this.infowindow.open(this.map, this.marker);
             this.props.handleFormClick(coords, results[0].formatted_address);

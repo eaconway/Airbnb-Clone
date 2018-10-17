@@ -13,7 +13,6 @@ class Api::HomesController < ApplicationController
   end
 
   def create
-    debugger
     @home = Home.new(home_params)
 
     if @home.save

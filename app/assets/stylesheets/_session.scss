@@ -98,9 +98,12 @@
   border-radius: 5px;
 }
 
+.demo-pass:hover {
+  cursor: pointer;
+}
+
 .demo-button{
   color: $teal-green;
-  border-width: 0px;
   background: transparent;
   width: 100;
   margin: 25px 0px 25px 0px;
@@ -109,9 +112,6 @@
   font-size: 14px;
 }
 
-.demo-button:hover {
-  cursor: pointer;
-}
 
 .line-divider {
   border-top: 3px solid #f2f2f2;

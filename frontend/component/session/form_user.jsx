@@ -21,7 +21,6 @@ class FormUser extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     this.state.birthday = `${this.state.year}-${months[this.state.month]}-${this.state.day}`;
-    debugger
     this.props.action(this.state).then(this.props.closeModal);
   }
 

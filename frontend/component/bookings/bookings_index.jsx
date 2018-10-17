@@ -18,8 +18,6 @@ class BookingsIndex extends React.Component {
         home={this.props.homes[booking.home_id]} />
     )));
 
-    debugger
-
     return (
       <div className={'bookings-index-container'}>
         <ul className={'bookings-index-list'}>

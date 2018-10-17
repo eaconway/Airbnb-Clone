@@ -28,7 +28,6 @@ class HomeShow extends React.Component {
   }
 
   formInputCreator(field, seed){
-    debugger
     return (
       <select value={this.state[field]} onChange={this.update(field)}>
       {seed.map((opt,idx) =>
@@ -47,7 +46,6 @@ class HomeShow extends React.Component {
 
   handleDelete(e){
     e.preventDefault();
-    debugger;
     this.props.deleteHome(this.props.match.params.homeId);
   }
 
@@ -75,7 +73,6 @@ class HomeShow extends React.Component {
 
     formData.append('home[id]', this.props.match.params.homeId);
 
-    debugger;
     this.props.updateHome(formData);
   }
 
@@ -96,8 +93,6 @@ class HomeShow extends React.Component {
        ): null ;
 
       let formatedDate = new Date(this.state.updated_at).toDateString();
-
-      debugger;
 
       return (
         <div className={'homes-edit-container'}>

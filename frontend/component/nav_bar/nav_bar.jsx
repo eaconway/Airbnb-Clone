@@ -38,7 +38,7 @@ class NavBar extends React.Component {
           <img className='profile-pic' src={this.props.currentUser.profileUrl}/>
         </div>
 
-        <div className={`${this.state.userOptions} user-options`}>
+        <div className={`${this.state.userOptions} user-options`} onClick={this.toggleUserOptions}>
           <Link to='/' onClick={this.toggleUserOptions}>Profile</Link>
           <Link to={`/users/${this.props.currentUser.id}/homes`}
             onClick={this.toggleUserOptions}>My Homes</Link>

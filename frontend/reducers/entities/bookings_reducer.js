@@ -10,10 +10,8 @@ export default(state = {}, action) => {
 
   switch(action.type){
     case RECEIVE_BOOKINGS:
-      debugger
       return action.bookings;
     case RECEIVE_BOOKING:
-      debugger;
       return merge({}, state, {[action.booking.id]: action.booking });
     case REMOVE_BOOKING:
       delete newState[action.bookingId]

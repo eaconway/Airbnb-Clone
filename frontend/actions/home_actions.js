@@ -45,7 +45,6 @@ export const createHome = (formData) => dispatch => (
 );
 
 export const updateHome = (formData) => dispatch => {
-  debugger
   return (
   HomeApiUtil.updateHome(formData)
     .then(home => dispatch(receiveHome(home)),

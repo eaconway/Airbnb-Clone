@@ -35,7 +35,6 @@ class HomeIndexItem extends React.Component{
       return (amenity);
     });
 
-    debugger;
     return (
       <Link className={'homes-index-item'} to={`/homes/${this.props.home.id}`}>
         <div className={'homes-index-image'} >
@@ -58,7 +57,7 @@ class HomeIndexItem extends React.Component{
 
           <div className={'homes-index-edit-options'}>
             {this.props.edit ? (
-              <Link className={'homes-index-edit-link'} 
+              <Link className={'homes-index-edit-link'}
                 to={`/homes/${this.props.home.id}/edit`}>
                 <button className={'homes-index-edit'}>Edit</button>
               </Link>

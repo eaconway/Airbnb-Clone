@@ -3,18 +3,21 @@ import { Link } from 'react-router-dom';
 
 class BookingIndexItem extends React.Component {
   render () {
+    debugger
     return (
-      <Link className={'bookings-index-item'} to={`/`}>
+      <div className={'bookings-index-item'} to={`/`}>
         <div className={'bookings-index-info'}>
-          <h1>{this.props.home.city}</h1>
-          <div>
-            <span>{this.props.home.city}</span>
+          <h1>{this.props.home.city}Konoha</h1>
+          <div className={'bookings-index-sub-header'}>
+            <Link to={`/homes/${this.props.home.id}`}>
+              {this.props.home.title}</Link>
             <span>{this.props.booking.guests} guests</span>
           </div>
 
           <div className={'dates-traveling'}>
             <div className={'booking-arrival'}>
             </div>
+            <i className="fas fa-angle-right"></i>
             <div className={'booking-departure'}>
             </div>
           </div>
@@ -38,7 +41,7 @@ class BookingIndexItem extends React.Component {
         </div>
         <img src={'https://vignette.wikia.nocookie.net/onepiece/images/c/c9/Sweet_City.png/revision/latest?cb=20171001060543'}
           className={''}/>
-      </Link>
+      </div>
     )
   }
 };

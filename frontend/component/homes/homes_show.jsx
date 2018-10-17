@@ -20,7 +20,6 @@ class HomeShow extends React.Component {
   }
 
   componentDidMount(){
-    // debugger
     this.props.requestHome(this.props.match.params.homeId)
       .then(() => this.setState({homeId: this.props.home.id}))
   }
@@ -49,7 +48,6 @@ class HomeShow extends React.Component {
   handleSubmit(e){
     e.preventDefault();
 
-    debugger;
     this.props.createBooking(this.state)
       .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/bookings`));
   }

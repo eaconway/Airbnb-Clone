@@ -95,7 +95,8 @@ home1 = Home.new(
   bedrooms: 4,
   internet: false,
   washer: true,
-  dryer: false
+  dryer: false,
+  city: 'Konoha'
 )
 home1.image.attach(io: File.open('app/assets/images/sasukes_house.jpg'),
  filename: 'sasukes_house.jpg')
@@ -110,7 +111,7 @@ home2 = Home.new(
   status: 'active',
   lat: 35.812036,
   lng: 139.865119,
-  guests: 1,
+  guests: 2,
   home_type: 'Entire Place',
   price: 75,
   description: "Hi! Thanks for the interest in my apartment. There's not much around, but it's awesome and centrally located!",
@@ -120,7 +121,8 @@ home2 = Home.new(
   bedrooms: 1,
   internet: false,
   washer: true,
-  dryer: true
+  dryer: true,
+  city: 'Konoha'
 )
 home2.image.attach(io: File.open('app/assets/images/naruto_apt.jpg'),
  filename: 'naruto_apt.jpg')
@@ -145,7 +147,8 @@ home3 = Home.new(
   bedrooms: 1,
   internet: true,
   washer: true,
-  dryer: false
+  dryer: false,
+  city: 'City A'
 )
 home3.image.attach(io: File.open('app/assets/images/UA_high.png'),
  filename: 'UA_high.png')
@@ -156,7 +159,7 @@ hosting3 = Hosting.create!(
 )
 
 home4 = Home.new(
-  title: "Spirited Away House",
+  title: "Spirited Away Bath House (18+)",
   status: 'active',
   lat: 35.394438,
   lng: 137.656771,
@@ -170,7 +173,8 @@ home4 = Home.new(
   bedrooms: 1,
   internet: true,
   washer: true,
-  dryer: true
+  dryer: true,
+  city: 'Spirit Realm'
 )
 home4.image.attach(io: File.open('app/assets/images/spirited_away.jpg'),
  filename: 'spirited_away.jpg')
@@ -195,7 +199,8 @@ home5 = Home.new(
   bedrooms: 9,
   internet: true,
   washer: true,
-  dryer: true
+  dryer: true,
+  city: 'Assasinville'
 )
 home5.image.attach(io: File.open('app/assets/images/killuas_house.png'),
  filename: 'killuas_house.png')
@@ -212,6 +217,7 @@ booking1 = Booking.create!(
   guest_id: 1,
   start_date: '2018-11-09',
   end_date: '2018-11-11',
+  guests: 1
 )
 
 booking2 = Booking.create!(
@@ -219,6 +225,7 @@ booking2 = Booking.create!(
   guest_id: 1,
   start_date: '2018-11-20',
   end_date: '2018-11-24',
+  guests: 2
 )
 
 booking3 = Booking.create!(
@@ -226,4 +233,5 @@ booking3 = Booking.create!(
   guest_id: 1,
   start_date: '2018-11-30',
   end_date: '2018-12-02',
+  guests: 4
 )

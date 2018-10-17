@@ -1,30 +1,84 @@
 .bookings-index-container {
   background-color: white;
-
+  margin-top: 80px;
 }
 
 .bookings-index-list {
   width: 70%;
   height: 900px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 
 .bookings-index-item {
   border: 1px solid $light-grey;
   border-radius: 5px;
   height: 300px;
-  background-color: grey;
+  background-color: white;
   display: flex;
   flex-direction: row;
+  margin: 20px 0px;
+  text-decoration: none;
 
   .bookings-index-info {
     width: 70%;
     height: 300px;
+    padding: 0% 5%;
+    color: $grey;
+
+    .bookings-index-header {
+      font-size: 36px;
+    }
+  }
+
+  .bookings-index-sub-header{
+    display: flex;
+    flex-direction: row;
+    justify-content:  flex-start;
+    align-items: center;
+    margin: 10px 0px;
+    color: $grey;
+    text-decoration: none;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+
+  .dates-traveling {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid red;
+
+    div {
+      height: 100%;
+      width: 25%;
+      border: 1px solid blue;
+    }
+  }
+
+  .line-break{
+    border-bottom: 1px solid $light-grey;
+    margin: 20px 0px;
   }
 
   img {
     width: 30%;
     height: 300px;
+  }
+
+  .booking-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    div {
+      width: 25%;
+      height: 90px;
+    }
   }
 }
