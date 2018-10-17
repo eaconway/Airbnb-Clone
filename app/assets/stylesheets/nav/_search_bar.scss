@@ -5,12 +5,28 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
 
-.search-bar {
-  height: 35px;
-  width: 70%;
-  box-shadow: 0 4px 6px 0px $light-grey;
-  border: 1px solid $light-grey;
-  padding: 0px 10px 0px 10px;
+  .search-bar-div{
+    height: 45px;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 4px 6px 0px $light-grey;
+    border: 1px solid $light-grey;
+    padding: 0px 10px 0px 10px;
+
+    .icon{
+      font-size: 24px;
+    }
+  }
+
+  .search-bar {
+    height: 40px;
+    width: 100%;
+    border: none;
+    margin-left: 10px;
+    font-size: 20px;
+
+  }
 }

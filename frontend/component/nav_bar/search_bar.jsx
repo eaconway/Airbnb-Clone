@@ -14,7 +14,8 @@ class SearchBar extends React.Component {
     return (
       <div className={'search-div'}>
         <Link to='/' className={'logo'} />
-        <div>
+        <div className={'search-bar-div'}>
+          <i className="fas fa-search icon"></i>
           <input className={'search-bar'} type="text"/>
         </div>
       </div>

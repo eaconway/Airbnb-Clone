@@ -1,6 +1,10 @@
 class Api::HomesController < ApplicationController
   def index
-    @homes = bounds ? Home.in_bounds(bounds) : Home.all
+    if params[:filters]
+      @homes = bounds ? Home.in_bounds(bounds) : Home.all
+    else
+      @homes = Home.all
+    end
   end
 
   def user_index
