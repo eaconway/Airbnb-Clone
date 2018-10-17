@@ -24,8 +24,8 @@ export const removeBooking = bookingId => ({
 export const requestUserBookings = () => dispatch => (
   BookingsApiUtil.fetchUserBookings()
     .then(results => {
-      dispatch(receiveBookings(results.bookings));
       dispatch(receiveHomes(results.homes));
+      dispatch(receiveBookings(results.bookings));
     }, (errors) => dispatch(receiveBookingErrors(errors)))
 );
 

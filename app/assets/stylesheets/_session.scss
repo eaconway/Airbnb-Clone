@@ -85,12 +85,21 @@
 
 .demo-pass{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 50px;
+  background-color: $teal-green;
+  color: white;
+  font-weight: 550;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 5px;
 }
 
 .demo-button{
-  color: rgb(0, 132, 137);
-  cursor: pointer;
+  color: $teal-green;
   border-width: 0px;
   background: transparent;
   width: 100;
@@ -98,6 +107,10 @@
   padding: 0;
   font-weight: 500;
   font-size: 14px;
+}
+
+.demo-button:hover {
+  cursor: pointer;
 }
 
 .line-divider {

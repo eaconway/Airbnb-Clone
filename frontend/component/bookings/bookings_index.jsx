@@ -12,11 +12,11 @@ class BookingsIndex extends React.Component {
   }
 
   render () {
-    let bookings = (this.props.bookings != undefined && this.props.homes != undefined ) ? (
+    let bookings = (this.props.bookings.length === 0 || this.props.homes.length === 0 ) ? "" : (
       this.props.bookings.map(booking => (
       <BookingIndexItem booking={booking}
         home={this.props.homes[booking.home_id]} />
-    ))) : '';
+    )));
 
     debugger
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class BookingIndexItem extends React.Component {
   render () {
     return (
-      <Link className={'bookings-index-item'} to={`/homes/${this.props.home.id}`}>
+      <Link className={'bookings-index-item'} to={`/`}>
         <div className={'bookings-index-info'}>
           <h1>{this.props.home.city}</h1>
           <div>
@@ -21,17 +21,17 @@ class BookingIndexItem extends React.Component {
 
           <div className={'line-break'} />
 
-          <div className={'booking-options'}>
-            <div className={'send-message'}>
-              <i class="far fa-comment"></i>
+          <div className='booking-options'>
+            <div className='send-message'>
+              <i className="far fa-comment"></i>
               Send Message
             </div>
-            <div className={'booking-update'}>
-              <i class="far fa-calendar-alt"></i>
+            <div className='booking-update'>
+              <i className="far fa-calendar-alt"></i>
               Change or Cancel Reservation
             </div>
-            <div className={'share-itinerary'}>
-              <i class="far fa-envelope"></i>
+            <div className='share-itinerary'>
+              <i className="far fa-envelope"></i>
               Share Itinerary
             </div>
           </div>

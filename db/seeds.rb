@@ -15,8 +15,8 @@ Home.destroy_all
 puts 'destroying all hostings'
 Hosting.destroy_all
 
-# puts 'destroying all bookings'
-# Booking.destroy_all
+puts 'destroying all bookings'
+Booking.destroy_all
 
 
 
@@ -203,4 +203,27 @@ home5.save!
 hosting5 = Hosting.create!(
   host_id: 1,
   home_id: 5
+)
+
+
+puts 'creating Bookings'
+booking1 = Booking.create!(
+  home_id: 3,
+  guest_id: 1,
+  start_date: '2018-11-09',
+  end_date: '2018-11-11',
+)
+
+booking2 = Booking.create!(
+  home_id: 2,
+  guest_id: 1,
+  start_date: '2018-11-20',
+  end_date: '2018-11-24',
+)
+
+booking3 = Booking.create!(
+  home_id: 1,
+  guest_id: 1,
+  start_date: '2018-11-30',
+  end_date: '2018-12-02',
 )

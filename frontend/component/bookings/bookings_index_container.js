@@ -4,7 +4,7 @@ import { requestUserBookings } from '../../actions/booking_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.users[state.session.id],
-  homes: Object.values(state.entities.homes),
+  homes: state.entities.homes,
   bookings: Object.values(state.entities.bookings)
 });
 

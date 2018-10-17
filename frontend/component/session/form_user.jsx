@@ -58,7 +58,7 @@ class FormUser extends React.Component {
     )
     let errors = (this.props.errors ? this.props.errors.map(error => <li>{error}</li>) : "" )
 
-    let passwordToggle = <button className={'show-pass'} onClick={this.togglePassword}>{this.state.togglePassTitle}</button>
+    let passwordToggle = <a className={'show-pass'} onClick={this.togglePassword}>{this.state.togglePassTitle}</a>
 
     let form = this.props.formType === 'Login' ? (
       <div>
@@ -80,8 +80,8 @@ class FormUser extends React.Component {
         <input className={'form-submit'} type='submit'
           value='Log in'/>
 
-        <div className={'demo-pass'}>
-          {demo}
+        <div className={'demo-pass'} onClick={this.demoLogin}>
+          Demo
         </div>
 
         <div className={'line-divider'}/>
