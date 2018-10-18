@@ -6,7 +6,7 @@
 }
 
 .home-form {
- width: 35%;
+ width: 50%;
  padding: 5%;
  display: flex;
  flex-direction: column;
@@ -192,11 +192,11 @@
 }
 
 .image-upload-preview {
-  width: 500px;
+  width: 100%;
 }
 
 .form-image{
-  width: 45%;
+  width: 50%;
   background-image: url('http://www.ucatx.cat/wallpic/full/133/1336034/my-hero-academia-wallpaper.jpg');
   background-repeat: no-repeat;
   background-size: auto 1000px;
@@ -210,4 +210,8 @@
   width: 45%;
   background-image: url('https://images.wallpaperscraft.com/image/hanyijie_sky_scenery_ship_anime_art_104162_1920x1080.jpg');
   background-repeat: no-repeat;
+}
+
+.home-error {
+  color: $red;
 }

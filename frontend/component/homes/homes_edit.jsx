@@ -1,23 +1,27 @@
 import React from 'react';
 import * as HomeOptions from '../../util/homes_util';
-import FormMap from './form_map';
+import EditMap from './edit_map';
 import { Link } from 'react-router-dom';
+import merge from 'lodash/merge';
 
 class HomeShow extends React.Component {
   constructor(props){
-    super(props);
-    this.state = {};
+    super(props)
+    this.state = {
+      loaded: false
+    };
 
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.formInputCreator = this.formInputCreator.bind(this);
     this.capitalize = this.capitalize.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleFormClick = this.handleFormClick.bind(this);
   }
 
   componentDidMount(){
     this.props.requestHome(this.props.match.params.homeId)
-      .then(() => this.setState(this.props.home));
+      .then(() => this.setState(merge({}, this.props.home, {loaded: true})));
   }
 
   update(field){
@@ -55,6 +59,7 @@ class HomeShow extends React.Component {
       lat: coords.lat,
       lng: coords.lng
     });
+    debugger
   }
 
   handleSubmit(e){
@@ -80,7 +85,7 @@ class HomeShow extends React.Component {
 
   render() {
 
-    if (this.props.home != undefined) {
+    if (this.state.loaded) {
       let initial = ['city', 'guests', 'home_type'].map((field) => (
         <div className={'chosen-fields'}>{this.capitalize(field)}
           {this.formInputCreator(field, HomeOptions[field])}
@@ -185,29 +190,31 @@ class HomeShow extends React.Component {
                       />{"\n"}
                   </label>
                 </div>
-              </div>
 
-              <div className={'homes-edit-form-sect2'}>
                 <h4>Home Image</h4>
                 <input type='file' onChange={this.handleFile}/>
                 {preview}
+              </div>
+
+              <div className={'homes-edit-form-sect2'}>
+
 
                 <h4>Additional Info</h4>
-                <div className={'options-section'}>
-                  <label className={'chosen-fields'}>Description
-                    <textarea type='text' value={this.state.description}
+                <div className={'textarea'}>
+                  <label className={'chosen-fields-textarea'}>Description
+                    <textarea rows='7' cols='20' type='text' value={this.state.description}
                       onChange={this.update('description')}
                       />{"\n"}
                   </label>
 
-                  <label className={'chosen-fields'}>Extra Info
+                  <label className={'chosen-fields-textarea'}>Extra Info
                     <textarea type='text'
                       value={this.state.extraInfo} onChange={this.update('extraInfo')}
                       />{"\n"}
                   </label>
                 </div>
 
-                <h4>Additional Info</h4>
+                <h4>Map and Location</h4>
                 <div className={'options-section'}>
                   <label className={'chosen-fields'}>Latitude
                     <input type='number'
@@ -221,7 +228,8 @@ class HomeShow extends React.Component {
                       />{"\n"}
                   </label>
 
-                  <FormMap handleFormClick={this.handleFormClick} />
+                  <EditMap handleFormClick={this.handleFormClick}
+                    lat={this.state.lat} lng={this.state.lng}/>
                 </div>
               </div>
 
@@ -241,7 +249,7 @@ class HomeShow extends React.Component {
         </div>
       );
     } else {
-      return (<div></div>);
+      return (<div>Loading</div>);
     }
   }
 };

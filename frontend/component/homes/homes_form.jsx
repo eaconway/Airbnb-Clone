@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as HomeOptions from '../../util/homes_util';
 import FormMap from './form_map';
+import Loading from '../loading';
 
 class Homes extends React.Component {
   constructor(props){
@@ -90,6 +91,8 @@ class Homes extends React.Component {
     if (this.state.step != 4) {
       this.setState({step: this.state.step + 1});
     } else {
+      this.setState({step: this.state.step + 1});
+
       const formData = new FormData();
 
       if(this.state.imageFile) {
@@ -103,8 +106,10 @@ class Homes extends React.Component {
           formData.append(`home[${field}]`, this.state[field]);
         })
 
+
       this.props.createHome(formData)
-        .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/homes`));
+        .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/homes`),
+        () => this.setState({step: this.state.step - 1}));
     }
   }
 
@@ -140,6 +145,10 @@ class Homes extends React.Component {
 
   render(){
     console.log(this.state);
+
+    let errors = this.props.errors.length === 0 ? "" : (
+      this.props.errors.map(error => <li className='home-error'>{error}</li>)
+    );
 
     let addressInput = (
       <div>
@@ -396,7 +405,7 @@ class Homes extends React.Component {
               <form onSubmit={this.handleSubmit}>
                 <h1>Last Steps</h1>
 
-                <label className={'home-form-input'}>Tell folks alittle about your place!
+                <label className={'home-form-input'}>Tell us a bit more about your home!
                   <textarea type='text' placeholder='e.g. My place is awesome because...'
                     value={this.state.description} onChange={this.update('description')}
                     />{"\n"}
@@ -410,6 +419,9 @@ class Homes extends React.Component {
 
                 <div className={'submitDiv'}>
                   <button onClick={this.pageBack}>Back</button>
+                  <ul>
+                    {errors}
+                  </ul>
                   <button onClick={this.handleSubmit}>Submit</button>
                 </div>
               </form>
@@ -417,6 +429,10 @@ class Homes extends React.Component {
             </div>
             <div className={'form-image'}></div>
           </div>
+        )
+      case 5:
+        return (
+          <Loading />
         )
     }
   }
