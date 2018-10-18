@@ -18,6 +18,9 @@ Hosting.destroy_all
 puts 'destroying all bookings'
 Booking.destroy_all
 
+puts 'destroying all reviews'
+Review.destroy_all
+
 
 
 puts 'creating users'
@@ -140,7 +143,7 @@ home3 = Home.new(
   guests: 1,
   home_type: 'Shared Room',
   price: 75,
-  description: "Where hero's are born. Come study under All-Might and Eraser head's tutelage. Develop your skills so that you can graduate as society's top defense against evil!",
+  description: "Where heroes are born. Come study under All-Might and Eraser-Head's tutelage. Develop your skills so that you can graduate as society's top defense against evil!",
   extra_info: "",
   beds: 1,
   baths: 1,
@@ -192,7 +195,8 @@ home5 = Home.new(
   guests: 16,
   home_type: 'Entire Place',
   price: 1500,
-  description: "Family of Assassings... nuff said",
+  description: "Family of Assassins... nuff said. You can only get in if
+   you can get past the testing gate. And NO, you won't get your money back!",
   extra_info: "",
   beds: 10,
   baths: 12,
@@ -200,7 +204,7 @@ home5 = Home.new(
   internet: true,
   washer: true,
   dryer: true,
-  city: 'Assasinville'
+  city: 'Assassinville'
 )
 home5.image.attach(io: File.open('app/assets/images/killuas_house.png'),
  filename: 'killuas_house.png')
@@ -234,4 +238,69 @@ booking3 = Booking.create!(
   start_date: '2018-11-30',
   end_date: '2018-12-02',
   guests: 4
+)
+
+booking4 = Booking.create!(
+  home_id: 4,
+  guest_id: 2,
+  start_date: '2018-11-30',
+  end_date: '2018-12-02',
+  guests: 1
+)
+
+booking5 = Booking.create!(
+  home_id: 5,
+  guest_id: 3,
+  start_date: '2018-09-30',
+  end_date: '2018-10-02',
+  guests: 7
+)
+
+booking6 = Booking.create!(
+  home_id: 5,
+  guest_id: 4,
+  start_date: '2018-10-02',
+  end_date: '2018-10-04',
+  guests: 10
+)
+
+booking7 = Booking.create!(
+  home_id: 1,
+  guest_id: 2,
+  start_date: '2018-09-15',
+  end_date: '2018-09-20',
+  guests: 1
+)
+
+puts 'creating Reviews'
+review1 = Review.create!(
+  home_id: 5,
+  author_id: 4,
+  body: "This place was....super scary. They're all assassins and even the
+  butlers were super strong. They made me push open a huge gate just to
+  get into the place! WTF?",
+  rating: 3
+)
+
+review2 = Review.create!(
+  home_id: 5,
+  author_id: 3,
+  body: "**panting** this place is SO strong! I love it. I'll be staying
+   here again when I need to train next. ",
+  rating: 4.5
+)
+
+review3 = Review.create!(
+  home_id: 1,
+  author_id: 2,
+  body: "I love you Sasuke! Please let me stay here again!",
+  rating: 5
+)
+
+review4 = Review.create!(
+  home_id: 4,
+  author_id: 2,
+  body: "These people are weird. Especially that Midoriya kid. He kept muttering
+   to him himself the entire time I was there. Who does that!?",
+  rating: 5
 )

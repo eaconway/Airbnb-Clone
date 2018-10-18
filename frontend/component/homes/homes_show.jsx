@@ -180,7 +180,7 @@ class HomeShow extends React.Component {
                     placeholder='Search Reviews'/>
                 </div>
 
-                <div className='create-review'>
+                {this.props.currentUser != 0 ? (<div className='create-review'>
                   <div className='create-review-header'>
                     <h2>Write a Review!</h2>
 
@@ -201,7 +201,7 @@ class HomeShow extends React.Component {
                         type='submit'>Submit</button>
                     </div>
                   </div>
-                </div>
+                </div>) : ""}
 
                 <ul>
                   {reviews}

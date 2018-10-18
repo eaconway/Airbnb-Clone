@@ -6,7 +6,7 @@ import { createReview, deleteReview } from '../../actions/review_actions';
 import { findBookings, findReviews} from '../../util/selectors';
 
 const mapStateToProps = (state, ownProps) => ({
-  currentUser: state.users[state.session.id],
+  currentUser: state.users[state.session.id] || 0,
   home: state.entities.homes[ownProps.match.params.homeId],
   bookings: findBookings(state.entities.bookings, ownProps.match.params.homeId),
   bookingErrors: state.errors.bookings,
