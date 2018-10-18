@@ -2,7 +2,7 @@ import React from 'react';
 import range from 'lodash/range';
 import Calendar from './calendar_dates';
 import moment from 'moment';
-
+import ReviewListItem from '../reviews/review_list_item';
 
 class HomeShow extends React.Component {
   constructor(props){
@@ -13,16 +13,20 @@ class HomeShow extends React.Component {
       endDate: '',
       homeId: '',
       hide: 'hidden',
-      loaded: false
+      loaded: false,
+      rating: 0,
+      body: '',
+      author_id: this.props.currentUser.id
     }
     this.toggleHide = this.toggleHide.bind(this);
     this.timeSinceUpdate = this.timeSinceUpdate.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBookingSubmit = this.handleBookingSubmit.bind(this);
+    this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
   }
 
   componentDidMount(){
     this.props.requestHome(this.props.match.params.homeId)
-      .then(() => this.setState({homeId: this.props.home.id, loaded: true}))
+      .then(() => this.setState({homeId: this.props.home.id, loaded: true, home_id: this.props.home.id}))
   }
 
   update(field){
@@ -46,16 +50,17 @@ class HomeShow extends React.Component {
     return Math.floor(diff.asDays());
   }
 
-  handleSubmit(e){
+  handleBookingSubmit(e){
     e.preventDefault();
-    debugger;
+
     this.props.createBooking(this.state)
       .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/bookings`));
-
   }
 
-  handleDateChange() {
-
+  handleReviewSubmit(e){
+    e.preventDefault();
+    debugger
+    this.props.createReview(this.state);
   }
 
   render() {
@@ -78,24 +83,40 @@ class HomeShow extends React.Component {
         );
       }
     }));
+    debugger
 
+    let reviews = this.props.reviews.length === 0 ? "" : (
+      this.props.reviews.filter(review => review != undefined).map((review, idx) => {
+        if (review != undefined) {
+          return <ReviewListItem review={review} key={idx}
+            currentUserId={this.props.currentUser.id} deleteReview={this.props.deleteReview}/>
+        }
+      })
+    );
 
     if (this.state.loaded === true) {
-      debugger
-      let bookings = this.props.bookings.map(booking => {
+      let bookings = this.props.bookings.length === 0 ? "" : (
+      this.props.bookings.map(booking => {
         let start = new moment(booking.start_date);
         let end = new moment(booking.end_date);
         let diff = new moment.duration(new Date(booking.end_date) - new Date(booking.start_date));
         let duration = Math.floor(diff.asDays());
 
         return <li>Start: {start.format("MMM Do")} - End: {end.format("MMM Do")}: {duration} nights</li>
-      });
+      }));
 
       let errors = this.props.errors ? (
         <ul>
           {this.props.errors.map(error => <li>{error}</li>)}
         </ul>
       ) : "";
+      let overallRating = '';
+      debugger
+      if (this.props.reviews.length > 0) {
+        let sumRating = 0;
+        reviews.forEach(review => sumRating += review.rating);
+        let overallRating = sumRating/reviews.length;
+      }
 
         return (
           <div>
@@ -116,7 +137,7 @@ class HomeShow extends React.Component {
                 </div>
 
                 <div className={'homes-profile-features'}>
-                  <span><i class="fas fa-users"></i> {this.props.home.guests} guests · <i class="fas fa-door-open"></i> {this.props.home.bedrooms} bedrooms ·  <i class="fas fa-bed"></i> {this.props.home.beds} beds ·  <i class="fas fa-bath"></i> {this.props.home.baths} baths</span>
+                  <span><i className="fas fa-users"></i> {this.props.home.guests} guests · <i class="fas fa-door-open"></i> {this.props.home.bedrooms} bedrooms ·  <i class="fas fa-bed"></i> {this.props.home.beds} beds ·  <i class="fas fa-bath"></i> {this.props.home.baths} baths</span>
                 </div>
 
                 <div className={'homes-profile-description'}>
@@ -154,14 +175,42 @@ class HomeShow extends React.Component {
                 <div className={'line-break-thin'} />
 
                 <div>
-                  <h2>Reviews</h2>
-                  <h3>Stars</h3>
+                  <h2>{reviews.length} Reviews {overallRating}</h2>
                   <input
                     placeholder='Search Reviews'/>
                 </div>
+
+                <div className='create-review'>
+                  <div className='create-review-header'>
+                    <h2>Write a Review!</h2>
+
+                  </div>
+
+                  <div className='create-review-body'>
+                    <textarea type='text' value={this.state.body}
+                      onChange={this.update('body')} />
+
+                    <div>
+                      <select className={''} value={this.state.rating}
+                        onChange={this.update('rating')}>
+                        {[0,.5,1,1.5,2,2.5,3,3.5,4,4.5,5].map((opt,idx) =>
+                          <option value={opt} key={idx}>{opt}</option>
+                        )}
+                      </select>
+                      <button onClick={this.handleReviewSubmit}
+                        type='submit'>Submit</button>
+                    </div>
+                  </div>
+                </div>
+
+                <ul>
+                  {reviews}
+                </ul>
+
+                <div className='buffer'/>
               </div>
 
-              <form className={'homes-profile-book'} onSubmit={this.handleSubmit}>
+              <form className={'homes-profile-book'} onSubmit={this.handleBookingSubmit}>
                 <h2>${this.props.home.price} <span>per night</span></h2>
                 <span> Rating (Eg: 4.5 out of 5 stars!)</span>
                 <div className={'line-break-thin'} />

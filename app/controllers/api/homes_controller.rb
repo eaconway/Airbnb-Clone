@@ -15,6 +15,7 @@ class Api::HomesController < ApplicationController
   def show
     @home = Home.find(params[:id])
     @bookings = Booking.where(home_id: @home.id)
+    @reviews = Review.where(home_id: @home.id)
   end
 
   def create

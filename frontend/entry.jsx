@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as SessionApiUtil from './util/session_api_util';
 import * as HomeApiUtil from './util/homes_api_util';
 import * as BookingsApiUtil from './util/bookings_api_util';
+import * as ReviewsApiUtil from './util/reviews_api_util';
 import configureStore from './store/store';
 import Root from './component/root';
 
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(<Root store={store}/>, root);
 
   window.fetchHomes = HomeApiUtil.fetchHomes;
+  window.fetchHome = HomeApiUtil.fetchHome;
   window.fetchUserHomes = HomeApiUtil.fetchUserHomes;
   window.signup = SessionApiUtil.signup;
   window.login = SessionApiUtil.login;
@@ -33,4 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
   window.createBooking = BookingsApiUtil.createBooking;
   window.updateBooking = BookingsApiUtil.updateBooking;
   window.deleteBooking = BookingsApiUtil.deleteBooking;
+
+  window.fetchReviews = ReviewsApiUtil.fetchReviews;
+  window.fetchReview = ReviewsApiUtil.fetchReview;
+  window.createReview = ReviewsApiUtil.createReview;
+  window.updateReview = ReviewsApiUtil.updateReview;
+  window.deleteReview = ReviewsApiUtil.deleteReview;
 });

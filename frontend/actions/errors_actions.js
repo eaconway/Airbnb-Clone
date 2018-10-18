@@ -7,6 +7,9 @@ export const CLEAR_HOME_ERRORS = 'CLEAR_HOME_ERRORS';
 export const RECEIVE_BOOKING_ERRORS = 'RECEIVE_BOOKING_ERRORS';
 export const CLEAR_BOOKING_ERRORS = 'CLEAR_BOOKING_ERRORS';
 
+export const RECEIVE_REVIEW_ERRORS = 'RECEIVE_REVIEW_ERRORS';
+export const CLEAR_REVIEW_ERRORS = 'CLEAR_REVIEW_ERRORS';
+
 export const receiveSessionErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
   errors
@@ -36,4 +39,13 @@ export const receiveBookingErrors = errors => ({
 
 export const clearBookingErrors = () => ({
   type: CLEAR_BOOKING_ERRORS,
+});
+
+export const receiveReviewErrors = errors => ({
+  type: RECEIVE_REVIEW_ERRORS,
+  errors
+});
+
+export const clearReviewErrors = () => ({
+  type: CLEAR_REVIEW_ERRORS,
 });

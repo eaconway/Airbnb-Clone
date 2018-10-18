@@ -6,19 +6,27 @@
   justify-content: center;
   align-items: center;
 
-  .search-bar-div{
-    height: 45px;
+  .search-bar-div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .search-bar-form{
+    // height: 45px;
     width: 400px;
     display: flex;
     flex-direction: row;
     align-items: center;
     box-shadow: 0 4px 6px 0px $light-grey;
     border: 1px solid $light-grey;
+    border-radius: 4px;
     padding: 0px 10px 0px 10px;
 
     .icon{
       font-size: 24px;
     }
+
+    .hidden { display: none}
   }
 
   .search-bar {
@@ -27,6 +35,19 @@
     border: none;
     margin-left: 10px;
     font-size: 20px;
+    font-weight: 500;
+  }
 
+  .search-results {
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    border: 1px solid $light-grey;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    // z-index: 10;
+    // position: absolute;
+    // top: 62px;
+    // left: 136px;
   }
 }

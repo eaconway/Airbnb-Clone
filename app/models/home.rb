@@ -44,6 +44,10 @@ class Home < ApplicationRecord
     foreign_key: :home_id,
     class_name: :Booking
 
+  has_many :reviews,
+    foreign_key: :home_id,
+    class_name: :Review
+
   has_one_attached :image
 
   def ensure_image
