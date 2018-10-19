@@ -30,16 +30,16 @@ class NavBar extends React.Component {
         ) : (
           <Link to='/homes/form' className={'nav-link'}>Become a Host</Link>
         )}
-        <Link to='/' className={'nav-link'}>Saved</Link>
+        <Link to='/workInProgress' className={'nav-link'}>Saved</Link>
         <Link to={`/users/${this.props.currentUser.id}/bookings`} className={'nav-link'}>Trips</Link>
-        <Link to='/' className={'nav-link'}>Messages</Link>
+        <Link to='/workInProgress' className={'nav-link'}>Messages</Link>
 
         <div className={'nav-link'} onClick={this.toggleUserOptions}>
           <img className='profile-pic' src={this.props.currentUser.profileUrl}/>
         </div>
 
         <div className={`${this.state.userOptions} user-options`} onClick={this.toggleUserOptions}>
-          <Link to='/' onClick={this.toggleUserOptions}>Profile</Link>
+          <Link to='/workInProgress' onClick={this.toggleUserOptions}>Profile</Link>
           <Link to={`/users/${this.props.currentUser.id}/homes`}
             onClick={this.toggleUserOptions}>My Homes</Link>
           <div onClick={this.toggleUserOptionsAndLogout}>Logout</div>

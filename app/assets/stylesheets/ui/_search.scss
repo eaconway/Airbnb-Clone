@@ -4,6 +4,10 @@
   // border: 1px solid red;
 }
 
+.search-bar:focus {
+  outline: none;
+}
+
 .search-filters{
   height: 64px;
   width: 100%;
@@ -32,6 +36,10 @@
     position: relative;
     text-align: center;
   }
+
+  button:hover {
+    background-color: #dce0e0;
+  }
 }
 
 .search-results{
@@ -42,7 +50,7 @@
   flex-direction: row;
   // padding-top: 3%;
   position: relative;
-  top: 64px;
+  top: 0px;
 
 }
 

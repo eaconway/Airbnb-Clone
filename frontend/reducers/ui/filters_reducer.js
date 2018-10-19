@@ -4,7 +4,7 @@ import { UPDATE_FILTER } from '../../actions/filter_actions';
 
 const defaultFilters = {
   bounds: {},
-  // other filters
+  city: ''
 };
 
 const filtersReducer = (state = defaultFilters, action) => {
@@ -12,7 +12,7 @@ const filtersReducer = (state = defaultFilters, action) => {
 
   switch(action.type) {
     case UPDATE_FILTER:
-      const newFilter = {[action.filter]: action.params};
+      const newFilter = action.filters;
       return merge({}, state, newFilter);
     default:
       return state;

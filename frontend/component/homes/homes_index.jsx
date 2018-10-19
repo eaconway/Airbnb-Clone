@@ -8,7 +8,9 @@ class Homes extends React.Component {
   }
 
   componentDidMount(){
-    this.props.action();
+    if (this.props.action) {
+      this.props.action();
+    }
   }
 
   render(){

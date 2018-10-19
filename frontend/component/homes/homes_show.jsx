@@ -3,6 +3,7 @@ import range from 'lodash/range';
 import Calendar from './calendar_dates';
 import moment from 'moment';
 import ReviewListItem from '../reviews/review_list_item';
+import Loading from '../loading';
 
 class HomeShow extends React.Component {
   constructor(props){
@@ -246,7 +247,7 @@ class HomeShow extends React.Component {
       } else {
         return (
           <div>
-            <h1>loading</h1>
+            <Loading />
           </div>
         );
 

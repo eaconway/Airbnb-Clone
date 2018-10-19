@@ -5,6 +5,7 @@ class Loading extends React.Component {
     return (
       <div className={'loading-screen'}>
         <h1>Loading</h1>
+        <div className="lds-facebook"><div></div><div></div><div></div></div>
         <img src={'http://s24195.pcdn.co/wp-content/uploads/2015/02/0.png'} />
       </div>
     )

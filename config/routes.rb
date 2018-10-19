@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :homes
     resources :bookings, only: [:create, :update, :destroy, :show]
     resources :reviews
+    resources :searches, only: [:create, :index, :show]
   end
 end

@@ -5,6 +5,7 @@ import NavBarContainer from './nav_bar/nav_bar_container';
 import SearchBarContainer from './nav_bar/search_bar_container';
 import SignupContainer from './session/signup_container';
 import LoginContainer from './session/login_container';
+import Home from './home';
 
 import HomesFormContainer from './homes/homes_form_container';
 import HomesUserIndexContainer from './homes/homes_user_index_container';
@@ -15,6 +16,8 @@ import SearchContainer from './search/search_container';
 
 import BookingsIndexContainer from './bookings/bookings_index_container';
 import BookingsEditContainer from './bookings/bookings_edit_container';
+
+import Loading from './loading';
 
 import CalendarTest from './homes/calendar_dates';
 
@@ -33,7 +36,9 @@ export default () => (
 
     <div className={'main-content'}>
       <Switch>
+        <Route path="/search/:searchId" component={SearchContainer} />
         <Route path="/workInProgress" component={WIP} />
+        <Route path="/loading" component={Loading} />
         <ProtectedRoute path='/homes/:homeId/edit' component={HomesEditContainer} />
         <ProtectedRoute path='/bookings/:bookingId/edit' component={BookingsEditContainer} />
         <ProtectedRoute path='/users/:userId/bookings' component={BookingsIndexContainer} />
@@ -41,7 +46,7 @@ export default () => (
         <ProtectedRoute path='/homes/form' component={HomesFormContainer} />
         <Route path="/homes/:homeId" component={HomesShowContainer} />
         <Route path="/calendar" component={CalendarTest} />
-        <Route path="/" component={SearchContainer} />
+        <Route path="/" component={Home} />
       </Switch>
     </div>
   </div>

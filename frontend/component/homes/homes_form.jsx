@@ -406,13 +406,13 @@ class Homes extends React.Component {
                 <h1>Last Steps</h1>
 
                 <label className={'home-form-input'}>Tell us a bit more about your home!
-                  <textarea type='text' placeholder='e.g. My place is awesome because...'
+                  <textarea rows='7' type='text' placeholder='e.g. My place is awesome because...'
                     value={this.state.description} onChange={this.update('description')}
                     />{"\n"}
                 </label>
 
                 <label className={'home-form-input'}>Any additional info you'd like to share?
-                  <textarea type='text' placeholder="e.g. And MUCH more detail"
+                  <textarea rows='7' type='text' placeholder="e.g. And MUCH more detail"
                     value={this.state.extraInfo} onChange={this.update('extraInfo')}
                     />{"\n"}
                 </label>

@@ -1,7 +1,8 @@
 class Api::HomesController < ApplicationController
   def index
     if params[:filters]
-      @homes = bounds ? Home.in_bounds(bounds) : Home.all
+      # @homes = bounds ? Home.in_bounds(bounds) : Home.all
+      @home = city ? Home.where(city) : Home.all
     else
       @homes = Home.all
     end
@@ -58,5 +59,9 @@ class Api::HomesController < ApplicationController
 
   def bounds
     params[:filters][:bounds]
+  end
+
+  def city
+    params[:filters][:city]
   end
 end

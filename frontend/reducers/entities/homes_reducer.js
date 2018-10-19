@@ -10,7 +10,7 @@ export default(state = {}, action) => {
 
   switch(action.type){
     case RECEIVE_HOMES:
-      return action.homes;
+      return merge({}, state, action.homes);
     case RECEIVE_HOME:
       return merge({}, state, {[action.home.id]: action.home });
     case REMOVE_HOME:
