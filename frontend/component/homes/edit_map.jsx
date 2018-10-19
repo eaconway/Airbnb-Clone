@@ -31,7 +31,6 @@ class EditMap extends HomeMap {
     this.MarkerManager = new MarkerManager(this.map);
 
     this.registerListeners();
-    debugger
     let position = new google.maps.LatLng(this.props.lat, this.props.lng);
     this.marker= new google.maps.Marker({
       position,

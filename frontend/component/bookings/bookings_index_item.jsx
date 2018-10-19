@@ -6,8 +6,6 @@ class BookingIndexItem extends React.Component {
   render () {
     let start = new moment(this.props.booking.start_date).format("MMM Do, YYYY");
     let end = new moment(this.props.booking.end_date).format("MMM Do, YYYY");
-
-    debugger
     return (
       <div className={'bookings-index-item'} to={`/`}>
         <div className={'bookings-index-info'}>

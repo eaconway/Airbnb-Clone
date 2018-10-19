@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_210457) do
+ActiveRecord::Schema.define(version: 2018_10_19_163824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2018_10_18_210457) do
     t.boolean "internet", default: false
     t.boolean "washer", default: false
     t.boolean "dryer", default: false
+    t.string "country", default: ""
     t.index ["city"], name: "index_homes_on_city"
     t.index ["state"], name: "index_homes_on_state"
   end
@@ -94,10 +95,10 @@ ActiveRecord::Schema.define(version: 2018_10_18_210457) do
   end
 
   create_table "searches", force: :cascade do |t|
-    t.string "query", null: false
-    t.integer "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "query"
+    t.integer "author_id"
     t.index ["author_id"], name: "index_searches_on_author_id"
   end
 

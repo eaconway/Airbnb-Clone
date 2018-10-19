@@ -34,7 +34,7 @@ class BookingsEdit extends React.Component {
     if (this.state.step < 2){
       this.setState({step: this.state.step + 1});
     } else {
-      debugger
+
       this.props.updateBooking(this.state)
         .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/bookings`))
     }
@@ -53,8 +53,6 @@ class BookingsEdit extends React.Component {
       let end = new moment(this.props.booking.end_date);
       let diff = new moment.duration(new Date(this.props.booking.end_date) - new Date(this.props.booking.start_date));
       let duration = Math.floor(diff.asDays());
-
-      debugger
 
       let home = this.props.homes[this.props.booking.home_id];
       switch(this.state.step) {

@@ -1,8 +1,7 @@
 class Api::SearchesController < ApplicationController
   def index
     id = params[:authorId]
-    # debugger
-    @searches = Search.where(author_id: id)
+    @searches = Search.where(author_id: id).where.not(query: "")
       .order(created_at: :desc).limit(6)
     render :index
   end
@@ -10,7 +9,12 @@ class Api::SearchesController < ApplicationController
   def create
     @search = Search.new(search_params)
     query = params[:search][:query]
-    @homes = Home.where("city like ?", "%o%")
+
+    if params[:search][:query] == ""
+      @homes = Home.all
+    else
+      @homes = Home.where("city like ?", "%o%")
+    end
 
     if @search.save!
       render :show
@@ -21,7 +25,11 @@ class Api::SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
-    @homes = Home.where(city: @search.query)
+    if @search.query == ""
+      @homes = Home.all
+    else
+      @homes = Home.where(city: @search.query)
+    end
   end
 
   private

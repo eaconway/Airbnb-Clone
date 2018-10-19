@@ -16,7 +16,6 @@ export const beds = range(0, 20, 1);
 
 export const baths = range(0, 20, 1);
 
-
 // const test = function() {
 //   return "hi";
 // }

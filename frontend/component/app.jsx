@@ -5,7 +5,7 @@ import NavBarContainer from './nav_bar/nav_bar_container';
 import SearchBarContainer from './nav_bar/search_bar_container';
 import SignupContainer from './session/signup_container';
 import LoginContainer from './session/login_container';
-import Home from './home';
+import HomeContainer from './home_container';
 
 import HomesFormContainer from './homes/homes_form_container';
 import HomesUserIndexContainer from './homes/homes_user_index_container';
@@ -46,7 +46,7 @@ export default () => (
         <ProtectedRoute path='/homes/form' component={HomesFormContainer} />
         <Route path="/homes/:homeId" component={HomesShowContainer} />
         <Route path="/calendar" component={CalendarTest} />
-        <Route path="/" component={Home} />
+        <Route path="/" component={HomeContainer} />
       </Switch>
     </div>
   </div>

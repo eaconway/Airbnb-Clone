@@ -10,7 +10,10 @@ class Api::HomesController < ApplicationController
 
   def user_index
     @homes = current_user.homes
-    render :index
+    @hostings = @homes.map do |home|
+      home.hosting
+    end
+    render :user_index
   end
 
   def show

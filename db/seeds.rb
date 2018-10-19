@@ -80,6 +80,17 @@ user5.profile_pic.attach(io: File.open('app/assets/images/luffy.png'),
  filename: 'luffy.png')
 user5.save!
 
+user6 = User.create!(
+  email: 'ichigo@demo.com',
+  fname: 'Ichigo',
+  lname: 'Kurosaki',
+  password: 'password',
+  birthday: '1994-07-01'
+)
+user6.profile_pic.attach(io: File.open('app/assets/images/ichigo.jpg'),
+ filename: 'ichigo.jpg')
+user6.save!
+
 
 
 puts 'creating homes'
@@ -99,7 +110,8 @@ home1 = Home.new(
   internet: false,
   washer: true,
   dryer: false,
-  city: 'Konoha'
+  city: 'Konoha',
+  country: 'Japan'
 )
 home1.image.attach(io: File.open('app/assets/images/sasukes_house.jpg'),
  filename: 'sasukes_house.jpg')
@@ -125,7 +137,8 @@ home2 = Home.new(
   internet: false,
   washer: true,
   dryer: true,
-  city: 'Konoha'
+  city: 'Konoha',
+  country: 'Japan'
 )
 home2.image.attach(io: File.open('app/assets/images/naruto_apt.jpg'),
  filename: 'naruto_apt.jpg')
@@ -151,7 +164,8 @@ home3 = Home.new(
   internet: true,
   washer: true,
   dryer: false,
-  city: 'City A'
+  city: 'City A',
+  country: 'Japan'
 )
 home3.image.attach(io: File.open('app/assets/images/UA_high.png'),
  filename: 'UA_high.png')
@@ -177,7 +191,8 @@ home4 = Home.new(
   internet: true,
   washer: true,
   dryer: true,
-  city: 'Spirit Realm'
+  city: 'Miyazaki City',
+  country: 'Japan'
 )
 home4.image.attach(io: File.open('app/assets/images/spirited_away.jpg'),
  filename: 'spirited_away.jpg')
@@ -204,7 +219,8 @@ home5 = Home.new(
   internet: true,
   washer: true,
   dryer: true,
-  city: 'Assassinville'
+  city: 'Assassinville',
+  country: 'Japan'
 )
 home5.image.attach(io: File.open('app/assets/images/killuas_house.png'),
  filename: 'killuas_house.png')
@@ -212,6 +228,117 @@ home5.save!
 hosting5 = Hosting.create!(
   host_id: 1,
   home_id: 5
+)
+
+home6 = Home.new(
+  title: "Kurosaki Clinic",
+  status: 'active',
+  lat: 33.331210,
+  lng: 130.527772,
+  guests: 2,
+  home_type: 'Private Room',
+  price: 150,
+  description: "My dad might kick you in the face when you arrive, but that's alright. He's not that bad :)",
+  extra_info: "",
+  beds: 4,
+  baths: 3,
+  bedrooms: 4,
+  internet: true,
+  washer: true,
+  dryer: true,
+  city: 'Karakura Town',
+  country: 'Japan'
+)
+home6.image.attach(io: File.open('app/assets/images/Kurosaki_Clinic.png'),
+ filename: 'Kurosaki_Clinic.png')
+home6.save!
+hosting6 = Hosting.create!(
+  host_id: 6,
+  home_id: 6
+)
+
+home7 = Home.new(
+  title: "Howl's Moving Castle",
+  status: 'active',
+  lat: 36.704176,
+  lng: 136.895641,
+  guests: 3,
+  home_type: 'Private Room',
+  price: 200,
+  description: "Always on the move! THIS IS A ONE IN A LIFETIME EXPERIENCE! Jk,
+    but sersiously, it'll be fun :)",
+  extra_info: "",
+  beds: 3,
+  baths: 1,
+  bedrooms: 1,
+  internet: false,
+  washer: true,
+  dryer: true,
+  city: 'Miyazaki City',
+  country: 'Japan'
+)
+home7.image.attach(io: File.open('app/assets/images/howls.jpg'),
+ filename: 'howls.jpg')
+home7.save!
+hosting7 = Hosting.create!(
+  host_id: 1,
+  home_id: 7
+)
+
+home8 = Home.new(
+  title: "Mononoke Forest",
+  status: 'active',
+  lat: 35.969636,
+  lng: 137.290976,
+  guests: 10,
+  home_type: 'Private Room',
+  price: 10,
+  description: "Learn to live off the land, with me (Mononoke) and the wolves. FYI - I'm having
+    Aokiji list this for me, since I'm not a big 'computer' user', obviously.",
+  extra_info: "",
+  beds: 0,
+  baths: 0,
+  bedrooms: 0,
+  internet: false,
+  washer: true,
+  dryer: false,
+  city: 'Miyazaki City',
+  country: 'Japan'
+)
+home8.image.attach(io: File.open('app/assets/images/princess_mononoke.jpg'),
+ filename: 'princess_mononoke.jpg')
+home8.save!
+hosting8 = Hosting.create!(
+  host_id: 1,
+  home_id: 8
+)
+
+home9 = Home.new(
+  title: "Mama's House",
+  status: 'active',
+  lat: 43.365375,
+  lng: 142.739619,
+  guests: 15,
+  home_type: 'Entire Place',
+  price: 1000,
+  description: "Listen Mama LOVES her cake, trust me, I know first hand.
+    And she's SUPER strong. Everyone I fight on this island make me eat something to win!",
+  extra_info: "",
+  beds: 0,
+  baths: 0,
+  bedrooms: 0,
+  internet: true,
+  washer: true,
+  dryer: true,
+  city: 'Whole Cake Island',
+  country: 'Japan'
+)
+home9.image.attach(io: File.open('app/assets/images/mamas_cake.png'),
+ filename: 'mamas_cake.png')
+home9.save!
+hosting9 = Hosting.create!(
+  host_id: 5,
+  home_id: 9
 )
 
 
@@ -272,6 +399,7 @@ booking7 = Booking.create!(
   guests: 1
 )
 
+
 puts 'creating Reviews'
 review1 = Review.create!(
   home_id: 5,
@@ -302,5 +430,13 @@ review4 = Review.create!(
   author_id: 2,
   body: "These people are weird. Especially that Midoriya kid. He kept muttering
    to him himself the entire time I was there. Who does that!?",
+  rating: 3.5
+)
+
+review5 = Review.create!(
+  home_id: 6,
+  author_id: 5,
+  body: "This place is AWESOME! Karin and Ichigo's dad sure know how to make
+   some amazing meat! After I become Pirate King, I'm coming right back here!",
   rating: 5
 )

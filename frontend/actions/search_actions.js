@@ -22,7 +22,6 @@ export const requestSearches = (authorId) => dispatch => (
 export const requestSearch = (id) => dispatch => (
   SearchApiUtil.fetchSearch(id)
     .then(results => {
-      debugger
       dispatch(receiveSearch(results.search));
       dispatch(receiveHomes(results.homes));
     })

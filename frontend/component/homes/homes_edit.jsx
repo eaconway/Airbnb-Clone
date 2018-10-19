@@ -59,7 +59,7 @@ class HomeShow extends React.Component {
       lat: coords.lat,
       lng: coords.lng
     });
-    debugger
+    
   }
 
   handleSubmit(e){

@@ -6,7 +6,7 @@ export default(state = {}, action) => {
   Object.freeze(state);
   let newState = merge({}, state);
 
-  debugger
+  
   switch(action.type){
     case RECEIVE_SEARCHES:
       return action.searches;

@@ -1,5 +1,6 @@
 import * as HomeApiUtil from '../util/homes_api_util';
 import {receiveBookings} from './booking_actions';
+import {receiveHostings} from './hosting_actions';
 import {receiveReviews} from './review_actions';
 import {receiveHomeErrors, clearHomeErrors} from './errors_actions';
 
@@ -24,14 +25,16 @@ export const removeHome = homeId => ({
 
 export const requestHomes = (filters) => dispatch => (
   HomeApiUtil.fetchHomes(filters)
-    .then(homes => dispatch(receiveHomes(homes)),
+    .then(results => dispatch(receiveHomes(results.homes)),
     (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
 );
 
 export const requestUserHomes = () => dispatch => (
   HomeApiUtil.fetchUserHomes()
-    .then(homes => dispatch(receiveHomes(homes)),
-    (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
+    .then(results => {
+      dispatch(receiveHomes(results.homes));
+      dispatch(receiveHostings(results.hostings));
+    }, (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
 );
 
 export const requestHome = (homeId) => dispatch => (

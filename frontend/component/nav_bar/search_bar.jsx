@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
   }
 
   componentDidMount(){
-    debugger
+
     this.props.requestHomes();
     let userId = this.props.currentUser ? this.props.currentUser.id : 0;
     this.props.requestSearches(userId)
@@ -61,10 +61,12 @@ class SearchBar extends React.Component {
       }
     }).filter( this.onlyUnique );
 
-    debugger;
+    ;
 
     if (query === '') {
-      results = this.props.searches.map(search => search.query)
+      results = this.props.searches.map(search => {
+        if (search.query.length > 1) return search.query
+      })
     } else {
       results = potResults.filter(res => {
         if(res.toLowerCase().includes(query.toLowerCase())){
@@ -79,7 +81,7 @@ class SearchBar extends React.Component {
   handleSearch(search){
     this.props.createSearch(search)
       .then(res => {
-        debugger
+
         this.props.history.push(`/search/${res.id}/`)
       })
   }
@@ -88,16 +90,16 @@ class SearchBar extends React.Component {
     let results = this.state.loaded === false ? "" : (
       this.state.results.map((result,idx) => (
       <SearchItem result={result} key={idx} handleSearch={this.handleSearch}
-        authorId={this.props.currentUser ? this.props.currentUser.id : 0}/>
+        authorId={this.props.currentUser ? this.props.currentUser.id : 1}/>
     )));
 
     let search = this.props.searches[this.props.match.params.searchId]
-    debugger
+
     let placeholder = search === undefined ? (
       this.props.searches[this.props.match.params.searchId]
     ) : "" ;
 
-    debugger
+
     return (
       <div className={'search-div'}>
         <Link to='/' className={'logo'} />

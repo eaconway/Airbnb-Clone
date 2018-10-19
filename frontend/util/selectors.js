@@ -10,7 +10,7 @@ export const findBookings = (bookings, homeId) => {
 
 export const findReviews = (reviews, homeId) => {
   if (reviews){
-    debugger
+
     Object.keys(reviews).forEach(key => {
       if (reviews.key === undefined) {
         return [];
@@ -24,3 +24,14 @@ export const findReviews = (reviews, homeId) => {
     });
   }
 };
+
+export const userHomes = (homes, userHostings) => {
+  debugger
+  if (userHostings != undefined){
+    let hostings = Object.values(userHostings);
+    let hostingIds = hostings.map(hosting => hosting.home_id);
+    return Object.values(homes).filter(home => hostingIds.includes(home.id))
+  } else {
+    return [];
+  }
+}

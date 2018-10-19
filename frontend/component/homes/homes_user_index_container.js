@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import HomesUserIndex from './homes_user_index';
 import {requestUserHomes, deleteHome} from '../../actions/home_actions';
+import {userHomes} from '../../util/selectors';
 
-const mapStateToProps = state => ({
-  currentUser: state.users[state.session.id],
-  homes: Object.values(state.entities.homes)
+const mapStateToProps = ({entities: {homes, hostings}, users, session: {id}}) => ({
+  currentUser: users[id],
+  homes: userHomes(homes, hostings)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -13,3 +14,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomesUserIndex);
+
+  // homes: userHomes(state.entities.homes, state.session.id, state.hostings)

@@ -60,7 +60,7 @@ class HomeShow extends React.Component {
 
   handleReviewSubmit(e){
     e.preventDefault();
-    debugger
+    
     this.props.createReview(this.state);
   }
 
@@ -84,7 +84,7 @@ class HomeShow extends React.Component {
         );
       }
     }));
-    debugger
+    
 
     let reviews = this.props.reviews.length === 0 ? "" : (
       this.props.reviews.filter(review => review != undefined).map((review, idx) => {
@@ -112,7 +112,7 @@ class HomeShow extends React.Component {
         </ul>
       ) : "";
       let overallRating = '';
-      debugger
+      
       if (this.props.reviews.length > 0) {
         let sumRating = 0;
         reviews.forEach(review => sumRating += review.rating);
