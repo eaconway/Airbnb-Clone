@@ -17,7 +17,7 @@ class Booking < ApplicationRecord
 
   validate :start_must_come_before_end
   validate :does_not_overlap_bookings
-  validate :future_date
+
 
   belongs_to :guest,
     foreign_key: :home_id,
