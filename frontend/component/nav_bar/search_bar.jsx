@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
   componentDidMount(){
     debugger
     this.props.requestHomes();
-    let userId = this.props.currentUser.id || 0;
+    let userId = this.props.currentUser ? this.props.currentUser.id : 0;
     this.props.requestSearches(userId)
       .then(() => this.setState({
         loaded: true,
