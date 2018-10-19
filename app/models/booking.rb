@@ -17,6 +17,7 @@ class Booking < ApplicationRecord
 
   validate :start_must_come_before_end
   validate :does_not_overlap_bookings
+  validate :future_date
 
   belongs_to :guest,
     foreign_key: :home_id,
@@ -45,5 +46,11 @@ class Booking < ApplicationRecord
    return if start_date < end_date
    errors[:start_date] << 'must come before end date'
    errors[:end_date] << 'must come after start date'
+ end
+
+ def future_date
+   today = Date.today
+   return if today <= start_date
+   errors[:start_date] << 'must come on/after current day'
  end
 end

@@ -26,6 +26,7 @@ class HomeShow extends React.Component {
   }
 
   componentDidMount(){
+    this.props.clearBookingErrors();
     this.props.requestHome(this.props.match.params.homeId)
       .then(() => this.setState({homeId: this.props.home.id, loaded: true, home_id: this.props.home.id}))
   }
@@ -60,7 +61,7 @@ class HomeShow extends React.Component {
 
   handleReviewSubmit(e){
     e.preventDefault();
-    
+
     this.props.createReview(this.state);
   }
 
@@ -84,7 +85,7 @@ class HomeShow extends React.Component {
         );
       }
     }));
-    
+
 
     let reviews = this.props.reviews.length === 0 ? "" : (
       this.props.reviews.filter(review => review != undefined).map((review, idx) => {
@@ -106,13 +107,13 @@ class HomeShow extends React.Component {
         return <li>Start: {start.format("MMM Do")} - End: {end.format("MMM Do")}: {duration} nights</li>
       }));
 
-      let errors = this.props.errors ? (
+      let bookingErrors = this.props.bookingErrors ? (
         <ul>
-          {this.props.errors.map(error => <li>{error}</li>)}
+          {this.props.bookingErrors.map(error => <li>{error}</li>)}
         </ul>
       ) : "";
       let overallRating = '';
-      
+
       if (this.props.reviews.length > 0) {
         let sumRating = 0;
         reviews.forEach(review => sumRating += review.rating);
@@ -235,7 +236,7 @@ class HomeShow extends React.Component {
 
                 <input className={'form-submit'} type='submit'
                   value={'Book'}/>
-                {errors}
+                {bookingErrors}
 
                 <div className={'homes-profile-disclaimer'}>
                   <span>This site doesn't charge yet</span>

@@ -4,6 +4,7 @@ import { requestHome } from '../../actions/home_actions';
 import { createBooking } from '../../actions/booking_actions';
 import { createReview, deleteReview } from '../../actions/review_actions';
 import { findBookings, findReviews} from '../../util/selectors';
+import {clearBookingErrors} from '../../actions/errors_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUser: state.users[state.session.id] || 0,
@@ -17,7 +18,8 @@ const mapDispatchToProps = (dispatch,ownProps) => ({
   requestHome: id => dispatch(requestHome(id)),
   createBooking: booking => dispatch(createBooking(booking)),
   createReview: review => dispatch(createReview(review)),
-  deleteReview: id => dispatch(deleteReview(id))
+  deleteReview: id => dispatch(deleteReview(id)),
+  clearBookingErrors: () => dispatch(clearBookingErrors())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomesShow);
