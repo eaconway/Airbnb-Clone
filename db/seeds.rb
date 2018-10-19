@@ -378,7 +378,7 @@ booking4 = Booking.create!(
 booking5 = Booking.create!(
   home_id: 5,
   guest_id: 3,
-  start_date: '2019-01-30',
+  start_date: '2019-01-01',
   end_date: '2019-01-02',
   guests: 7
 )
