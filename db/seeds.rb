@@ -378,24 +378,24 @@ booking4 = Booking.create!(
 booking5 = Booking.create!(
   home_id: 5,
   guest_id: 3,
-  start_date: '2018-09-30',
-  end_date: '2018-10-02',
+  start_date: '2019-01-30',
+  end_date: '2019-01-02',
   guests: 7
 )
 
 booking6 = Booking.create!(
   home_id: 5,
   guest_id: 4,
-  start_date: '2018-10-02',
-  end_date: '2018-10-04',
+  start_date: '2019-01-02',
+  end_date: '2019-01-04',
   guests: 10
 )
 
 booking7 = Booking.create!(
   home_id: 1,
   guest_id: 2,
-  start_date: '2018-09-15',
-  end_date: '2018-09-20',
+  start_date: '2019-01-15',
+  end_date: '2019-01-20',
   guests: 1
 )
 
