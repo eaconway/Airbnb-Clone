@@ -4,14 +4,23 @@ import Calendar from './calendar_dates';
 import moment from 'moment';
 import ReviewListItem from '../reviews/review_list_item';
 import Loading from '../loading';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+
+import DayPicker, { DateUtils } from 'react-day-picker';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import { formatDate, parseDate } from 'react-day-picker/moment';
 
 class HomeShow extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       guests: 1,
-      startDate: '',
-      endDate: '',
+      startDate: null,
+      endDate: null,
+      enteredTo: null,
       homeId: '',
       hide: 'hidden',
       loaded: false,
@@ -23,6 +32,13 @@ class HomeShow extends React.Component {
     this.timeSinceUpdate = this.timeSinceUpdate.bind(this);
     this.handleBookingSubmit = this.handleBookingSubmit.bind(this);
     this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
+    this.handleFromChange = this.handleFromChange.bind(this);
+    this.handleToChange = this.handleToChange.bind(this);
+
+    // this.handleDayClick = this.handleDayClick.bind(this);
+    // this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
+    // this.handleResetClick = this.handleResetClick.bind(this);
+    this.validateDateRange = this.validateDateRange.bind(this);
   }
 
   componentDidMount(){
@@ -65,16 +81,94 @@ class HomeShow extends React.Component {
     this.props.createReview(this.state);
   }
 
+  // CALENDAR METHODS
+  showFromMonth() {
+    // const { from, to } = this.state;
+    const from = this.state.startDate;
+    const to = this.state.endDate;
+    if (!from) {
+      return;
+    }
+    if (moment(to).diff(moment(from), 'months') < 2) {
+      this.to.getDayPicker().showMonth(from);
+    }
+  }
+
+  handleFromChange(from) {
+    // Change the from date and focus the "to" input field
+    this.setState({ startDate: from });
+  }
+
+  handleToChange(to) {
+    this.setState({ endDate:to }, this.showFromMonth);
+  }
+
+  // getInitialState() {
+  //   return {
+  //     startDate: null,
+  //     endDate: null,
+  //     enteredTo: null, // Keep track of the last day for mouseEnter.
+  //   };
+  // }
+  //
+  // isSelectingFirstDay(from, to, day) {
+  //   const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
+  //   const isRangeSelected = from && to;
+  //   return !from || isBeforeFirstDay || isRangeSelected;
+  // }
+  //
+  // handleDayClick(day) {
+  //   // const { from, to } = this.state;
+  //   const from = this.state.startDate;
+  //   const to = this.state.endDate;
+  //   console.log('day click');
+  //   this.to.getInput().focus()
+  //   // if (from && to && day >= from && day <= to) {
+  //   if (from && to){
+  //     this.handleResetClick();
+  //     return;
+  //   }
+  //   if (this.isSelectingFirstDay(from, to, day)) {
+  //     this.setState({
+  //       startDate: day,
+  //       endDate: null,
+  //       enteredTo: null,
+  //     });
+  //   } else {
+  //     // validate that the date is a reasonable day
+  //     this.setState({
+  //       endDate: day,
+  //       enteredTo: day,
+  //     });
+  //   }
+  // }
+  // handleDayMouseEnter(day) {
+  //   // const { from, to } = this.state;
+  //   console.log('day mouse enter');
+  //   const from = this.state.startDate;
+  //   const to = this.state.endDate;
+  //   if (!this.isSelectingFirstDay(from, to, day)) {
+  //     this.setState({
+  //       enteredTo: day,
+  //     });
+  //   }
+  // }
+  // handleResetClick() {
+  //   console.log('reset click');
+  //   this.setState(this.getInitialState());
+  // }
+
+  validateDateRange(){
+    debugger;
+  }
+
   render() {
     let amenities = ['internet', 'washer', 'dryer'];
     let amenitiesIcons = {
-      internet: <i class="fas fa-wifi homes-icon"></i>,
+      internet: <i className="fas fa-wifi homes-icon"></i>,
       washer: <img className={'homes-icon'} src={'https://image.flaticon.com/icons/svg/1104/1104590.svg'} />,
       dryer: <img className={'homes-icon'} src={'https://image.flaticon.com/icons/svg/35/35098.svg'} />,
     }
-    // Images from:
-    // - https://www.flaticon.com/free-icon/drying-machine-outline_35098#term=drying%20machine&page=1&position=21
-    // - https://www.flaticon.com/free-icon/washing-machine_1104590#term=washing%20machine&page=1&position=1
 
     let amenitiesFill =  this.props.home === undefined ? "" : (amenities.map((amenity, idx) => {
       if (this.props.home[amenity]){
@@ -86,7 +180,6 @@ class HomeShow extends React.Component {
       }
     }));
 
-
     let reviews = this.props.reviews.length === 0 ? "" : (
       this.props.reviews.filter(review => review != undefined).map((review, idx) => {
         if (review != undefined) {
@@ -97,15 +190,14 @@ class HomeShow extends React.Component {
     );
 
     if (this.state.loaded === true) {
-      let bookings = this.props.bookings.length === 0 ? "" : (
+      let disabledBookings = this.props.bookings.length === 0 ? [] : (
       this.props.bookings.map(booking => {
-        let start = new moment(booking.start_date);
-        let end = new moment(booking.end_date);
-        let diff = new moment.duration(new Date(booking.end_date) - new Date(booking.start_date));
-        let duration = Math.floor(diff.asDays());
-
-        return <li>Start: {start.format("MMM Do")} - End: {end.format("MMM Do")}: {duration} nights</li>
+        let start = new Date(booking.start_date);
+        let end = new Date(booking.end_date);
+        end.setDate(end.getDate() + 1);
+        return {after: start, before: end }
       }));
+      disabledBookings.push({before: new Date()});
 
       let bookingErrors = this.props.bookingErrors ? (
         <ul>
@@ -119,6 +211,32 @@ class HomeShow extends React.Component {
         reviews.forEach(review => sumRating += review.rating);
         let overallRating = sumRating/reviews.length;
       }
+
+      const from = this.state.startDate;
+      const to = this.state.endDate;
+      // const enteredTo = this.state.enteredTo;
+      const modifiers = { start: from, end: to };
+      let disabledBookingsInput = disabledBookings.slice();
+      // disabledBookingsInput.push({after: to});
+      const selectedDays = [from, { from, to }];
+
+      // <DateRangePicker
+      //   startDate={new moment(new Date())}
+      //   startDateId="1234"
+      //   endDate={null}
+      //   endDateId="456"
+      //   onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+      //   focusedInput={null}
+      //   onFocusChange={focusedInput => this.setState({ focusedInput })}
+      // />
+      // <div className={'dates-duration'}>
+      //   <input placeholder={'Eg: 12/12/2018'}
+      //     type='date' value={this.state.startDate}
+      //     onChange={this.update('startDate')}/>
+      //   <input placeholder={'Eg: 12/12/2018'}
+      //     type='date' value={this.state.endDate}
+      //     onChange={this.update('endDate')}/>
+      // </div>
 
         return (
           <div>
@@ -168,10 +286,9 @@ class HomeShow extends React.Component {
 
                 <div className={'homes-availability'}>
                   <h2 className={'homes-amenities-header'}>Availability (Current Bookings)</h2>
-                  <span>Updated {this.timeSinceUpdate()} days ago</span>
-                  <ul className={'homes-show-bookings'}>
-                    {bookings}
-                  </ul>
+                  <span className='time-since-update'>Updated {this.timeSinceUpdate()} days ago</span>
+                  <DayPicker className={'calendar-avail'} numberOfMonths={2}
+                    fromMonth={new Date()} disabledDays={disabledBookings}/>
                 </div>
 
                 <div className={'line-break-thin'} />
@@ -218,14 +335,44 @@ class HomeShow extends React.Component {
                 <div className={'line-break-thin'} />
 
                 <h4>Dates</h4>
-                <div className={'dates-duration'}>
-                  <input placeholder={'Eg: 12/12/2018'}
-                    type='date' value={this.state.startDate}
-                    onChange={this.update('startDate')}/>
-                  <input placeholder={'Eg: 12/12/2018'}
-                    type='date' value={this.state.endDate}
-                    onChange={this.update('endDate')}/>
-                </div>
+
+                  <div className="InputFromTo">
+                    <DayPickerInput
+                      value={this.state.startDate}
+                      placeholder="From"
+                      format="LL"
+                      formatDate={formatDate}
+                      parseDate={parseDate}
+                      dayPickerProps={{
+                        fromMonth: this.state.startDate,
+                        selectedDays,
+                        disabledDays: disabledBookingsInput,
+                        modifiers,
+                        numberOfMonths: 2,
+                        onDayClick: () => this.to.getInput().focus()
+                      }}
+                      onDayChange={this.handleFromChange}
+                    />{' '}—{' '}
+                    <span className="InputFromTo-to">
+                      <DayPickerInput
+                        ref={el => (this.to = el)}
+                        value={this.state.endDate}
+                        placeholder="To"
+                        format="LL"
+                        formatDate={formatDate}
+                        parseDate={parseDate}
+                        dayPickerProps={{
+                          month: this.state.startDate,
+                          fromMonth: this.state.startDate,
+                          selectedDays,
+                          disabledDays: disabledBookingsInput,
+                          modifiers,
+                          numberOfMonths: 2
+                        }}
+                        onDayChange={this.handleToChange}
+                      />
+                    </span>
+                  </div>
 
                 <h4>Guests</h4>
                 <select value={this.state.guests} onChange={this.update('guests')}>
