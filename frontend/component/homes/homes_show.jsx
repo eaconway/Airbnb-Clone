@@ -12,6 +12,7 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import { formatDate, parseDate } from 'react-day-picker/moment';
+import StarRatings from 'react-star-ratings';
 
 class HomeShow extends React.Component {
   constructor(props){
@@ -331,48 +332,58 @@ class HomeShow extends React.Component {
 
               <form className={'homes-profile-book'} onSubmit={this.handleBookingSubmit}>
                 <h2>${this.props.home.price} <span>per night</span></h2>
-                <span> Rating (Eg: 4.5 out of 5 stars!)</span>
+                <div className='ratings-container'>
+                  <StarRatings
+                    className='ratings-package'
+                    rating={4.5}
+                    starRatedColor="#296c93"
+                    numberOfStars={5}
+                    name='rating'
+                    starDimension="15px"
+                    starSpacing="2px"
+                    />
+                  <span className='total-reviews'>5</span>
+                </div>
                 <div className={'line-break-thin'} />
 
                 <h4>Dates</h4>
 
-                  <div className="InputFromTo">
+                <div className="InputFromTo">
+                  <DayPickerInput
+                    value={this.state.startDate}
+                    placeholder="Check In"
+                    format="LL"
+                    formatDate={formatDate}
+                    parseDate={parseDate}
+                    dayPickerProps={{
+                      fromMonth: this.state.startDate,
+                      selectedDays,
+                      disabledDays: disabledBookingsInput,
+                      modifiers,
+                      numberOfMonths: 2,
+                      onDayClick: () => this.to.getInput().focus()
+                    }}
+                    onDayChange={this.handleFromChange}
+                  />
+                <i className="far fa-arrow-right"></i>
                     <DayPickerInput
-                      value={this.state.startDate}
-                      placeholder="From"
+                      ref={el => (this.to = el)}
+                      value={this.state.endDate}
+                      placeholder="Check Out"
                       format="LL"
                       formatDate={formatDate}
                       parseDate={parseDate}
                       dayPickerProps={{
+                        month: this.state.startDate,
                         fromMonth: this.state.startDate,
                         selectedDays,
                         disabledDays: disabledBookingsInput,
                         modifiers,
-                        numberOfMonths: 2,
-                        onDayClick: () => this.to.getInput().focus()
+                        numberOfMonths: 2
                       }}
-                      onDayChange={this.handleFromChange}
-                    />{' '}—{' '}
-                    <span className="InputFromTo-to">
-                      <DayPickerInput
-                        ref={el => (this.to = el)}
-                        value={this.state.endDate}
-                        placeholder="To"
-                        format="LL"
-                        formatDate={formatDate}
-                        parseDate={parseDate}
-                        dayPickerProps={{
-                          month: this.state.startDate,
-                          fromMonth: this.state.startDate,
-                          selectedDays,
-                          disabledDays: disabledBookingsInput,
-                          modifiers,
-                          numberOfMonths: 2
-                        }}
-                        onDayChange={this.handleToChange}
-                      />
-                    </span>
-                  </div>
+                      onDayChange={this.handleToChange}
+                    />
+                </div>
 
                 <h4>Guests</h4>
                 <select value={this.state.guests} onChange={this.update('guests')}>
