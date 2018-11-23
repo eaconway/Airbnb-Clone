@@ -8,54 +8,63 @@ class SearchResults extends React.Component {
     this.state = {
       loaded: false,
       update: 0,
-    }
-    this.filter = {
-      city: '',
-      bounds: {
-        lat: "",
-        lng: ""
+      filter: {
+        city: '',
+        bounds: {
+          lat: "",
+          lng: ""
+        },
+        homeType:'',
+        guests: ''
       }
-    };
+    }
     this.buildFilter = this.buildFilter.bind(this);
     this.resetFilter = this.resetFilter.bind(this);
     this.filterHomes = this.filterHomes.bind(this);
     this.updateFilter = this.updateFilter.bind(this);
+    console.log('constructor finished');
   }
 
   componentDidMount(){
-
     this.props.requestSearch(this.props.match.params.searchId)
-    .then(() => this.setState({
-      loaded: true
-    }))
-    .then(() => this.filter.city = this.props.search.query);
+    .then(() => {
+      let filter = this.state.filter;
+      filter.city = this.props.search.query
+      this.setState({loaded: true, filter});
+    });
   }
 
   updateFilter(field, value){
-    this.filter[field] = value;
-    this.setState({step: this.state.step + 1})
+    let filter = this.state.filter;
+    filter[field] = value;
+    this.setState({step: this.state.step + 1, filter })
   }
 
   filterHomes(){
 
     let filters = []
-    Object.keys(this.filter).map(key => {
+    Object.keys(this.state.filter).map(key => {
       if (key === 'bounds') {
-        if (this.filter[key].lat != ''){
-          filters.push({[key]: this.filter[key]})
+        if (this.state.filter[key].lat != ''){
+          filters.push({key, value: this.state.filter[key]})
         }
-      } else if (this.filter[key] != '' ) {
-        filters.push({[key]: this.filter[key]})
+      } else if (this.state.filter[key] != '' ) {
+        filters.push({key, value: this.state.filter[key]})
       }
     })
+
+    // console.log('filtering homes');
+    // if(this.props.search){
+    //   debugger;
+    // }
+    // make dictionary more descriptive
 
     let homes = this.props.homes;
 
     filters.forEach(filter => {
-      if (Object.keys(filters[0])[0] === 'bounds'){
-        debugger
-        let ne = Object.values(filters[0])[0].northEast;
-        let sw = Object.values(filters[0])[0].southWest;
+      if (filter.key === 'bounds'){
+        let ne = filter.value.northEast;
+        let sw = filter.value.southWest;
         homes = homes.filter(home =>
           home.lat < ne.lat &&
           home.lng < ne.lng &&
@@ -63,10 +72,21 @@ class SearchResults extends React.Component {
           home.lng > sw.lng
         );
         // obj.name == filter.name && obj.address == filter.address
+      } else if (filter.key === 'guests') {
+        homes = homes.filter(home => {
+          return home[filter.key] >= filter.value;
+        });
+      } else if (filter.key === 'price') {
+        console.log('Fake filter price');
       } else {
-        homes = homes.filter(home => home[Object.keys(filters[0])[0]] === Object.values(filters[0])[0])
+        // works for City, Home Type
+        homes = homes.filter(home => {
+          return home[filter.key] === filter.value;
+        });
       }
     });
+
+    console.log('homes returned', homes);
 
     return homes;
   }

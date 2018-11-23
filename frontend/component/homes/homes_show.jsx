@@ -205,12 +205,12 @@ class HomeShow extends React.Component {
           {this.props.bookingErrors.map(error => <li>{error}</li>)}
         </ul>
       ) : "";
-      let overallRating = '';
+      let overallRating = 0;
 
       if (this.props.reviews.length > 0) {
         let sumRating = 0;
-        reviews.forEach(review => sumRating += review.rating);
-        let overallRating = sumRating/reviews.length;
+        this.props.reviews.forEach(review => sumRating += review.rating);
+        overallRating = sumRating/this.props.reviews.length;
       }
 
       const from = this.state.startDate;
@@ -295,7 +295,7 @@ class HomeShow extends React.Component {
                 <div className={'line-break-thin'} />
 
                 <div>
-                  <h2>{reviews.length} Reviews {overallRating}</h2>
+                  <h2>{reviews.length} Reviews</h2>
                   <input
                     placeholder='Search Reviews'/>
                 </div>
@@ -335,7 +335,7 @@ class HomeShow extends React.Component {
                 <div className='ratings-container'>
                   <StarRatings
                     className='ratings-package'
-                    rating={4.5}
+                    rating={overallRating}
                     starRatedColor="#296c93"
                     numberOfStars={5}
                     name='rating'
