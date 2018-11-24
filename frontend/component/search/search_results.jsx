@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeMap from '../homes/home_map';
 import HomesIndex from '../homes/homes_index';
+import Filters from './filters';
 
 class SearchResults extends React.Component {
   constructor(props){
@@ -14,14 +15,16 @@ class SearchResults extends React.Component {
           lat: "",
           lng: ""
         },
-        homeType:'',
+        home_type:'Entire Place',
         guests: ''
-      }
+      },
+      whiteOut: 'hidden'
     }
     this.buildFilter = this.buildFilter.bind(this);
     this.resetFilter = this.resetFilter.bind(this);
     this.filterHomes = this.filterHomes.bind(this);
     this.updateFilter = this.updateFilter.bind(this);
+    this.filterOn = this.filterOn.bind(this);
     console.log('constructor finished');
   }
 
@@ -52,12 +55,6 @@ class SearchResults extends React.Component {
         filters.push({key, value: this.state.filter[key]})
       }
     })
-
-    // console.log('filtering homes');
-    // if(this.props.search){
-    //   debugger;
-    // }
-    // make dictionary more descriptive
 
     let homes = this.props.homes;
 
@@ -99,6 +96,14 @@ class SearchResults extends React.Component {
 
   }
 
+  filterOn(){
+    if(this.state.whiteOut === 'hidden'){
+      this.setState({ whiteOut: ''})
+    } else {
+      this.setState({ whiteOut: 'hidden'})
+    }
+  }
+
   render() {
     if (this.state.loaded) {
       // let homes = this.props.search ? (
@@ -110,14 +115,9 @@ class SearchResults extends React.Component {
       return (
         <div className={'search-container'}>
 
-          <div className={'search-filters'}>
-            <button>Date</button>
-            <button>Guests</button>
-            <button>Home Type</button>
-            <button>Price</button>
-            <button>More Filters</button>
-          </div>
+          <Filters filterOn={this.filterOn}/>
 
+          <div className={this.state.whiteOut + ' white-out'}/>
           <div className={'search-results'}>
             <HomesIndex homes={homes}/>
             <div className={'search-homes-map'}>
