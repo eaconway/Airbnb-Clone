@@ -47,14 +47,50 @@
   .filter-modal {
     position: absolute;
     border: 2px solid $light-grey;
-    border-radius: 5px;
-    
-    top: 47px;
+    border-radius: 4px;
+    top: 48px;
     left: 0;
-    height: 100px;
-    width: 250px;
+    // height: 250px;
+    // width: 350px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 36px 2px !important;
+    padding: 24px;
+    background: white;
+    color: black;
+
+    .guest-filter-div{
+      width: 300px;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .guest-filter-menu{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100px;
+
+        .filter-button{
+          height: 30px;
+          width: 30px;
+          border: 1px solid $teal-green;
+          border-radius: 50%;
+          font-size: 18px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $teal-green
+        }
+      }
+    }
   }
 
+}
+
+.no-bottom-border{
+  border-bottom: none;
 }
 .white-out{
   position: fixed;

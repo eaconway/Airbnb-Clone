@@ -16,12 +16,12 @@ class SearchResults extends React.Component {
           lng: ""
         },
         home_type:'Entire Place',
-        guests: ''
+        guests: 0
       },
       whiteOut: 'hidden'
     }
-    this.buildFilter = this.buildFilter.bind(this);
-    this.resetFilter = this.resetFilter.bind(this);
+    // this.buildFilter = this.buildFilter.bind(this);
+    // this.resetFilter = this.resetFilter.bind(this);
     this.filterHomes = this.filterHomes.bind(this);
     this.updateFilter = this.updateFilter.bind(this);
     this.filterOn = this.filterOn.bind(this);
@@ -51,12 +51,16 @@ class SearchResults extends React.Component {
         if (this.state.filter[key].lat != ''){
           filters.push({key, value: this.state.filter[key]})
         }
-      } else if (this.state.filter[key] != '' ) {
+      } else if (this.state.filter[key] != '' && this.state.filter[key] != 0) {
         filters.push({key, value: this.state.filter[key]})
       }
     })
 
     let homes = this.props.homes;
+    // if (this.state.filter.guests === 1){
+    //   debugger
+    // }
+    // debugger
 
     filters.forEach(filter => {
       if (filter.key === 'bounds'){
@@ -88,14 +92,6 @@ class SearchResults extends React.Component {
     return homes;
   }
 
-  buildFilter(){
-
-  }
-
-  resetFilter(){
-
-  }
-
   filterOn(){
     if(this.state.whiteOut === 'hidden'){
       this.setState({ whiteOut: ''})
@@ -106,16 +102,12 @@ class SearchResults extends React.Component {
 
   render() {
     if (this.state.loaded) {
-      // let homes = this.props.search ? (
-      //   this.props.search.query === "" ? this.props.homes : this.filterHomes(this.props.search.query)
-      // ) : "";
-
       let homes = this.filterHomes();
 
       return (
         <div className={'search-container'}>
 
-          <Filters filterOn={this.filterOn}/>
+          <Filters filterOn={this.filterOn} updateFilter={this.updateFilter}/>
 
           <div className={this.state.whiteOut + ' white-out'}/>
           <div className={'search-results'}>
