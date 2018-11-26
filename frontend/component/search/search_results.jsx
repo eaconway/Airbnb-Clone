@@ -15,8 +15,9 @@ class SearchResults extends React.Component {
           lat: "",
           lng: ""
         },
-        home_type:'Entire Place',
-        guests: 0
+        home_type: [],
+        guests: 0,
+
       },
       whiteOut: 'hidden'
     }
@@ -46,14 +47,18 @@ class SearchResults extends React.Component {
 
   filterHomes(){
 
-    let filters = []
+    let filters = [];
     Object.keys(this.state.filter).map(key => {
       if (key === 'bounds') {
         if (this.state.filter[key].lat != ''){
           filters.push({key, value: this.state.filter[key]})
         }
+      } else if (key === 'home_type'){
+        if (this.state.filter[key].length != 0){
+          filters.push({key, value: this.state.filter[key]});
+        }
       } else if (this.state.filter[key] != '' && this.state.filter[key] != 0) {
-        filters.push({key, value: this.state.filter[key]})
+        filters.push({key, value: this.state.filter[key]});
       }
     })
 
@@ -75,11 +80,24 @@ class SearchResults extends React.Component {
         );
         // obj.name == filter.name && obj.address == filter.address
       } else if (filter.key === 'guests') {
+
         homes = homes.filter(home => {
           return home[filter.key] >= filter.value;
         });
+
       } else if (filter.key === 'price') {
+
         console.log('Fake filter price');
+
+      } else if (filter.key === 'home_type') {
+
+        homes = homes.filter(home => {
+            for(let i = 0; i < filter.value.length; i++){
+              if (home[filter.key] === filter.value[i]) {return true};
+            }
+            return false;
+          });
+
       } else {
         // works for City, Home Type
         homes = homes.filter(home => {

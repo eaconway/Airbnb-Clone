@@ -3,7 +3,8 @@ import {merge} from 'lodash';
 
 class Filters extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
+
     this.stateDefault = {
       date: { filter: 'hidden', clicked: ''},
       guests: {
@@ -17,11 +18,15 @@ class Filters extends React.Component {
       homeType: {
         filter: 'hidden',
         clicked: '',
-        value: []
+        value: [],
+        entirePlace: false,
+        privateRoom: false,
+        sharedRoom: false,
       },
       containerBottom: '',
       activeFilter: null
     }
+
     this.state = this.stateDefault;
     this.state = merge({}, this.stateDefault);
 
@@ -29,6 +34,7 @@ class Filters extends React.Component {
     this.openOptions = this.openOptions.bind(this);
     this.resetOptions = this.resetOptions.bind(this);
     this.handleHomeType = this.handleHomeType.bind(this);
+    this.stop = this.stop.bind(this);
   }
 
   openOptions(key) {
@@ -49,8 +55,14 @@ class Filters extends React.Component {
         let x = this.state[key];
         x.filter = 'hidden';
 
-        if (this.state[key].value === this.stateDefault[key].value){
-          x.clicked = '';
+        if (key === 'homeType'){
+          if (this.state[key].value.length === 0){
+            x.clicked = '';
+          }
+        } else {
+          if (this.state[key].value === this.stateDefault[key].value){
+            x.clicked = '';
+          }
         }
 
         this.setState({
@@ -98,8 +110,35 @@ class Filters extends React.Component {
     }
   }
 
-  handleHomeType(){
+  handleHomeType(key){
+    let homeTypes = {
+      entirePlace: 'Entire Place',
+      privateRoom: 'Private Room',
+      sharedRoom: 'Shared Room'
+    };
 
+    return (e) => {
+      e.stopPropagation();
+
+      let homeType = this.state.homeType;
+
+      if (homeType[key]){
+        homeType[key] = false;
+        homeType.value = homeType.value.filter(selection => {
+          selection != homeTypes[key];
+        })
+      } else {
+        homeType[key] = true;
+        homeType.value.push(homeTypes[key]);
+      }
+
+      this.setState({ homeType}, () => this.props.updateFilter('home_type', homeType.value));
+    }
+  }
+
+  stop(e){
+    e.stopPropagation();
+    console.log('stopped stopPropagation');
   }
 
   render() {
@@ -108,15 +147,10 @@ class Filters extends React.Component {
       guestValue === 1 ? '1 guest' : guestValue + ' guests'
     );
 
-    let homeTypeValue = 'Home Type';
+    let homeTypeTitle = 'Home Type';
 
     return (
       <div className={'search-filters ' + this.state.containerBottom}>
-
-        <div className={'filter-btn ' + this.state.date.clicked} id='date-filter'
-          onClick={this.openOptions('date')}>
-          Date
-        </div>
 
         <div className={'filter-btn ' + this.state.guests.clicked} id='guests-filter'
           onClick={this.openOptions('guests')}>
@@ -161,30 +195,39 @@ class Filters extends React.Component {
           onClick={this.openOptions('homeType')}>
           {homeTypeTitle}
           <div className={this.state.homeType.filter + ' filter-modal'}>
-            <div className='guest-filter-div'>
-              Adults
-              <div className='guest-filter-menu'>
-                <div className='filter-button' onClick={this.handleHomeType()}>-</div>
-                <div>{this.state.guests.adults} + </div>
-                <div className='filter-button' onClick={this.handleHomeType()}>+</div>
+            <div className='home-type-filter-div'>
+              <div className='home-type-checkbox' onClick={this.stop}>
+                <input name="entirePlace" type="checkbox" className='custom-checkbox'
+                    checked={this.state.homeType.entirePlace}
+                    onChange={this.handleHomeType('entirePlace')} />
+              </div>
+              <div className='choice'>
+                <h3>Entire Place</h3>
+                <h4>Have a place to yourself</h4>
               </div>
             </div>
 
-            <div className='guest-filter-div'>
-              Children
-              <div className='guest-filter-menu'>
-                <div className='filter-button' onClick={this.handleGuest('down', 'children')}>-</div>
-                <div>{this.state.guests.children} + </div>
-                <div className='filter-button' onClick={this.handleGuest('up', 'children')}>+</div>
+            <div className='home-type-filter-div'>
+              <div className='home-type-checkbox' onClick={this.stop}>
+                <input name="privateRoom" type="checkbox" className='custom-checkbox'
+                    checked={this.state.homeType.privateRoom}
+                    onChange={this.handleHomeType('privateRoom')} />
+              </div>
+              <div className='choice'>
+                <h3>Private Room</h3>
+                <h4>Have your own room and share some common spaces</h4>
               </div>
             </div>
 
-            <div className='guest-filter-div'>
-              Infants
-              <div className='guest-filter-menu'>
-                <div className='filter-button' onClick={this.handleGuest('down', 'infants')}>-</div>
-                <div>{this.state.guests.infants} + </div>
-                <div className='filter-button' onClick={this.handleGuest('up', 'infants')}>+</div>
+            <div className='home-type-filter-div'>
+              <div className='home-type-checkbox' onClick={this.stop}>
+                <input name="sharedRoom" type="checkbox" className='custom-checkbox'
+                    checked={this.state.homeType.sharedRoom}
+                    onChange={this.handleHomeType('sharedRoom')} />
+              </div>
+              <div className='choice'>
+                <h3>Shared Room</h3>
+                <h4>Stay in a shared space, like a common room</h4>
               </div>
             </div>
 
@@ -195,7 +238,6 @@ class Filters extends React.Component {
           </div>
         </div>
         <div className='filter-btn'>Price</div>
-        <div className='filter-btn'>More Filters</div>
       </div>
     )
   }
