@@ -1,9 +1,10 @@
 import React from 'react';
+import {merge} from 'lodash';
 
 class Filters extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
+    this.stateDefault = {
       date: { filter: 'hidden', clicked: ''},
       guests: {
         filter: 'hidden',
@@ -13,12 +14,26 @@ class Filters extends React.Component {
         children: 0,
         infants: 0,
       },
-      containerBottom: ''
+      homeType: {
+        filter: 'hidden',
+        clicked: '',
+        value: []
+      },
+      containerBottom: '',
+      activeFilter: null
     }
+    this.state = this.stateDefault;
+    this.state = merge({}, this.stateDefault);
+
+    this.handleGuest = this.handleGuest.bind(this);
+    this.openOptions = this.openOptions.bind(this);
+    this.resetOptions = this.resetOptions.bind(this);
+    this.handleHomeType = this.handleHomeType.bind(this);
   }
 
   openOptions(key) {
-    return () => {
+    return (e) => {
+      e.stopPropagation();
       if(this.state[key].filter === 'hidden'){
         this.props.filterOn();
         let x = this.state[key];
@@ -26,18 +41,40 @@ class Filters extends React.Component {
         x.clicked = 'clicked-green';
         this.setState({
           [key]: x,
-          containerBottom: 'no-bottom-border'
+          containerBottom: 'no-bottom-border',
+          activeFilter: key
         });
+
       } else {
-        this.props.filterOn();
         let x = this.state[key];
         x.filter = 'hidden';
-        x.clicked = '';
+
+        if (this.state[key].value === this.stateDefault[key].value){
+          x.clicked = '';
+        }
+
         this.setState({
           [key]: x,
-          containerBottom: ''
-        });
+          containerBottom: '',
+          activeFilter: null
+        }, this.props.filterOn);
+
       }
+    }
+  }
+
+  resetOptions(key){
+    return (e) => {
+      e.stopPropagation();
+      let original = merge({}, this.stateDefault[key]);
+      this.setState({
+        [key]: original,
+        containerBottom: '',
+        activeFilter: null
+      }, () => {
+        this.props.updateFilter(key, this.state[key].value);
+        this.props.filterOn();
+      });
     }
   }
 
@@ -45,33 +82,33 @@ class Filters extends React.Component {
     return (e) => {
       e.stopPropagation();
       let guests = this.state.guests;
-      let value = guests.value;
       let category = guests[type];
+      let value = guests.value;
       // debugger
       if (key === 'down' && category > 0){
         guests.value -= 1;
         guests[type] -= 1
-        this.setState({ guests });
+        this.setState({ guests }, ()=> this.props.updateFilter('guests', guests.value));
       } else if (key === 'up'){
         guests.value += 1;
         guests[type] += 1
-        this.setState({ guests });
+        // debugger;
+        this.setState({ guests }, ()=> this.props.updateFilter('guests', guests.value));
       }
-
-      // let total = guests.adults + guests.childen + guests.infants;
-      // let total = [guests.adults, guests.childen, guests.infants].reduce((acc, el) => acc += el);
-      // debugger
-      this.props.updateFilter('guests', value);
     }
+  }
+
+  handleHomeType(){
+
   }
 
   render() {
     let guestValue = this.state.guests.value;
-    let guestsTitle = guestValue === 0 ? 'Guests' : ('hi');
-    //   if (guestValue === 1){
-    //     return '1 guest';
-    //   } else { return guestValue  + ' guest'; }
-    // );
+    let guestsTitle = guestValue === 0 ? 'Guests' : (
+      guestValue === 1 ? '1 guest' : guestValue + ' guests'
+    );
+
+    let homeTypeValue = 'Home Type';
 
     return (
       <div className={'search-filters ' + this.state.containerBottom}>
@@ -111,9 +148,52 @@ class Filters extends React.Component {
                 <div className='filter-button' onClick={this.handleGuest('up', 'infants')}>+</div>
               </div>
             </div>
+
+            <div className='filter-nav'>
+              <button onClick={this.resetOptions('guests')}>Cancel</button>
+              <button onClick={this.openOptions('guests')}>Apply</button>
+            </div>
           </div>
         </div>
-        <div className='filter-btn'>Home Type</div>
+
+
+        <div className={'filter-btn ' + this.state.homeType.clicked} id='home-type-filter'
+          onClick={this.openOptions('homeType')}>
+          {homeTypeTitle}
+          <div className={this.state.homeType.filter + ' filter-modal'}>
+            <div className='guest-filter-div'>
+              Adults
+              <div className='guest-filter-menu'>
+                <div className='filter-button' onClick={this.handleHomeType()}>-</div>
+                <div>{this.state.guests.adults} + </div>
+                <div className='filter-button' onClick={this.handleHomeType()}>+</div>
+              </div>
+            </div>
+
+            <div className='guest-filter-div'>
+              Children
+              <div className='guest-filter-menu'>
+                <div className='filter-button' onClick={this.handleGuest('down', 'children')}>-</div>
+                <div>{this.state.guests.children} + </div>
+                <div className='filter-button' onClick={this.handleGuest('up', 'children')}>+</div>
+              </div>
+            </div>
+
+            <div className='guest-filter-div'>
+              Infants
+              <div className='guest-filter-menu'>
+                <div className='filter-button' onClick={this.handleGuest('down', 'infants')}>-</div>
+                <div>{this.state.guests.infants} + </div>
+                <div className='filter-button' onClick={this.handleGuest('up', 'infants')}>+</div>
+              </div>
+            </div>
+
+            <div className='filter-nav'>
+              <button onClick={this.resetOptions('homeType')}>Cancel</button>
+              <button onClick={this.openOptions('homeType')}>Apply</button>
+            </div>
+          </div>
+        </div>
         <div className='filter-btn'>Price</div>
         <div className='filter-btn'>More Filters</div>
       </div>

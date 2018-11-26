@@ -38,6 +38,7 @@ class SearchResults extends React.Component {
   }
 
   updateFilter(field, value){
+    console.log('updating filter ', field, value);
     let filter = this.state.filter;
     filter[field] = value;
     this.setState({step: this.state.step + 1, filter })
@@ -107,7 +108,8 @@ class SearchResults extends React.Component {
       return (
         <div className={'search-container'}>
 
-          <Filters filterOn={this.filterOn} updateFilter={this.updateFilter}/>
+          <Filters filterOn={this.filterOn} updateFilter={this.updateFilter}
+            whiteOut={this.state.whiteOut}/>
 
           <div className={this.state.whiteOut + ' white-out'}/>
           <div className={'search-results'}>
