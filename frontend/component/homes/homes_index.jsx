@@ -18,6 +18,8 @@ class Homes extends React.Component {
       <HomesIndexItem key={home.id} home={home}/>
     ));
 
+    let homesAvail = homes.length === 1 ? '1 home' : (homes.length + ' homes');
+
     return (
       <div className={'search-homes-index'}>
         <div className={'fun-fact'}>
@@ -25,7 +27,7 @@ class Homes extends React.Component {
           <span>Over 2,000,000 guest reviews for these homes, with an average of 4.6 out of 5 stars.</span>
         </div>
 
-        <h3 className={'num-homes'}>10{homes.length}+ homes</h3>
+        <h3 className={'num-homes'}>{homesAvail}</h3>
         <ul>
           {homes}
         </ul>

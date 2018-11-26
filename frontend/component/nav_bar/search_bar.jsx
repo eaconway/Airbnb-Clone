@@ -21,14 +21,11 @@ class SearchBar extends React.Component {
   }
 
   componentDidMount(){
-
     this.props.requestHomes()
       .then(() => {
         let userId = this.props.currentUser ? this.props.currentUser.id : 0;
         this.props.requestSearches(userId)
         .then(() => {
-          console.log(this.props.searches);
-          // debugger;
           this.setState({
             loaded: true,
             query: this.props.search.query,
@@ -36,6 +33,20 @@ class SearchBar extends React.Component {
           })
         });
       })
+  }
+
+  componentWillReceiveProps(nextProps){
+    if (this.state.query != nextProps.search.query){
+      let userId = this.props.currentUser ? this.props.currentUser.id : 0;
+      this.props.requestSearches(userId)
+      .then(() => {
+        this.setState({
+          loaded: true,
+          query: this.props.search.query,
+          results: this.props.searches.map(search => search.query)
+        })
+      });
+    }
   }
 
   toggleResults(e){
