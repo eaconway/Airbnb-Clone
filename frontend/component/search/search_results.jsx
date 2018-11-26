@@ -20,7 +20,8 @@ class SearchResults extends React.Component {
         guests: 0,
 
       },
-      whiteOut: 'hidden'
+      whiteOut: 'hidden',
+      step: 0
     }
     // this.buildFilter = this.buildFilter.bind(this);
     // this.resetFilter = this.resetFilter.bind(this);
@@ -40,7 +41,10 @@ class SearchResults extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.search || parseInt(nextProps.match.params.searchId) !== this.props.search.id) {
+    if ((!this.props.search && nextProps.search) ||
+      (this.props.search && nextProps.search &&
+      parseInt(nextProps.match.params.searchId) !== this.props.search.id)) {
+
       let filter = this.state.filter;
       filter.city = nextProps.search.query;
       this.setState({loaded: true, filter});
@@ -71,11 +75,7 @@ class SearchResults extends React.Component {
       }
     })
 
-    console.log('filtering homes', this.props.homes);
-
     let homes = this.props.homes.map(home => merge({}, home));
-    // let homes = this.props.homes
-    // debugger;
 
     filters.forEach(filter => {
       if (filter.key === 'bounds'){

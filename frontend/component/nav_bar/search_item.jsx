@@ -16,10 +16,13 @@ class SearchResultItem extends React.Component {
   }
 
   render(){
+    let prompt = this.props.result === '' ? 'All Homes' : (
+      'Homes in ' + this.props.result
+    );
     return(
       <div className='search-item' onClick={this.handleSubmit}>
         <h2><i className="fas fa-home icon"></i>
-        Homes in {this.props.result}</h2>
+        {prompt}</h2>
       </div>
     )
   }

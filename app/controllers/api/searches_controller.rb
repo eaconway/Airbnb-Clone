@@ -2,7 +2,7 @@ class Api::SearchesController < ApplicationController
   def index
     id = params[:authorId]
     @searches = Search.where(author_id: id).where.not(query: "")
-      .order(created_at: :desc).limit(6)
+      .order(created_at: :desc).limit(5)
     render :index
   end
 
@@ -10,11 +10,12 @@ class Api::SearchesController < ApplicationController
     @search = Search.new(search_params)
     query = params[:search][:query]
 
-    if params[:search][:query] == ""
-      @homes = Home.all
-    else
-      @homes = Home.where("city like ?", "%o%")
-    end
+    # if params[:search][:query] == ""
+    #   @homes = Home.all
+    # else
+    #   @homes = Home.where("city like ?", "%o%")
+    # end
+    @homes = Home.all
 
     if @search.save!
       render :show
@@ -25,11 +26,12 @@ class Api::SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
-    if @search.query == ""
-      @homes = Home.all
-    else
-      @homes = Home.where(city: @search.query)
-    end
+    # if @search.query == ""
+    #   @homes = Home.all
+    # else
+    #   @homes = Home.where(city: @search.query)
+    # end
+    @homes = Home.all
   end
 
   private
