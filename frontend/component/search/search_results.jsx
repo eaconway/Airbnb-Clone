@@ -2,6 +2,7 @@ import React from 'react';
 import HomeMap from '../homes/home_map';
 import HomesIndex from '../homes/homes_index';
 import Filters from './filters';
+import {merge} from 'lodash';
 
 class SearchResults extends React.Component {
   constructor(props){
@@ -38,6 +39,14 @@ class SearchResults extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.search || parseInt(nextProps.match.params.searchId) !== this.props.search.id) {
+      let filter = this.state.filter;
+      filter.city = nextProps.search.query;
+      this.setState({loaded: true, filter});
+    }
+  }
+
   updateFilter(field, value){
     console.log('updating filter ', field, value);
     let filter = this.state.filter;
@@ -62,11 +71,11 @@ class SearchResults extends React.Component {
       }
     })
 
-    let homes = this.props.homes;
-    // if (this.state.filter.guests === 1){
-    //   debugger
-    // }
-    // debugger
+    console.log('filtering homes', this.props.homes);
+
+    let homes = this.props.homes.map(home => merge({}, home));
+    // let homes = this.props.homes
+    // debugger;
 
     filters.forEach(filter => {
       if (filter.key === 'bounds'){

@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestHomes: filters => dispatch(requestHomes(filters)),
+  requestHomes: () => dispatch(requestHomes()),
   requestSearches: userId => dispatch(requestSearches(userId)),
   requestSearch: id => dispatch(requestSearch(id)),
   createSearch: search => dispatch(createSearch(search))

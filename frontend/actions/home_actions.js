@@ -25,7 +25,10 @@ export const removeHome = homeId => ({
 
 export const requestHomes = (filters) => dispatch => (
   HomeApiUtil.fetchHomes(filters)
-    .then(results => dispatch(receiveHomes(results.homes)),
+    .then(results => {
+      // return dispatch(receiveHomes(results.homes))
+      return dispatch(receiveHomes(results));
+    },
     (errors) => dispatch(receiveHomeErrors(errors.responseJSON)))
 );
 

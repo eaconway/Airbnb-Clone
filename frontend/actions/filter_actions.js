@@ -9,6 +9,6 @@ export const changeFilter = (filters) => {
 };
 
 export const updateFilter = (filters) => (dispatch, getState) => {
-  dispatch(changeFilter(filters));
-  return requestHomes(getState().ui.filters)(dispatch);
+  return dispatch(changeFilter(filters));
+  // return requestHomes(getState().ui.filters)(dispatch);
 };
