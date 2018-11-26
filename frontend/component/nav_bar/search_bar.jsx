@@ -25,10 +25,18 @@ class SearchBar extends React.Component {
     this.props.requestHomes();
     let userId = this.props.currentUser ? this.props.currentUser.id : 0;
     this.props.requestSearches(userId)
-      .then(() => this.setState({
+      .then(() => {
+        console.log('searches', this.props.searches);
+        console.log('search', this.props.search);
+        this.setState({
         loaded: true,
         results: this.props.searches.map(search => search.query)
-      }));
+        })
+      });
+      // .then(() => {
+      //   console.log('updating query box with ', this.props.searches);
+      //   this.setState({query: this.props.search.query});
+      // });
   }
 
   toggleResults(e){
@@ -39,12 +47,6 @@ class SearchBar extends React.Component {
     } else {
       this.setState({showResults: 'hidden'});
     }
-    // let result = document.getElementsByClassName('search-results')[0];
-    // if (result.className.split(' ').includes("hidden")) {
-    //   result.classList.remove("hidden");
-    // } else {
-    //   result.classList.add("hidden");
-    // }
   }
 
   onlyUnique(val, idx, self) {
@@ -60,8 +62,6 @@ class SearchBar extends React.Component {
         return home.city;
       }
     }).filter( this.onlyUnique );
-
-    ;
 
     if (query === '') {
       results = this.props.searches.map(search => {
@@ -93,7 +93,14 @@ class SearchBar extends React.Component {
         authorId={this.props.currentUser ? this.props.currentUser.id : 1}/>
     )));
 
-    let search = this.props.searches[this.props.match.params.searchId]
+    console.log('id', this.props.match.params.searchId);
+    console.log('searches', this.props.searches);
+    console.log('search', this.props.searches[this.props.match.params.searchId]);
+    console.log('search', this.props.search);
+
+    let search = this.state.query === '' ? (
+      this.props.search.query
+    ) : this.state.query;
 
     let placeholder = search === undefined ? (
       this.props.searches[this.props.match.params.searchId]
@@ -109,7 +116,7 @@ class SearchBar extends React.Component {
             <i className="fas fa-search icon"></i>
             <input className={'search-bar'} type="text"
               onChange={this.handleQuery}
-              value={this.state.query}
+              value={search}
               placeholder={placeholder}/>
 
           </form>

@@ -30,7 +30,10 @@ export default () => (
   <div>
     <Modal />
     <header className={'header'}>
-      <Route path="/" component={SearchBarContainer} />
+      <Switch>
+        <Route path="/search/:searchId" component={SearchBarContainer} />
+        <Route path="/" component={SearchBarContainer} />
+      </Switch>
       <Route path="/" component={NavBarContainer} />
     </header>
 
@@ -51,18 +54,3 @@ export default () => (
     </div>
   </div>
 );
-
-// <header>
-//   <Route path="/" component={SearchContainer} />
-//   <Route path="/" component={NavBarContainer} />
-// </header>
-
-// <header>
-//   <Route path="/" component={NavBarContainer} />
-// </header>
-//
-// <Route path="/signup" component={SignupContainer} />
-// <Route path="/login" component={LoginContainer} />
-
-// <Route path="/signup" component={SignupContainer} />
-// <Route path="/login" component={LoginContainer} />

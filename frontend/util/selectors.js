@@ -35,3 +35,8 @@ export const userHomes = (homes, userHostings) => {
     return [];
   }
 }
+
+export const pickSearch = (searches, searchId) => {
+  debugger;
+  return {};
+}

@@ -65,6 +65,13 @@
       justify-content: space-between;
       align-items: center;
 
+      color: $grey2;
+      // margin: 10px 10px 5px 10px;
+      font-size: 18px;
+      line-height: 22px !important;
+      font-weight: 400;
+      font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+
       .guest-filter-menu{
         display: flex;
         flex-direction: row;
