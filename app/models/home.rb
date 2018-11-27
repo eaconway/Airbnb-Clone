@@ -24,6 +24,7 @@
 #  internet       :boolean          default(FALSE)
 #  washer         :boolean          default(FALSE)
 #  dryer          :boolean          default(FALSE)
+#  country        :string           default("")
 #
 
 class Home < ApplicationRecord
