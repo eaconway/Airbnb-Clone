@@ -91,6 +91,105 @@ user6.profile_pic.attach(io: File.open('app/assets/images/ichigo.jpg'),
  filename: 'ichigo.jpg')
 user6.save!
 
+user7 = User.create!(
+  email: 'zoro@demo.com',
+  fname: 'Zoro',
+  lname: 'Swordsman',
+  password: 'password',
+  birthday: '1987-01-01'
+)
+user7.profile_pic.attach(io: File.open('app/assets/images/zoro.jpeg'),
+ filename: 'zoro.jpeg')
+user7.save!
+
+user8 = User.create!(
+  email: 'nami@demo.com',
+  fname: 'Nami',
+  lname: 'Navigator',
+  password: 'password',
+  birthday: '1987-01-01'
+)
+user8.profile_pic.attach(io: File.open('app/assets/images/nami.png'),
+ filename: 'nami.png')
+user8.save!
+
+user9 = User.create!(
+  email: 'sanji@demo.com',
+  fname: 'Sanji',
+  lname: 'Germa',
+  password: 'password',
+  birthday: '1987-01-01'
+)
+user9.profile_pic.attach(io: File.open('app/assets/images/sanji.jpg'),
+ filename: 'sanji.jpg')
+user9.save!
+
+user10 = User.create!(
+  email: 'chopper@demo.com',
+  fname: 'Chopper',
+  lname: 'Doctor',
+  password: 'password',
+  birthday: '1997-01-01'
+)
+user10.profile_pic.attach(io: File.open('app/assets/images/chopper.jpg'),
+ filename: 'chopper.jpg')
+user10.save!
+
+user11 = User.create!(
+  email: 'usopp@demo.com',
+  fname: 'Usopp',
+  lname: 'Sniper',
+  password: 'password',
+  birthday: '1987-01-01'
+)
+user11.profile_pic.attach(io: File.open('app/assets/images/usopp.png'),
+ filename: 'usopp.png')
+user11.save!
+
+user12 = User.create!(
+  email: 'brooke@demo.com',
+  fname: 'Brooke',
+  lname: 'Musician',
+  password: 'password',
+  birthday: '1917-01-01'
+)
+user12.profile_pic.attach(io: File.open('app/assets/images/brooke.png'),
+ filename: 'brooke.png')
+user12.save!
+
+user13 = User.create!(
+  email: 'franky@demo.com',
+  fname: 'Franky',
+  lname: 'Shipwright',
+  password: 'password',
+  birthday: '1917-01-01'
+)
+user13.profile_pic.attach(io: File.open('app/assets/images/franky.png'),
+ filename: 'franky.png')
+user13.save!
+
+user14 = User.create!(
+  email: 'robin@demo.com',
+  fname: 'Robin',
+  lname: 'All Sunday',
+  password: 'password',
+  birthday: '1917-01-01'
+)
+user14.profile_pic.attach(io: File.open('app/assets/images/robin.jpg'),
+ filename: 'robin.jpg')
+user14.save!
+
+user15 = User.create!(
+  email: 'jinbei@demo.com',
+  fname: 'Jinbei',
+  lname: 'Fishman',
+  password: 'password',
+  birthday: '1983-01-01'
+)
+user15.profile_pic.attach(io: File.open('app/assets/images/jinbei.jpg'),
+ filename: 'jinbei.jpg')
+user15.save!
+
 
 
 puts 'creating homes'
@@ -316,8 +415,8 @@ hosting8 = Hosting.create!(
 home9 = Home.new(
   title: "Mama's House",
   status: 'active',
-  lat: 43.365375,
-  lng: 142.739619,
+  lat: 42.635095,
+  lng: 140.140915,
   guests: 15,
   home_type: 'Entire Place',
   price: 1000,
@@ -341,37 +440,253 @@ hosting9 = Hosting.create!(
   home_id: 9
 )
 
+home10 = Home.new(
+  title: "Arlong Park",
+  status: 'active',
+  lat: 31.593890,
+  lng: 131.436138,
+  guests: 1,
+  home_type: 'Shared Room',
+  price: 100,
+  description: "Locked at the top of Arlong tower to save my village after they murdered Bellemere-san!",
+  extra_info: "",
+  beds: 1,
+  baths: 0,
+  bedrooms: 0,
+  internet: false,
+  washer: false,
+  dryer: false,
+  city: 'East Blue',
+  country: 'Japan'
+)
+home10.image.attach(io: File.open('app/assets/images/arlong_park.png'),
+ filename: 'arlong_park.png')
+home10.save!
+hosting10 = Hosting.create!(
+  host_id: 8,
+  home_id: 10
+)
+
+home11 = Home.new(
+  title: "Baratie",
+  status: 'active',
+  lat: 33.042198,
+  lng: 133.413677,
+  guests: 2,
+  home_type: 'Shared Room',
+  price: 200,
+  description: "Come to Zeff's restaurant! We've got some of the worlds best chefs making food simply for those who are hungry.",
+  extra_info: "Really come, our food is delicious",
+  beds: 1,
+  baths: 1,
+  bedrooms: 1,
+  internet: false,
+  washer: true,
+  dryer: true,
+  city: 'East Blue',
+  country: 'Japan'
+)
+home11.image.attach(io: File.open('app/assets/images/baratie.png'),
+ filename: 'baratie.png')
+home11.save!
+hosting11 = Hosting.create!(
+  host_id: 9,
+  home_id: 11
+)
+
+home12 = Home.new(
+  title: "Flower Blossoms",
+  status: 'active',
+  lat: 33.593030,
+  lng: 134.072857,
+  guests: 1,
+  home_type: 'Shared Room',
+  price: 10,
+  description: "Come learn from the best quack doctor in all of the grandline. Seriously, he'll...  I'll teach you how to truly heal others",
+  extra_info: "Those sakura blossoms are gorgeous!",
+  beds: 1,
+  baths: 1,
+  bedrooms: 1,
+  internet: true,
+  washer: true,
+  dryer: true,
+  city: 'East Blue',
+  country: 'Japan'
+)
+home12.image.attach(io: File.open('app/assets/images/sakura_blossom.jpg'),
+ filename: 'sakura_blossom.jpg')
+home12.save!
+hosting12 = Hosting.create!(
+  host_id: 10,
+  home_id: 12
+)
+
+home13 = Home.new(
+  title: "Mirror Dimension",
+  status: 'active',
+  lat: 42.527784,
+  lng: 143.173828,
+  guests: 10,
+  home_type: 'Entire Place',
+  price: 700,
+  description: "This place looked super scary! I'm so glad I wasn't on Whole Cake Island when this happened. Mama is crazy!",
+  extra_info: "I would definitely have hidden here.... for sure! I'm sure Katakuri will have a house there too!",
+  beds: 10,
+  baths: 10,
+  bedrooms: 10,
+  internet: true,
+  washer: true,
+  dryer: true,
+  city: 'Whole Cake Island',
+  country: 'Japan'
+)
+home13.image.attach(io: File.open('app/assets/images/mirror_dimension.png'),
+ filename: 'mirror_dimension.png')
+home13.save!
+hosting13 = Hosting.create!(
+  host_id: 11,
+  home_id: 13
+)
+
+home14 = Home.new(
+  title: "Mama's Bedroom",
+  status: 'active',
+  lat: 42.560161,
+  lng: 141.855469,
+  guests: 3,
+  home_type: 'Shared Room',
+  price: 1800,
+  description: "This was the scariest moment of my life - and I'm not even alive! Mama came so close to killing me in her sleep. But we got what we needed!",
+  extra_info: "Can I see your pa-...?",
+  beds: 1,
+  baths: 1,
+  bedrooms: 1,
+  internet: true,
+  washer: true,
+  dryer: true,
+  city: 'Whole Cake Island',
+  country: 'Japan'
+)
+home14.image.attach(io: File.open('app/assets/images/mamas_room.png'),
+ filename: 'mamas_room.png')
+home14.save!
+hosting14 = Hosting.create!(
+  host_id: 12,
+  home_id: 14
+)
+
+home15 = Home.new(
+  title: "Revolutionary Army Base - Dragon's House",
+  status: 'active',
+  lat: 36.239358,
+  lng: 133.259311,
+  guests: 16,
+  home_type: 'Entire Place',
+  price: 3000,
+  description: "Welcome to my page/listing. I'm sure you'll enjoy your time with Dragon, Sabo, and the crew. They're such hooligans.",
+  extra_info: "I wonder where the crew went...",
+  beds: 15,
+  baths: 10,
+  bedrooms: 13,
+  internet: true,
+  washer: true,
+  dryer: false,
+  city: 'Grand Line',
+  country: 'Japan'
+)
+home15.image.attach(io: File.open('app/assets/images/dragon.png'),
+ filename: 'dragon.png')
+home15.save!
+hosting15 = Hosting.create!(
+  host_id: 14,
+  home_id: 15
+)
+
+home16 = Home.new(
+  title: "Fishman Kings Palace",
+  status: 'active',
+  lat: 36.999160,
+  lng: 135.312810,
+  guests: 3,
+  home_type: 'Private Room',
+  price: 3000,
+  description: "This is the king's palace. We're renting it out since you're friends of Luffy's, but treat it with the utmost respsect",
+  extra_info: "",
+  beds: 2,
+  baths: 1,
+  bedrooms: 1,
+  internet: false,
+  washer: true,
+  dryer: false,
+  city: 'Grand Line',
+  country: 'Japan'
+)
+home16.image.attach(io: File.open('app/assets/images/fishman.png'),
+ filename: 'fishman.png')
+home16.save!
+hosting16 = Hosting.create!(
+  host_id: 15,
+  home_id: 16
+)
+
+home17 = Home.new(
+  title: "Laboon's House",
+  status: 'active',
+  lat: 33.885380,
+  lng: 136.577740,
+  guests: 10,
+  home_type: 'Entire Place',
+  price: 1,
+  description: "Labooon! We're coming back for you! I remember when you were just a baby.",
+  extra_info: "Never forget!",
+  beds: 0,
+  baths: 0,
+  bedrooms: 0,
+  internet: false,
+  washer: false,
+  dryer: false,
+  city: 'Grand Line',
+  country: 'Japan'
+)
+home17.image.attach(io: File.open('app/assets/images/laboon.png'),
+ filename: 'laboon.png')
+home17.save!
+hosting17 = Hosting.create!(
+  host_id: 12,
+  home_id: 17
+)
+
 
 puts 'creating Bookings'
 booking1 = Booking.create!(
   home_id: 3,
   guest_id: 1,
-  start_date: '2018-11-09',
-  end_date: '2018-11-11',
+  start_date: '2018-12-09',
+  end_date: '2018-12-11',
   guests: 1
 )
 
 booking2 = Booking.create!(
   home_id: 2,
   guest_id: 1,
-  start_date: '2018-11-20',
-  end_date: '2018-11-24',
+  start_date: '2018-12-20',
+  end_date: '2018-12-24',
   guests: 2
 )
 
 booking3 = Booking.create!(
   home_id: 1,
   guest_id: 1,
-  start_date: '2018-11-30',
-  end_date: '2018-12-02',
+  start_date: '2018-12-30',
+  end_date: '2019-01-02',
   guests: 4
 )
 
 booking4 = Booking.create!(
   home_id: 4,
   guest_id: 2,
-  start_date: '2018-11-30',
-  end_date: '2018-12-02',
+  start_date: '2018-12-30',
+  end_date: '2019-01-02',
   guests: 1
 )
 
@@ -386,8 +701,8 @@ booking5 = Booking.create!(
 booking6 = Booking.create!(
   home_id: 5,
   guest_id: 4,
-  start_date: '2019-01-02',
-  end_date: '2019-01-04',
+  start_date: '2019-01-04',
+  end_date: '2019-01-07',
   guests: 10
 )
 
