@@ -30,7 +30,7 @@ class NavBar extends React.Component {
         ) : (
           <Link to='/homes/form' className={'nav-link'}>Become a Host</Link>
         )}
-        <Link to='/workInProgress' className={'nav-link'}>Saved</Link>
+        <Link to='/saved' className={'nav-link'}>Saved</Link>
         <Link to={`/users/${this.props.currentUser.id}/bookings`} className={'nav-link'}>Trips</Link>
         <Link to='/workInProgress' className={'nav-link'}>Messages</Link>
 

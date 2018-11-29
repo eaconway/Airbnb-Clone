@@ -17,11 +17,11 @@ import SearchContainer from './search/search_container';
 import BookingsIndexContainer from './bookings/bookings_index_container';
 import BookingsEditContainer from './bookings/bookings_edit_container';
 
+import SavedContainer from './saved/saved_container';
+
 import Loading from './loading';
-
-import CalendarTest from './homes/calendar_dates';
-
-import WIP from './wip';
+import WorkInProgress from './wip';
+// import CalendarTest from './homes/calendar_dates';
 
 import { Switch, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute} from '../util/route_util';
@@ -40,15 +40,15 @@ export default () => (
     <div className={'main-content'}>
       <Switch>
         <Route path="/search/:searchId" component={SearchContainer} />
-        <Route path="/workInProgress" component={WIP} />
+        <Route path="/workInProgress" component={WorkInProgress} />
         <Route path="/loading" component={Loading} />
+        <Route path="/saved" component={SavedContainer} />
         <ProtectedRoute path='/homes/:homeId/edit' component={HomesEditContainer} />
         <ProtectedRoute path='/bookings/:bookingId/edit' component={BookingsEditContainer} />
         <ProtectedRoute path='/users/:userId/bookings' component={BookingsIndexContainer} />
         <ProtectedRoute path='/users/:userId/homes' component={HomesUserIndexContainer} />
         <ProtectedRoute path='/homes/form' component={HomesFormContainer} />
         <Route path="/homes/:homeId" component={HomesShowContainer} />
-        <Route path="/calendar" component={CalendarTest} />
         <Route path="/" component={HomeContainer} />
       </Switch>
     </div>
