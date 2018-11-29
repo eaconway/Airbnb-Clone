@@ -38,6 +38,9 @@ class SearchResults extends React.Component {
       filter.city = this.props.search.query
       this.setState({loaded: true, filter});
     });
+
+    this.props.requestUserLikes()
+      .then(() => console.log('searched for likes'));
   }
 
   componentWillReceiveProps(nextProps) {

@@ -5,6 +5,7 @@ import * as HomeApiUtil from './util/homes_api_util';
 import * as BookingsApiUtil from './util/bookings_api_util';
 import * as ReviewsApiUtil from './util/reviews_api_util';
 import * as SearchesApiUtil from './util/searches_api_util';
+import * as SavedApiUtil from './util/saved_api_util';
 import configureStore from './store/store';
 import Root from './component/root';
 
@@ -46,4 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchSearches = SearchesApiUtil.fetchSearches;
   window.fetchSearch = SearchesApiUtil.fetchSearch;
   window.createSearch = SearchesApiUtil.createSearch;
+
+  window.fetchUserLikes = SavedApiUtil.fetchUserLikes;
+  window.fetchLikes = SavedApiUtil.fetchLikes;
+  window.createLike = SavedApiUtil.createLike;
+  window.deleteLike = SavedApiUtil.deleteLike;
 });

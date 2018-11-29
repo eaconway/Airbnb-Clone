@@ -33,6 +33,9 @@ class SearchBar extends React.Component {
           })
         });
       })
+
+    this.props.requestUserLikes()
+      .then(() => console.log('searched for likes'));
   }
 
   componentWillReceiveProps(nextProps){

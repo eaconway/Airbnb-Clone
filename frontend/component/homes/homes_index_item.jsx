@@ -7,6 +7,10 @@ class HomeIndexItem extends React.Component{
     this.state ={
       likeStatus: 'unliked',
     };
+
+    this.props.like ? this.state.likeStatus = 'liked' : '';
+
+    console.log('like is ', this.props.like);
     this.toggleHomeLike = this.toggleHomeLike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -15,9 +19,22 @@ class HomeIndexItem extends React.Component{
     e.preventDefault();
     if (this.state.likeStatus === 'unliked'){
       //create like model association
+      debugger;
+      let like = {
+        user_id: this.props.currentUser.id,
+        home_id: this.props.home.id
+      }
+      // this.props.createLike(like)
+      //   .then(() => {
+      //     this.setState({likeStatus: 'liked'});
+      //   })
       return this.setState({likeStatus: 'liked'});
     }
     //delete like model association
+    // this.props.deleteLike()
+    //   .then(() => {
+    //     this.setState({likeStatus: 'unliked'});
+    //   })
     return this.setState({likeStatus: 'unliked'});
   }
 

@@ -4,6 +4,7 @@ import { requestHomes } from '../../actions/home_actions';
 import { requestSearches, requestSearch,
   createSearch } from '../../actions/search_actions';
 import { pickSearch } from '../../util/selectors';
+import {requestUserLikes} from '../../actions/saved_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUser: state.users[state.session.id],
@@ -16,7 +17,8 @@ const mapDispatchToProps = dispatch => ({
   requestHomes: () => dispatch(requestHomes()),
   requestSearches: userId => dispatch(requestSearches(userId)),
   requestSearch: id => dispatch(requestSearch(id)),
-  createSearch: search => dispatch(createSearch(search))
+  createSearch: search => dispatch(createSearch(search)),
+  requestUserLikes: () => dispatch(requestUserLikes())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
