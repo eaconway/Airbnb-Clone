@@ -173,6 +173,13 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+
+      button {
+        border: none;
+        color: $teal-green;
+        font-size: 18px;
+        // box-shado
+      }
     }
   }
 
