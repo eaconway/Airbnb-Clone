@@ -365,7 +365,7 @@ home7 = Home.new(
   home_type: 'Private Room',
   price: 200,
   description: "Always on the move! THIS IS A ONE IN A LIFETIME EXPERIENCE! Jk,
-    but sersiously, it'll be fun :)",
+    but seriously, it'll be fun :)",
   extra_info: "",
   beds: 3,
   baths: 1,

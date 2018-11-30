@@ -110,6 +110,21 @@ class Filters extends React.Component {
     }
   }
 
+  resetHomeTypeOptions(key){
+    return (e) => {
+      e.stopPropagation();
+      let original = merge({}, this.stateDefault[key]);
+      this.setState({
+        [key]: original,
+        containerBottom: '',
+        activeFilter: null
+      }, () => {
+        this.props.updateFilter('home_type', this.state[key].value);
+        this.props.filterOn();
+      });
+    }
+  }
+
   handleHomeType(key){
     let homeTypes = {
       entirePlace: 'Entire Place',
@@ -124,9 +139,7 @@ class Filters extends React.Component {
 
       if (homeType[key]){
         homeType[key] = false;
-        homeType.value = homeType.value.filter(selection => {
-          selection != homeTypes[key];
-        })
+        homeType.value = homeType.value.filter(select => select != homeTypes[key])
       } else {
         homeType[key] = true;
         homeType.value.push(homeTypes[key]);
@@ -232,12 +245,12 @@ class Filters extends React.Component {
             </div>
 
             <div className='filter-nav'>
-              <button onClick={this.resetOptions('homeType')}>Cancel</button>
+              <button onClick={this.resetHomeTypeOptions('homeType')}>Cancel</button>
               <button onClick={this.openOptions('homeType')}>Apply</button>
             </div>
           </div>
         </div>
-        <div className='filter-btn'>Price</div>
+
       </div>
     )
   }

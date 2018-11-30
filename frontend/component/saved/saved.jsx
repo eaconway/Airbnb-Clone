@@ -54,7 +54,8 @@ class Saved extends React.Component {
             like = this.props.likes[i];
           }
         }
-        return <HomesIndexItem key={home.id} home={home} like={like}/>
+        return <HomesIndexItem key={home.id} home={home} like={like}
+          deleteLike={this.props.deleteLike} createLike={this.props.createLike}/>
       });
 
       let homesSaved = homes.length === 0 ? '' : (

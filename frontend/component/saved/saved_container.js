@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Saved from './saved';
+import {createLike, deleteLike} from '../../actions/saved_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.users[state.session.id],
@@ -8,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  createLike: (like) => dispatch(createLike(like)),
+  deleteLike: (id) => dispatch(deleteLike(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Saved);

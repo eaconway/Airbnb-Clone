@@ -15,7 +15,7 @@
  * {
    // border: 1px solid red;
    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-   margin: 20px 0px 20px 0px;
+   // margin: 20px 0px 20px 0px;
    color: rgb(72, 72, 72);
  }
 
@@ -23,23 +23,27 @@
   font-size: 24px;
   line-height: 30px;
   font-weight: 800;
-  overflow-wrap: break-word
+  overflow-wrap: break-word;
+  margin: 20px 0px 20px 0px;
  }
 
  h4{
    color: #767676;
    font-size: 14px;
+   margin: 20px 0px 20px 0px;
  }
 
  h2{
    color: #767676;
    font-size: 19px;
    font-weight: 500;
+   margin: 20px 0px 20px 0px;
  }
 
  .current-options{
   display: flex;
   justify-content: space-around;
+  margin: 20px 0px 20px 0px;
  }
 
  .chosen-fields{
@@ -79,6 +83,7 @@
   align-items: center;
   font-size: 18px;
   color: #767676;
+  margin: 20px 0px 20px 0px;
  }
 
 // Checkbox styling from https://www.inserthtml.com/2012/06/custom-form-radio-checkbox/r
@@ -132,17 +137,22 @@
   align-items: center;
 }
 
+.homes-form-input-creator{
+  margin: 20px 0px 20px 0px;
+}
+
 .home-form-input{
   color: #767676;
   font-size: 16px;
   font-weight: 400;
   display:flex;
   flex-direction: column;
+  margin: 20px 0px 20px 0px;
 
   input {
     display: block;
     width: 100%;
-    height: 30px;
+    height: 50px;
     margin: 20px 0px 20px 0px;
     font-size: 16px;
     font-weight: normal;
@@ -168,6 +178,7 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
 
 .submitDiv{
   width: 100%;
@@ -201,13 +212,17 @@
 
 .form-image{
   width: 50%;
-  background-image: url('http://www.ucatx.cat/wallpic/full/133/1336034/my-hero-academia-wallpaper.jpg');
+  background-image: url('https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Cartoons-PNG/Naruto_PNG_Picture.png?m=1434276647rr');
+  // background-image: url('http://www.ucatx.cat/wallpic/full/133/1336034/my-hero-academia-wallpaper.jpg');
   background-repeat: no-repeat;
-  background-size: auto 1000px;
-  background-position: -100px -100px;
+  // background-size: auto 1000px;
+  // background-position: -100px -100px;
+  background-position: center;
+  background-size: contain;
   position: sticky;
   top: 80px;
-  height: 650px;
+  height: 680px;
+  // min-height: 100%;
 }
 
 .form-image-2{
@@ -218,4 +233,15 @@
 
 .home-error {
   color: $red;
+}
+
+.toggle-address{
+  border: 1px solid blue;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.photo-input{
+  margin: 20px 0px 20px 0px;
+
 }

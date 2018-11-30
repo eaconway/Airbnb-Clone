@@ -14,9 +14,12 @@ class Homes extends React.Component {
   }
 
   render(){
+    let likes = {};
+    this.props.likes.map(like => likes[like.home_id] = like)
     let homes = this.props.homes.map(home => (
+
       <HomesIndexItem key={home.id} home={home} currentUser={this.props.currentUser}
-        createLike={this.props.createLike} deleteLike={this.props.deleteLike}/>
+        createLike={this.props.createLike} deleteLike={this.props.deleteLike} like={likes[home.id]}/>
     ));
 
     let homesAvail = homes.length === 1 ? '1 home' : (homes.length + ' homes');

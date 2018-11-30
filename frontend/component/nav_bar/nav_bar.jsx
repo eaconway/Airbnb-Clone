@@ -32,7 +32,6 @@ class NavBar extends React.Component {
         )}
         <Link to='/saved' className={'nav-link'}>Saved</Link>
         <Link to={`/users/${this.props.currentUser.id}/bookings`} className={'nav-link'}>Trips</Link>
-        <Link to='/workInProgress' className={'nav-link'}>Messages</Link>
 
         <div className={'nav-link'} onClick={this.toggleUserOptions}>
           <img className='profile-pic' src={this.props.currentUser.profileUrl}/>

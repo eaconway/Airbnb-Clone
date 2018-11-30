@@ -26,7 +26,6 @@ export const findReviews = (reviews, homeId) => {
 };
 
 export const userHomes = (homes, userHostings) => {
-  debugger
   if (userHostings != undefined){
     let hostings = Object.values(userHostings);
     let hostingIds = hostings.map(hosting => hosting.home_id);

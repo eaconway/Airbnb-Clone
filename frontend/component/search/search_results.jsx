@@ -39,8 +39,6 @@ class SearchResults extends React.Component {
       this.setState({loaded: true, filter});
     });
 
-    this.props.requestUserLikes()
-      .then(() => console.log('searched for likes'));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,6 +56,7 @@ class SearchResults extends React.Component {
     console.log('updating filter ', field, value);
     let filter = this.state.filter;
     filter[field] = value;
+    console.log('new filter', field, value);
     this.setState({step: this.state.step + 1, filter })
   }
 
@@ -79,6 +78,8 @@ class SearchResults extends React.Component {
     })
 
     let homes = this.props.homes.map(home => merge({}, home));
+
+    // debugger;
 
     filters.forEach(filter => {
       if (filter.key === 'bounds'){
@@ -143,7 +144,8 @@ class SearchResults extends React.Component {
 
           <div className={this.state.whiteOut + ' white-out'}/>
           <div className={'search-results'}>
-            <HomesIndex homes={homes}/>
+            <HomesIndex homes={homes} likes={this.props.likes}
+              deleteLike={this.props.deleteLike} createLike={this.props.createLike}/>
             <div className={'search-homes-map'}>
               <HomeMap homes={homes} updateFilter={this.updateFilter}/>
             </div>

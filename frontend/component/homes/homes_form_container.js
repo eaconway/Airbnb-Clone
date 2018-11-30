@@ -5,7 +5,8 @@ import { createHome } from '../../actions/home_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.users[state.session.id],
-  errors: state.errors.homes || []
+  errors: state.errors.homes || [],
+  homes: Object.values(state.entities.homes)
 });
 
 const mapDispatchToProps = dispatch => ({

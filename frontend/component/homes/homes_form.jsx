@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as HomeOptions from '../../util/homes_util';
 import FormMap from './form_map';
 import Loading from '../loading';
+import EditMap from './edit_map';
 
 class Homes extends React.Component {
   constructor(props){
@@ -22,20 +23,17 @@ class Homes extends React.Component {
       internet: false,
       washer: false,
       dryer: false,
-      addressInputType: 'address',
+      addressInputType: '',
       status: 'active',
       imageFile: null,
       imageUrl: null,
-      lat: 0,
-      lng: 0,
+      lat: 36.2048,
+      lng: 138.2529,
       title: '',
       price: '',
       description: '',
       extraInfo: '',
     };
-    // if (this.props.currentUser.hostStatus) {
-    //   this.state.step = 2;
-    // }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.capitalize = this.capitalize.bind(this);
@@ -73,7 +71,6 @@ class Homes extends React.Component {
     //   country: faddress[0],
     //   zipcode: ,
     // });
-
   }
 
   toggleAddressForm(e){
@@ -106,7 +103,6 @@ class Homes extends React.Component {
           formData.append(`home[${field}]`, this.state[field]);
         })
 
-
       this.props.createHome(formData)
         .then(() => this.props.history.push(`/users/${this.props.currentUser.id}/homes`),
         () => this.setState({step: this.state.step - 1}));
@@ -125,17 +121,33 @@ class Homes extends React.Component {
   }
 
   formInputCreator(field, seed){
-    console.log(field);
-    return (
-      <select className={''} value={this.state[field]} onChange={this.update(field)}>
-      {seed.map((opt,idx) =>
-        <option value={opt}
-          key={idx}
-          selected = {this.state[field] === opt ? true : false }>
-          {opt}
-        </option>
-      )}
-    </select>)
+    if (field === 'city'){
+      let cities = this.props.homes.map(home => home.city);
+      cities = [...new Set(cities)];
+      return (
+        <select className={'homes-form-input-creator'} value={this.state[field]} onChange={this.update(field)}>
+          {cities.map((opt,idx) =>
+            <option value={opt}
+              key={idx}
+              selected = {this.state[field] === opt ? true : false }>
+              {opt}
+            </option>
+          )}
+        </select>
+      )
+    } else {
+      return (
+        <select className={'homes-form-input-creator'} value={this.state[field]} onChange={this.update(field)}>
+          {seed.map((opt,idx) =>
+            <option value={opt}
+              key={idx}
+              selected = {this.state[field] === opt ? true : false }>
+              {opt}
+            </option>
+          )}
+        </select>
+      )
+    }
   }
 
   capitalize(string)
@@ -144,8 +156,6 @@ class Homes extends React.Component {
   }
 
   render(){
-    console.log(this.state);
-
     let errors = this.props.errors.length === 0 ? "" : (
       this.props.errors.map(error => <li className='home-error'>{error}</li>)
     );
@@ -191,7 +201,7 @@ class Homes extends React.Component {
       <div className={'lat-long-form'}>
         <div className={'lat-long-input'}>
           <label className={'home-form-input'}>Latitude
-            <input type='number' placeholder='e.g. 123 Main St.'
+            <input className='' type='number' placeholder='e.g. 123 Main St.'
               value={this.state.lat} onChange={this.update('lat')}
               />{"\n"}
           </label>
@@ -208,6 +218,14 @@ class Homes extends React.Component {
         <FormMap handleFormClick={this.handleFormClick} />
       </div>
     );
+
+    // <div>
+    //   <button className={'toggle-address'} onClick={this.toggleAddressForm}>
+    //     Toggle Address Input Method
+    //     {this.state.addressInputType === 'address' ? addressInput :
+    //       mapInput}
+    //   </button>
+    // </div>
 
     switch(this.state.step) {
 
@@ -340,10 +358,6 @@ class Homes extends React.Component {
                   <h2>Where's your place located?</h2>
                 </div>
 
-                <div>
-                  <button onClick={this.toggleAddressForm}>Toggle Address Input Method</button>
-                </div>
-
                 {this.state.addressInputType === 'address' ? addressInput :
                   mapInput}
 
@@ -383,9 +397,10 @@ class Homes extends React.Component {
                     />{"\n"}
                 </label>
 
-                <h2>Lastly, Upload a photo: </h2>
-                <input type='file' onChange={this.handleFile}/>
+                <h2>Next, Upload a photo: </h2>
+                <input className='photo-input' type='file' onChange={this.handleFile}/>
                 {preview}
+
                 <div className={'submitDiv'}>
                   <button onClick={this.pageBack}>Back</button>
                   <button onClick={this.handleSubmit}>Next</button>

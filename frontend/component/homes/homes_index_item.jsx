@@ -17,25 +17,25 @@ class HomeIndexItem extends React.Component{
 
   toggleHomeLike(e){
     e.preventDefault();
+
     if (this.state.likeStatus === 'unliked'){
-      //create like model association
-      debugger;
+      // debugger;
       let like = {
-        user_id: this.props.currentUser.id,
         home_id: this.props.home.id
       }
-      // this.props.createLike(like)
-      //   .then(() => {
-      //     this.setState({likeStatus: 'liked'});
-      //   })
-      return this.setState({likeStatus: 'liked'});
+      this.props.createLike(like)
+        .then(() => {
+          this.setState({likeStatus: 'liked'});
+        })
+      // return this.setState({likeStatus: 'liked'});
+    } else {
+      this.props.deleteLike(this.props.like.id)
+      .then(() => {
+        this.setState({likeStatus: 'unliked'});
+      })
     }
     //delete like model association
-    // this.props.deleteLike()
-    //   .then(() => {
-    //     this.setState({likeStatus: 'unliked'});
-    //   })
-    return this.setState({likeStatus: 'unliked'});
+    // return this.setState({likeStatus: 'unliked'});
   }
 
   handleDelete(e){
