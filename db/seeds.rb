@@ -661,8 +661,8 @@ puts 'creating Bookings'
 booking1 = Booking.create!(
   home_id: 3,
   guest_id: 1,
-  start_date: '2018-12-09',
-  end_date: '2018-12-11',
+  start_date: '2018-12-17',
+  end_date: '2018-12-19',
   guests: 1
 )
 
