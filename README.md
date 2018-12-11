@@ -1,6 +1,6 @@
 # README
 
-Hi! Welcome to AirbnAnime! This is a site where you can book anime homes/locations for your Otaku-filled vacations with your friends. You can book trips, create homes, leave reviews, and search based on different criteria. More features incoming!
+Hi! Welcome to AirbnAnime! This is a site where you can book anime homes/locations for your Otaku-filled vacations with your friends. You can book trips, create homes, leave reviews, and search based on different criteria. More features incoming! 
 
 [AirbnAnime](https://airbnanime.herokuapp.com)
 
